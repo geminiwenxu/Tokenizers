@@ -1,10 +1,5 @@
-class RejectionCriteria():
-    def __init__(self, vocab):
-        self.vocab = vocab
-
-
 class Check():
-    def __init__(self, vocab, prefixes=['anti'], suffixes=['ly'], if_seg=False):
+    def __init__(self, vocab, prefixes=['dis'], suffixes=['ly'], if_seg=False):
         self.vocab = vocab
         self.prefixes = prefixes
         self.suffixes = suffixes
@@ -52,7 +47,28 @@ class Check():
         return result, self.if_seg
 
 
+class RejectionCriteria(Check):
+    def __init__(self, vocab, prefixes=['dis'], suffixes=['ly'], if_seg=False):
+        super().__init__(vocab, prefixes, suffixes, if_seg)
+
+    def single_token(self):
+        self.result, self.if_seg = Check.segment(self)
+        print(self.result, self.if_seg)
+        if self.if_seg:
+            for token in self.result:
+                if len(token) == 1:
+                    print("reject")
+                    self.if_seg = False
+            self.result, self.if_seg = self.vocab, self.if_seg
+        else:
+            self.result, self.if_seg = Check.segment(self)
+            print("accept")
+        return self.result, self.if_seg
+
 if __name__ == '__main__':
-    test = Check('day')
-    result, if_seg = test.segment()
+    # test = Check('disc')
+    # result, if_seg = test.segment()
+    # print("result: ", result, if_seg)
+    test = RejectionCriteria('disc')
+    result, if_seg=test.single_token()
     print("result: ", result, if_seg)
