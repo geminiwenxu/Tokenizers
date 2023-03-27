@@ -1,0 +1,17 @@
+import os
+from pathlib import Path
+
+from tokenizers import ByteLevelBPETokenizer
+from transformers import RobertaTokenizer
+
+
+def build_tokenizer():
+    path = [str(x) for x in Path('../data').glob('**/*.txt')]
+    tokenizer = ByteLevelBPETokenizer()
+    tokenizer.train(files=path, vocab_size=30_522, min_frequency=2,
+                    special_tokens=['<s>', '<pad>', '</s>', '<unk>', '<mask>'])
+
+    os.mkdir('./liberto')
+    tokenizer.save_model('liberto')
+    tokenizer = RobertaTokenizer.from_pretrained('liberto', max_ken=512)
+    return tokenizer
