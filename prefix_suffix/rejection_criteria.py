@@ -65,10 +65,11 @@ class RejectionCriteria(Check):
             print("accept")
         return self.result, self.if_seg
 
+
 if __name__ == '__main__':
     # test = Check('disc')
     # result, if_seg = test.segment()
     # print("result: ", result, if_seg)
     test = RejectionCriteria('disc')
-    result, if_seg=test.single_token()
+    result, if_seg = test.single_token()
     print("result: ", result, if_seg)
