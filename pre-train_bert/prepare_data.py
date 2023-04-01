@@ -12,8 +12,8 @@ class Dataset(torch.utils.data.Dataset):
         return {key: tensor[i] for key, tensor in self.encodings.items()}
 
 
-def mask_encodings(tokenizer):
-    with open('../data/text_0.txt', 'r', encoding='utf-8') as fp:
+def mask_encodings(data_path, tokenizer):
+    with open(data_path, 'r', encoding='utf-8') as fp:
         lines = fp.read().split('\n')
 
     batch = tokenizer(lines, max_length=512, padding='max_length', truncation=True)

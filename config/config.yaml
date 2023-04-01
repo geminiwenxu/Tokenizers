@@ -1,5 +1,5 @@
 train:
-  path: /../data/feats_train_norm.json
+  path: /../data/cc_news_samples.json
 
 dev:
   path: /../data/feats_dev_norm.json

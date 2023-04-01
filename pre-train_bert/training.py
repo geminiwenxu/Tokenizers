@@ -1,19 +1,29 @@
 import torch
+import yaml
+from pkg_resources import resource_filename
 from tqdm.auto import tqdm
 from transformers import AdamW
 
 from bert_tokenizer import build_tokenizer
 from build_model import build_model
-from data_collection import collect_data
 from prepare_data import Dataset, mask_encodings
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
+def get_config(path):
+    with open(resource_filename(__name__, path), 'r') as stream:
+        conf = yaml.safe_load(stream)
+    return conf
+
+
+config = get_config('/../config/config.yaml')
+data_path = resource_filename(__name__, config['train']['path'])
+
+
 def main():
-    collect_data()
     tokenizer = build_tokenizer()
-    encodings = mask_encodings(tokenizer)
+    encodings = mask_encodings(data_path, tokenizer)
     dataset = Dataset(encodings)
     loader = torch.utils.data.DataLoader(dataset, batch_size=16, shuffle=True)
     model = build_model()
@@ -33,7 +43,7 @@ def main():
             loss.backward()
             optim.step()
             loop.set_description(f'Epoch {epoch}')
-    model.save_pretrained('./liberto')
+    model.save_pretrained('./pretrained_tokenizer')
 
 
 if __name__ == '__main__':

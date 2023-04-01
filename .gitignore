@@ -5,4 +5,4 @@ data/
 /__pycache__/
 *.pyc
 *.log
-pre-train_bert/liberto/
+pre-train_bert/pretrained_tokenizer/

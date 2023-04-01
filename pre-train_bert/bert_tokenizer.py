@@ -11,7 +11,7 @@ def build_tokenizer():
     tokenizer.train(files=path, vocab_size=30_522, min_frequency=2,
                     special_tokens=['<s>', '<pad>', '</s>', '<unk>', '<mask>'])
 
-    os.mkdir('./liberto')
-    tokenizer.save_model('liberto')
-    tokenizer = RobertaTokenizer.from_pretrained('liberto', max_ken=512)
+    os.mkdir('./pretrained_tokenizer')
+    tokenizer.save_model('pretrained_tokenizer')
+    tokenizer = RobertaTokenizer.from_pretrained('pretrained_tokenizer', max_ken=512)
     return tokenizer
