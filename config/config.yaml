@@ -1,0 +1,22 @@
+train:
+  path: /../data/feats_train_norm.json
+
+dev:
+  path: /../data/feats_dev_norm.json
+
+test:
+  path: /../data/feats_test_norm.json
+
+data_all:
+  path: /../data/data_all.json
+
+
+misclassification:
+  path: /../data/misclassification.json
+correct_classification:
+  path: /../data/correct_classification.json
+
+epoch: 1
+batch_size: 2
+max_len: 160
+learning_rate: 0.000001

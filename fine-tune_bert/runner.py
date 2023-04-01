@@ -7,13 +7,13 @@ from pkg_resources import resource_filename
 from sklearn.metrics import classification_report
 from transformers import AutoTokenizer
 from transformers import get_linear_schedule_with_warmup
-
-from baseline_model.bert_model import BertBinaryClassifier
-from baseline_model.prediction import get_predictions
-from baseline_model.prepare_data import create_data_loader
-from baseline_model.train import train_epoch, eval_model
 from utilities.log_samples import save_samples
 from utilities.plot import plot
+
+from load_model import model
+from prediction import get_predictions
+from prepare_data import create_data_loader
+from train import train_epoch, eval_model
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 class_names = ['fake', 'real']
@@ -28,7 +28,7 @@ def get_config(path):
 
 config = get_config('/../config/config.yaml')
 
-model = BertBinaryClassifier()
+model = model()
 model.to(device)
 
 MAX_LEN = config['max_len']

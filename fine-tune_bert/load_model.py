@@ -1,6 +1,7 @@
 from transformers import RobertaConfig, RobertaTokenizer, RobertaForSequenceClassification
 
-if __name__ == '__main__':
+
+def model():
     output_model_file = "/Users/geminiwenxu/PycharmProjects/Tokenizers/pre-train_bert/liberto/pytorch_model.bin"
     output_config_file = "/Users/geminiwenxu/PycharmProjects/Tokenizers/pre-train_bert/liberto/config.json"
     output_vocab_file = "/Users/geminiwenxu/PycharmProjects/Tokenizers/pre-train_bert/liberto/pytorch_model.bin"
@@ -11,4 +12,4 @@ if __name__ == '__main__':
     print(tokenizer.tokenize("hello, world!"))
     model = RobertaForSequenceClassification.from_pretrained(folder_path)
     print(model(**tokenizer("hello, world!", return_tensors="pt")))
-    
+    return model
