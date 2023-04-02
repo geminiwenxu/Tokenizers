@@ -5,7 +5,7 @@ from tokenizers import ByteLevelBPETokenizer
 from transformers import RobertaTokenizer
 
 
-def build_tokenizer():
+def build_tokenizer(max_len):
     path = [str(x) for x in Path('../data').glob('**/*.txt')]
     tokenizer = ByteLevelBPETokenizer()
     tokenizer.train(files=path, vocab_size=30_522, min_frequency=2,
@@ -13,5 +13,5 @@ def build_tokenizer():
 
     os.mkdir('./pretrained_tokenizer')
     tokenizer.save_model('pretrained_tokenizer')
-    tokenizer = RobertaTokenizer.from_pretrained('pretrained_tokenizer', max_ken=512)
+    tokenizer = RobertaTokenizer.from_pretrained('pretrained_tokenizer', max_len=max_len)
     return tokenizer

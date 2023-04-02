@@ -19,18 +19,26 @@ def get_config(path):
 
 config = get_config('/../config/config.yaml')
 data_path = resource_filename(__name__, config['train']['path'])
+batch_size = config['batch_size']
+epochs = config['epoch']
+lr = config['learning_rate']
+max_len = config['max_len']
+vocab_size = config['vocab_size']
+hidden_size = config['hidden_size']
+hidden_layer = config['hidden_layer']
+attention_heads = config['attention_heads']
+typo_size = config['typo_size']
 
 
 def main():
-    tokenizer = build_tokenizer()
-    encodings = mask_encodings(data_path, tokenizer)
+    tokenizer = build_tokenizer(max_len)
+    encodings = mask_encodings(data_path, tokenizer, max_len)
     dataset = Dataset(encodings)
-    loader = torch.utils.data.DataLoader(dataset, batch_size=16, shuffle=True)
-    model = build_model()
+    loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    model = build_model(vocab_size, max_len, hidden_size, hidden_layer, attention_heads, typo_size)
 
     model.train()
-    optim = AdamW(model.parameters(), lr=1e-4)
-    epochs = 1
+    optim = AdamW(model.parameters(), lr=lr)
     for epoch in range(epochs):
         loop = tqdm(loader, leave=True)
         for batch in loop:

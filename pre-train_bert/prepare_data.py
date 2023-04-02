@@ -12,11 +12,11 @@ class Dataset(torch.utils.data.Dataset):
         return {key: tensor[i] for key, tensor in self.encodings.items()}
 
 
-def mask_encodings(data_path, tokenizer):
+def mask_encodings(data_path, tokenizer, max_len):
     with open(data_path, 'r', encoding='utf-8') as fp:
         lines = fp.read().split('\n')
 
-    batch = tokenizer(lines, max_length=512, padding='max_length', truncation=True)
+    batch = tokenizer(lines, max_length=max_len, padding='max_length', truncation=True)
     labels = torch.tensor([x for x in batch.input_ids])
     mask = torch.tensor([x for x in batch['attention_mask']])
 

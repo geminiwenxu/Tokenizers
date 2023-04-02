@@ -1,5 +1,5 @@
 train:
-  path: /../data/cc_news_samples.json
+  path: /../data/cc_news_sample.txt
 
 dev:
   path: /../data/feats_dev_norm.json
@@ -17,6 +17,11 @@ correct_classification:
   path: /../data/correct_classification.json
 
 epoch: 1
-batch_size: 2
-max_len: 160
-learning_rate: 0.000001
+batch_size: 16
+max_len: 512
+learning_rate: 0.0001
+vocab_size: 30_522
+hidden_size: 768
+hidden_layer: 6
+attention_heads: 12
+typo_size: 1
