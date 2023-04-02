@@ -1,3 +1,5 @@
+import os
+
 import torch
 import yaml
 from pkg_resources import resource_filename
@@ -8,6 +10,7 @@ from bert_tokenizer import build_tokenizer
 from build_model import build_model
 from prepare_data import Dataset, mask_encodings
 
+os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
@@ -46,7 +49,7 @@ def main():
             input_ids = batch['input_ids'].to(device)
             attention_mask = batch['attention_mask'].to(device)
             labels = batch['labels'].to(device)
-            outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
+            outputs = model(input_ids, attention_mask, labels=labels)
             loss = outputs.loss
             loss.backward()
             optim.step()

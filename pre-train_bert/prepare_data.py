@@ -17,13 +17,13 @@ def mask_encodings(data_path, tokenizer, max_len):
         lines = fp.read().split('\n')
 
     batch = tokenizer(lines, max_length=max_len, padding='max_length', truncation=True)
-    labels = torch.tensor([x for x in batch.input_ids])
+    labels = torch.tensor([x for x in batch['input_ids']])
     mask = torch.tensor([x for x in batch['attention_mask']])
 
-    input_ids = labels.detach().clone()  # torch.Size([6000, 512])
+    input_ids = labels.detach().clone()  # torch.Size([num_samples, max_len])
 
     rand = torch.rand(input_ids.shape)
-    mask_arr = (rand < 0.15) * (input_ids != 1) * (input_ids != 2)  # torch.Size([6000, 512]) boolean arr
+    mask_arr = (rand < 0.15) * (input_ids != 1) * (input_ids != 2)  # torch.Size([num_samples, max_len]) boolean arr
     for i in range(input_ids.shape[0]):
         selection = torch.flatten(mask_arr[i].nonzero()).tolist()
         input_ids[i, selection] = 3
