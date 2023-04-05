@@ -1,5 +1,5 @@
 import torch
-from transformers import RobertaConfig, RobertaForMaskedLM
+from transformers import RobertaConfig, RobertaForMaskedLM, DataCollatorForLanguageModeling
 
 
 def build_model(vocab_size, max_len, hidden_size, hidden_layer, attention_heads, typo_size):
