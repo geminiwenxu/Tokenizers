@@ -3,7 +3,7 @@
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
 
 from load_data import load_data, dataset_to_text
-from load_model import build_model
+from model import build_model
 from prepare_dataset import prepare_dataset
 from tokenizer import train_tokenizer
 

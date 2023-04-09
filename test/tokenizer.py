@@ -35,6 +35,8 @@ def train_tokenizer():
         }
         json.dump(tokenizer_cfg, f)
     # when the tokenizer is trained and configured, load it as BertTokenizerFast
+    # save_model method saves the vocabulary file into the path, we also manually save some tokenizer configurations,
+    # such as special tokens
     tokenizer = BertTokenizerFast.from_pretrained(model_path)
     # print(tokenizer.tokenize("hello world"))
     return tokenizer
