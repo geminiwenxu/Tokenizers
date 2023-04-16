@@ -10,3 +10,5 @@ test/pretrained-bert/
 test/test.txt
 test/train.txt
 test/tokenizer
+morfessor-2.0.6/
+morphemes-master
