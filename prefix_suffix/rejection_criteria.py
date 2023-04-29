@@ -67,8 +67,8 @@ class RejectionCriteria(Check):
 
 
 if __name__ == '__main__':
-    # test = Check('disc')
-    # result, if_seg = test.segment()
+    # baseline_tokenizer = Check('disc')
+    # result, if_seg = baseline_tokenizer.segment()
     # print("result: ", result, if_seg)
     test = RejectionCriteria('disc')
     result, if_seg = test.single_token()

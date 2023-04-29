@@ -24,4 +24,5 @@ def morfesso_segmentation(word):
 
 
 if __name__ == '__main__':
-    segmentation = morfesso_segmentation()
+    segmentation = morfesso_segmentation('colorful')
+    print(segmentation)

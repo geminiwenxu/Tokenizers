@@ -6,9 +6,9 @@ data/
 *.pyc
 *.log
 pre-train_bert/pretrained_tokenizer/
-test/pretrained-bert/
-test/test.txt
-test/train.txt
-test/tokenizer
+baseline_tokenizer/pretrained-bert/
+baseline_tokenizer/test.txt
+baseline_tokenizer/train.txt
+baseline_tokenizer/tokenizer
 morfessor-2.0.6/
-morphemes-master
+morphemes_tokenizer/pretrained-bert/

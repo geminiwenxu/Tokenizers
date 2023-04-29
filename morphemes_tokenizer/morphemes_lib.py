@@ -5,7 +5,7 @@ import json
 
 import morphemes_wn as mdb
 
-data_directory_path = "../../data/"
+data_directory_path = "data/"
 
 debug = 0
 

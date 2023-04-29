@@ -4,7 +4,7 @@ from datasets import *
 def load_data():
     dataset = load_dataset("cc_news", split="train")
     d = dataset.train_test_split(test_size=0.1)
-    return d["train"], d["test"]
+    return d["train"], d["baseline_tokenizer"]
 
 
 def dataset_to_text(dataset, output_filename="data.txt"):
