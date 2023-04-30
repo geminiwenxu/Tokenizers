@@ -13,7 +13,7 @@ def main():
 
     pp = pprint.PrettyPrinter()
 
-    word = 'unilateral'
+    word = 'essential'
 
     results = morphemes.discover_segments(word)
     # print("segmentation:", type(results), len(results))
