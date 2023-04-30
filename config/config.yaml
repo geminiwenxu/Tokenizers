@@ -1,11 +1,11 @@
 train:
-  path: /../data/cc_news_sample.txt
+  path: /../data/train.json
 
 dev:
-  path: /../data/feats_dev_norm.json
+  path: /../data/dev.json
 
 test:
-  path: /../data/feats_test_norm.json
+  path: /../data/test.json
 
 data_all:
   path: /../data/data_all.json
@@ -17,7 +17,7 @@ correct_classification:
   path: /../data/correct_classification.json
 
 epoch: 1
-batch_size: 16
+batch_size: 2
 max_len: 512
 learning_rate: 0.0001
 vocab_size: 30_522

@@ -16,7 +16,7 @@ def morfesso_segmentation(word):
     # freqthreshold: discard compounds that occur less than given times in the corpus
     # count_modifier: function for adjusting the counts of each compound
     # init_rand_split: if given, random split the word with int_rand_split as the probability for each split
-    model.train_batch()  # train the model in the batch session
+    model.train_batch()  # train.json the model in the batch session
     segmentation = model.viterbi_segment(
         word)  # segmenting new words, Find optimal segmentation using the Viterbi algorithm.
     # Returns the most probable segmentation and its log-probability.
