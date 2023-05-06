@@ -1,7 +1,12 @@
+import pprint
+
 import numpy as np
 from transformers import BertTokenizer
 
 from test_word import find
+
+pp = pprint.PrettyPrinter()
+strategies = ['prefix', 'root', "suffix"]
 
 
 def consecutive(data, stepsize=1):
@@ -33,15 +38,14 @@ def replacement(sentence):
                 word.append(tokens[j])
             untokenized_word = "".join(word).replace("#", "")
             print("the tokenized word: ", untokenized_word)
-            prefix_meaning = find(untokenized_word)['prefix']['meaning'][0]
-            print("meaning of prefix: ", prefix_meaning)
-            # root_meaning = find(untokenized_word)['root']['meaning'][0]
-            # print("meaning of suffix: ", root_meaning)
-            suffix_meaning = find(untokenized_word)['suffix']['meaning'][0]
-            print("meaning of suffix: ", suffix_meaning)
-
-        replaced_sentence = sentence.replace(untokenized_word,
-                                             prefix_meaning + " "  + " " + suffix_meaning)
+            final_result = find(untokenized_word)
+            pp.pprint(final_result)
+            meanings = []
+            for strategy in strategies:
+                if strategy in final_result:
+                    meaning = final_result[strategy]["meaning"][0]
+                    meanings.append(meaning)
+        replaced_sentence = sentence.replace(untokenized_word, ' '.join(meanings))
         print("replaced sentence: ", replaced_sentence)
         new_tokens = tokenizer.tokenize(replaced_sentence)
         print("new tokens:", new_tokens)
@@ -55,5 +59,5 @@ def replacement(sentence):
 
 
 if __name__ == '__main__':
-    sentence = "there are aircrafts"
+    sentence = "deconstructed"
     replacement(sentence)

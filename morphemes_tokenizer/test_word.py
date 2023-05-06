@@ -20,9 +20,9 @@ def find(word):
     else:
         final_results = morphemes.format_results(results, "+"), "failed"
 
-    pp.pprint(final_results)
-    timeElapsed = datetime.now() - startTime
-    print('script: time elapsed (hh:mm:ss.ms) {}'.format(timeElapsed))
+    # pp.pprint(final_results)
+    # timeElapsed = datetime.now() - startTime
+    # print('script: time elapsed (hh:mm:ss.ms) {}'.format(timeElapsed))
 
     return final_results
 
