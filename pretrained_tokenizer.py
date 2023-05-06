@@ -17,5 +17,5 @@ if __name__ == '__main__':
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     encoding = tokenizer.encode_plus(text, add_special_tokens=True, truncation=True, padding="max_length",
                                      return_attention_mask=True, return_tensors="pt")
-    tokens = tokenizer.tokenize('rumination, unilateral, undesirable, antisocial')
+    tokens = tokenizer.tokenize('rumination, unilateral, undesirable, antisocial, ')
     print(tokens)

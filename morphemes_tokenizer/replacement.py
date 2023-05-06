@@ -32,16 +32,16 @@ def replacement(sentence):
             for j in i:
                 word.append(tokens[j])
             untokenized_word = "".join(word).replace("#", "")
-            print("untokenized word: ", untokenized_word)
+            print("the tokenized word: ", untokenized_word)
             prefix_meaning = find(untokenized_word)['prefix']['meaning'][0]
             print("meaning of prefix: ", prefix_meaning)
-            root_meaning = find(untokenized_word)['root']['meaning'][0]
-            print("meaning of suffix: ", root_meaning)
+            # root_meaning = find(untokenized_word)['root']['meaning'][0]
+            # print("meaning of suffix: ", root_meaning)
             suffix_meaning = find(untokenized_word)['suffix']['meaning'][0]
             print("meaning of suffix: ", suffix_meaning)
 
         replaced_sentence = sentence.replace(untokenized_word,
-                                             prefix_meaning + " " + root_meaning + " " + suffix_meaning)
+                                             prefix_meaning + " "  + " " + suffix_meaning)
         print("replaced sentence: ", replaced_sentence)
         new_tokens = tokenizer.tokenize(replaced_sentence)
         print("new tokens:", new_tokens)
@@ -55,5 +55,5 @@ def replacement(sentence):
 
 
 if __name__ == '__main__':
-    sentence = "hello, antisocial"
+    sentence = "there are aircrafts"
     replacement(sentence)

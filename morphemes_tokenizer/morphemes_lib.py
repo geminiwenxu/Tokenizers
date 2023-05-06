@@ -298,7 +298,7 @@ def find_entry_in_db(word, strategy, root_strategy):
 def find_entry_in_db_multiple_strategies(word):
     "try up to four strategies"
 
-    strategy = ("prefix", "root", "suffix")
+    strategy = ("prefix")
     root_strategy = "max_len"  # left_first | max_len
 
     results = find_entry_in_db(word, strategy, root_strategy)
