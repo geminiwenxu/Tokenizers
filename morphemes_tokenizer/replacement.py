@@ -59,5 +59,5 @@ def replacement(sentence):
 
 
 if __name__ == '__main__':
-    sentence = "deconstructed"
+    sentence = "abundant"
     replacement(sentence)

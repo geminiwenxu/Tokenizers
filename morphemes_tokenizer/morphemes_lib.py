@@ -1,6 +1,5 @@
 # morphemes_lib.py
 
-import copy
 import json
 
 import morphemes_wn as mdb
@@ -269,7 +268,7 @@ def find_likely_entries(prior_results, strategy_tuple, root_strategy):
                 best_entry, best_rx, all_rx = find_best_entry(strategy_leg, find_roots,
                                                               ret_results["word_components_potential"], root_strategy)
                 # if best_entry["key"] != "":
-                if len(max_entry) > 0:
+                if len(max_entry) > 0 and len(best_entry) > 0: # add "and len(best_entry) > 0" to prevent roots={}
                     ret_results = save_result("root", best_entry, best_rx, ret_results, all_rx)
         elif strategy_leg == "suffix":
             find_suffixes = find_suffixes_for_word_segment(ret_results["word_components_potential"])
@@ -348,21 +347,21 @@ def discover_segments(word):
     "top-level function, used by client application"
 
     results = find_entry_in_db_multiple_strategies(word)
-
-    if results["unmatched_char_count"] == 1:
-        results = apply_consonant_doubling(results, "root")
-    if results["unmatched_char_count"] == 1:
-        results = apply_consonant_doubling(results, "prefix")
-
-    temp_results = copy.deepcopy(results)  # in case root, prefix are popped
-    if results["unmatched_char_count"] > 0 or format_results(results, "") != word:
-        results = mdb.find_entry_in_db_given_suffix(word, results)
-    if results["unmatched_char_count"] > 0 or format_results(results, "") != word:
-        results = copy.deepcopy(temp_results)
-        results = mdb.find_entry_in_db_given_suffix_and_prefix(word, results)
-    if results["unmatched_char_count"] > 0 or format_results(results, "") != word:
-        results = copy.deepcopy(temp_results)
-        results = mdb.find_entry_in_db_given_prefix(word, results)
+    "comment out line 351  to 364 to remove the rest strategies"
+    # if results["unmatched_char_count"] == 1:
+    #     results = apply_consonant_doubling(results, "root")
+    # if results["unmatched_char_count"] == 1:
+    #     results = apply_consonant_doubling(results, "prefix")
+    #
+    # temp_results = copy.deepcopy(results)  # in case root, prefix are popped
+    # if results["unmatched_char_count"] > 0 or format_results(results, "") != word:
+    #     results = mdb.find_entry_in_db_given_suffix(word, results)
+    # if results["unmatched_char_count"] > 0 or format_results(results, "") != word:
+    #     results = copy.deepcopy(temp_results)
+    #     results = mdb.find_entry_in_db_given_suffix_and_prefix(word, results)
+    # if results["unmatched_char_count"] > 0 or format_results(results, "") != word:
+    #     results = copy.deepcopy(temp_results)
+    #     results = mdb.find_entry_in_db_given_prefix(word, results)
     return results
 
 
