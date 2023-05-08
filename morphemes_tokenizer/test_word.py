@@ -28,7 +28,7 @@ def find(word):
 
 
 if __name__ == '__main__':
-    word = "cats"
+    word = "unilateral"
     print("length of the input word: ", len(word))
     results, final_result = find(word)
     # pp.pprint(results)
