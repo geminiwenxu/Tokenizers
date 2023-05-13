@@ -20,6 +20,7 @@ def load_tokenizer():
 
 
 def replacement(sentence):
+    sentence = sentence.lower()
     tokenizer = load_tokenizer()
     tokens = tokenizer.tokenize(sentence)
     print("tokens by pre-trained tokenizer: ", tokens)
@@ -38,13 +39,16 @@ def replacement(sentence):
                 word.append(tokens[j])
             untokenized_word = "".join(word).replace("#", "")
             print("the tokenized word: ", untokenized_word)
-            final_result = find(untokenized_word)
-            pp.pprint(final_result)
+            results, final_results = find(untokenized_word)
             meanings = []
             for strategy in strategies:
-                if strategy in final_result:
-                    meaning = final_result[strategy]["meaning"][0]
-                    meanings.append(meaning)
+                if strategy in results:
+                    strategy_dict = results[strategy][0]['all_entries']
+                    for affix, meaning in strategy_dict.items():
+                        print(f"this is information about {strategy}:")
+                        pp.pprint(affix)
+                        meaning = strategy_dict.get(affix)["meaning"][0]
+                        meanings.append(meaning)
         replaced_sentence = sentence.replace(untokenized_word, ' '.join(meanings))
         print("replaced sentence: ", replaced_sentence)
         new_tokens = tokenizer.tokenize(replaced_sentence)
@@ -59,5 +63,5 @@ def replacement(sentence):
 
 
 if __name__ == '__main__':
-    sentence = "abundant"
+    sentence = "I am from Luxembourger"
     replacement(sentence)
