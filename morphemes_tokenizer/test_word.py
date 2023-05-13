@@ -28,7 +28,7 @@ def find(word):
 
 
 if __name__ == '__main__':
-    word = "Luxembourger"
+    word = "eating"
     print("length of the input word: ", len(word))
     results, final_result = find(word)
     pp.pprint(results)
@@ -40,6 +40,8 @@ if __name__ == '__main__':
             strategy_dict = results[strategy][0]['all_entries']
             print(strategy_dict)
             for affix, meaning in strategy_dict.items():
+                form = strategy_dict.get(affix)["form"]
+                print("the ultimate form----------------------", form)
                 print(f"this is information about {strategy}:")
                 pp.pprint(affix)
                 pp.pprint(strategy_dict.get(affix)["meaning"])
