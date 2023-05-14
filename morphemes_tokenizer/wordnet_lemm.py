@@ -12,7 +12,14 @@ def inflectional_finder(word):
         return None, None
     else:
         df = inflectional_df.loc[inflectional_df['inflectional_word'] == word]
-        affix = df.affix.to_string().split()[1].split('|')[1]
+        try:
+            affix = df.affix.to_string().split()[1]
+        except:
+            pass
+        try:
+            affix = df.affix.to_string().split()[1].split('|')[1]
+        except:
+            pass
         pos = df.pos.to_string().split()
         idx = int(pos[0])
         return idx, affix
@@ -28,7 +35,6 @@ def derivational_finder(word):
         return None, None, None
     else:
         df = inflectional_df.loc[inflectional_df['derivational_word'] == word]
-        print(df)
         affix = df.affix.to_string().split()[1]
         strategy = df.strategy.to_string().split()
         idx = int(strategy[0])
@@ -39,9 +45,9 @@ def derivational_finder(word):
 if __name__ == '__main__':
     lemmatizer = WordNetLemmatizer()
     # print(lemmatizer.lemmatize("eliminability"))
-    word = "greatful"
+    word = "undesirable"
     f, j = inflectional_finder(word)
     print(f, j)
 
-    a, b, c = derivational_finder(word)
-    print(a, b, c)
+    # a, b, c = derivational_finder(word)
+    # print(a, b, c)
