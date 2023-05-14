@@ -49,31 +49,47 @@ def morphemes_finder(sentence):
                     for affix, meaning in strategy_dict.items():
                         form = strategy_dict.get(affix)["form"]
                         meaning = strategy_dict.get(affix)["meaning"][0]
-                        # print(f"this is information about {strategy}:")
-                        # pp.pprint(affix)
-                        # pp.pprint(form)
-                        # pp.pprint(meaning)
-
+                        print(f"this is information about {strategy}:")
+                        print("affix: ", affix)
+                        print("form: ", form)
+                        print("meaning: ", meaning)
+                        # Multiple if's means your code would go and check all the if conditions,
+                        # where as in case of elif, if one if condition satisfies it would not check other conditions.
                         if form == inflectional_affix:
                             selected_meaning = meaning
                             selected_form = form
                             selected_strategy_affix = "suffix"
-                        elif form == derivational_affix:
+                            print("inflectional selected form, meaning and strategy_affix: ", selected_form,
+                                  selected_meaning,
+                                  selected_strategy_affix)
+                        if form == derivational_affix:
                             selected_meaning = meaning
                             selected_form = form
                             selected_strategy_affix = derivational_strategy_affix
-
-        print(selected_form, selected_meaning, selected_strategy_affix)
-
+                            print("derivational selected form, meaning and strategy_affix: ", selected_form,
+                                  selected_meaning,
+                                  selected_strategy_affix)
+                        else:
+                            selected_meaning = meaning
+                            selected_form = form
+                            selected_strategy_affix = strategy
+                            print("None selected form, meaning and strategy_affix: ", selected_form,
+                                  selected_meaning,
+                                  selected_strategy_affix)
+        print("selected form, meaning and strategy_affix: ", selected_form, selected_meaning, selected_strategy_affix)
         rest_word = sentence.replace(selected_form, '')
-        print(selected_form, rest_word)
+        if selected_strategy_affix == "prefix":
+            print("Final segementation: ", selected_form, rest_word)
 
-        # a = tokenizer.tokenize(selected_meaning)
-        # b = tokenizer.tokenize(rest_word)
-        # print("new tokens:", a, b)
-        # encoding = tokenizer.encode_plus(new_tokens, add_special_tokens=True, truncation=True, padding="max_length",
-        #                                  return_attention_mask=True, return_tensors="pt")
-        # print(encoding)
+        elif selected_strategy_affix == "suffix":
+            print("Final segementation: ", rest_word, selected_form)
+
+        a = tokenizer.tokenize(selected_meaning)
+        b = tokenizer.tokenize(rest_word)
+        print("new tokens:", a, b)
+        encoding = tokenizer.encode_plus(a, add_special_tokens=True, truncation=True, padding="max_length",
+                                         return_attention_mask=True, return_tensors="pt")
+        print(encoding)
     else:
         encoding = tokenizer.encode_plus(tokens, add_special_tokens=True, truncation=True, padding="max_length",
                                          return_attention_mask=True, return_tensors="pt")
@@ -81,6 +97,6 @@ def morphemes_finder(sentence):
 
 
 if __name__ == '__main__':
-    sentence = "ozonising"
+    # sentence = "ozonising"
+    sentence = "greatful"
     morphemes_finder(sentence)
-    #

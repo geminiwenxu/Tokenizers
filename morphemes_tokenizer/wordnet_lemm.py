@@ -39,8 +39,9 @@ def derivational_finder(word):
 if __name__ == '__main__':
     lemmatizer = WordNetLemmatizer()
     # print(lemmatizer.lemmatize("eliminability"))
-    word = "ozonising"
-    idx, affix = inflectional_finder(word)
+    word = "greatful"
+    f, j = inflectional_finder(word)
+    print(f, j)
 
     a, b, c = derivational_finder(word)
     print(a, b, c)
