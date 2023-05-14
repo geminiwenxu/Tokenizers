@@ -9,7 +9,7 @@ def inflectional_finder(word):
     inflectional_df.columns = ['word', 'inflectional_word', 'pos', 'affix']
     answer_df = inflectional_df[inflectional_df.eq(word).any(axis=1)]
     if answer_df.empty:
-        return None, None
+        return None
     else:
         df = inflectional_df.loc[inflectional_df['inflectional_word'] == word]
         try:
@@ -21,8 +21,7 @@ def inflectional_finder(word):
         except:
             pass
         pos = df.pos.to_string().split()
-        idx = int(pos[0])
-        return idx, affix
+        return affix
 
 
 def derivational_finder(word):
@@ -32,14 +31,13 @@ def derivational_finder(word):
 
     answer_df = inflectional_df[inflectional_df.eq(word).any(axis=1)]
     if answer_df.empty:
-        return None, None, None
+        return None, None
     else:
         df = inflectional_df.loc[inflectional_df['derivational_word'] == word]
         affix = df.affix.to_string().split()[1]
         strategy = df.strategy.to_string().split()
-        idx = int(strategy[0])
         strategy_affix = strategy[1]
-        return idx, affix, strategy_affix
+        return affix, strategy_affix
 
 
 if __name__ == '__main__':
