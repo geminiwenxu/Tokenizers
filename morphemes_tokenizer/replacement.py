@@ -132,7 +132,7 @@ def per_word(sentence):
 
 if __name__ == '__main__':
     word = "ozonising"
-    sentence = "greatful ozonising"
+    sentence = "It is greatful ozonising"
     # sentence = "unreplenished"
     # sentence = "undesirable"
     # morphemes_finder(word)
