@@ -3,8 +3,9 @@ def bpe(word):
 
 
 class TokenizerOutput:
-    was_sgemented: bool
-    tokens: None | list(str)
+    def __init__(self, was_sgemented, tokens):
+        self.was_sgemented = was_sgemented
+        self.tokens = tokens
 
 
 def own_approach(word: str) -> TokenizerOutput:

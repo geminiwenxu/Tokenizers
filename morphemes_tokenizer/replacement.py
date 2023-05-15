@@ -3,8 +3,8 @@ import pprint
 import numpy as np
 from transformers import BertTokenizer
 
+from finder_MorphyNet import inflectional_finder, derivational_finder
 from test_word import find
-from wordnet_lemm import inflectional_finder, derivational_finder
 
 pp = pprint.PrettyPrinter()
 strategies = ['prefix', 'root', "suffix"]
