@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 import numpy as np
 import pandas as pd
 from transformers import BertTokenizer
@@ -6,7 +8,10 @@ import morphemes_lib as morphemes
 
 
 class GreedyTokenizer:
-    def tokenize(word: str) -> list[str]:
+    def __init__(self, word):
+        self.word = word.lower()
+
+    def tokenize(self):
         """Any kind of greedy sub-word unit tokenizer (BPE, SentencePiece, WordPiece, etc.).
         However, it needs to have been trained on the OUTPUT of your segmenter!!
 
@@ -16,7 +21,9 @@ class GreedyTokenizer:
         Returns:
             list[str]: Returns the list of tokens. Guaranteed to be a valid segmentation because of how the algorithm works, UNLESS there is an unknown character in the input word.
         """
-        pass
+        model_path = "pretrained-bert"
+        tokenizer = BertTokenizer.from_pretrained(model_path)
+        return tokenizer.tokenize(self.word)
 
 
 # Note:
@@ -58,26 +65,35 @@ class PreTokenizer:
             if token.startswith("#"):
                 ls.append(idx)
         ls_array = self.consecutive(np.array(ls), stepsize=1)
+
+        ls_tokenized_word_index = [i for i in range(len(tokens))]
         ls_untokenized_word = []
         if len(ls) > 0:
             for i in ls_array:
+                ls_tokenized_word_index.remove(i[0] - 1)
+                [ls_tokenized_word_index.remove(x) for x in i]
                 begin = i[0] - 1
                 i = np.insert(i, 0, begin, axis=0)
                 word = []
                 for j in i:
                     word.append(tokens[j])
                 untokenized_word = "".join(word).replace("#", "")
-                print("the tokenized word: ", untokenized_word)
+                print("the badly tokenized word: ", untokenized_word)
                 ls_untokenized_word.append(untokenized_word)
-        return ls_untokenized_word
+        print("flag", ls_tokenized_word_index)
+        ls_tokenized_word = self.sentence.split()
+        for i in ls_untokenized_word:
+            ls_tokenized_word.remove(i)
+
+        return ls_tokenized_word_index, ls_tokenized_word, ls_untokenized_word
 
 
-class WenxuTokenizer(PreTokenizer):
+class WenxuTokenizer(GreedyTokenizer):
     """A mock-up of what your own tokenizer could look like.
     Note that there are obviously pieces missing, like a normalizer, etc."""
 
-    def morphemes_finder(self, word):
-        results = morphemes.discover_segments(word)
+    def morphemes_finder(self):
+        results = morphemes.discover_segments(self.word)
 
         if morphemes.format_results(results, "") == word:
             final_results = morphemes.generate_final_results(results)
@@ -86,15 +102,15 @@ class WenxuTokenizer(PreTokenizer):
             final_results = morphemes.format_results(results, "+"), "failed"
         return results, final_results
 
-    def inflectional_finder(self, untokenized_word):
+    def inflectional_finder(self):
         inflectional_df = pd.read_csv('/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.inflectional.v1.tsv',
                                       sep='\t')
         inflectional_df.columns = ['word', 'inflectional_word', 'pos', 'affix']
-        answer_df = inflectional_df[inflectional_df.eq(untokenized_word).any(axis=1)]
+        answer_df = inflectional_df[inflectional_df.eq(self.word).any(axis=1)]
         if answer_df.empty:
             return None
         else:
-            df = inflectional_df.loc[inflectional_df['inflectional_word'] == untokenized_word]
+            df = inflectional_df.loc[inflectional_df['inflectional_word'] == self.word]
             try:
                 affix = df.affix.to_string().split()[1]
             except:
@@ -106,16 +122,16 @@ class WenxuTokenizer(PreTokenizer):
             pos = df.pos.to_string().split()
             return affix
 
-    def derivational_finder(self, untokenized_word):
+    def derivational_finder(self):
         inflectional_df = pd.read_csv('/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.derivational.v1.tsv',
                                       sep='\t')
         inflectional_df.columns = ['word', 'derivational_word', 'pos_0', 'pos_1', 'affix', 'strategy']
 
-        answer_df = inflectional_df[inflectional_df.eq(untokenized_word).any(axis=1)]
+        answer_df = inflectional_df[inflectional_df.eq(self.word).any(axis=1)]
         if answer_df.empty:
             return None, None
         else:
-            df = inflectional_df.loc[inflectional_df['derivational_word'] == untokenized_word]
+            df = inflectional_df.loc[inflectional_df['derivational_word'] == self.word]
             affix = df.affix.to_string().split()[1]
             strategy = df.strategy.to_string().split()
             strategy_affix = strategy[1]
@@ -131,108 +147,117 @@ class WenxuTokenizer(PreTokenizer):
             None | list[str]: Returns the list of morphemes or None, if your approach could not segment the word.
         """
         ls_morphemes = []
-        ls_untokenized_word = self.pre_tokenize()
-        for untokenized_word in ls_untokenized_word:
-            tokenizer = self.load_tokenizer()
-            results, final_results = self.morphemes_finder(untokenized_word)
+        # ls_tokenized_word_index, ls_tokenized_word, ls_untokenized_word = self.pre_tokenize()
+        # for untokenized_word in ls_untokenized_word:
+        # tokenizer = self.load_tokenizer()
+        results, final_results = self.morphemes_finder()
 
-            inflectional_affix = self.inflectional_finder(untokenized_word)
-            derivational_affix, derivational_strategy_affix = self.derivational_finder(untokenized_word)
-            inflectional = False
-            derivational = False
-            Not_found = False
-            for strategy in ['prefix', 'root', "suffix"]:
-                if strategy in results:
-                    strategy_dict = results[strategy][0]['all_entries']
-                    for affix, meaning in strategy_dict.items():
-                        form = strategy_dict.get(affix)["form"]
-                        meaning = strategy_dict.get(affix)["meaning"][0]
-                        # print(f"this is information about {strategy}:")
-                        # print("affix: ", affix)
-                        # print("form: ", form)
-                        # print("meaning: ", meaning)
-                        # Multiple if's means your code would go and check all the if conditions,
-                        # where as in case of elif, if one if condition satisfies it would not check other conditions.
-                        if form == inflectional_affix:
-                            inf_selected_meaning = meaning
-                            inf_selected_form = form
-                            inf_selected_strategy_affix = "suffix"
-                            inflectional = True
-                            # print("inflectional selected form, meaning and strategy_affix: ", inf_selected_form,
-                            #       inf_selected_meaning,
-                            #       inf_selected_strategy_affix, inflectional)
-                        if form == derivational_affix:
-                            de_selected_meaning = meaning
-                            de_selected_form = form
-                            de_selected_strategy_affix = derivational_strategy_affix
-                            derivational = True
-                            # print("derivational selected form, meaning and strategy_affix: ", de_selected_form,
-                            #       de_selected_meaning,
-                            #       de_selected_strategy_affix, derivational)
+        inflectional_affix = self.inflectional_finder()
+        derivational_affix, derivational_strategy_affix = self.derivational_finder()
+        inflectional = False
+        derivational = False
+        Not_found = False
+        selected_form = None
+        for strategy in ['prefix', 'root', "suffix"]:
+            if strategy in results:
+                strategy_dict = results[strategy][0]['all_entries']
+                for affix, meaning in strategy_dict.items():
+                    form = strategy_dict.get(affix)["form"]
+                    meaning = strategy_dict.get(affix)["meaning"][0]
+                    # print(f"this is information about {strategy}:")
+                    # print("affix: ", affix)
+                    # print("form: ", form)
+                    # print("meaning: ", meaning)
+                    # Multiple if's means your code would go and check all the if conditions,
+                    # where as in case of elif, if one if condition satisfies it would not check other conditions.
+                    if form == inflectional_affix:
+                        inf_selected_meaning = meaning
+                        inf_selected_form = form
+                        inf_selected_strategy_affix = "suffix"
+                        inflectional = True
+                        # print("inflectional selected form, meaning and strategy_affix: ", inf_selected_form,
+                        #       inf_selected_meaning,
+                        #       inf_selected_strategy_affix, inflectional)
+                    if form == derivational_affix:
+                        de_selected_meaning = meaning
+                        de_selected_form = form
+                        de_selected_strategy_affix = derivational_strategy_affix
+                        derivational = True
+                        # print("derivational selected form, meaning and strategy_affix: ", de_selected_form,
+                        #       de_selected_meaning,
+                        #       de_selected_strategy_affix, derivational)
 
-                        if form != inflectional_affix and form != derivational_affix:
-                            not_selected_meaning = meaning
-                            not_selected_form = form
-                            not_selected_strategy_affix = strategy
-                            Not_found = True
-                            # print("None selected form, meaning and strategy_affix: ", not_selected_form,
-                            #       not_selected_meaning,
-                            #       not_selected_strategy_affix, Not_found)
+                    if form != inflectional_affix and form != derivational_affix:
+                        not_selected_meaning = meaning
+                        not_selected_form = form
+                        not_selected_strategy_affix = strategy
+                        Not_found = True
+                        # print("None selected form, meaning and strategy_affix: ", not_selected_form,
+                        #       not_selected_meaning,
+                        #       not_selected_strategy_affix, Not_found)
 
-            if inflectional == True:
-                selected_form = inf_selected_form
-                selected_meaning = inf_selected_meaning
-                selected_strategy_affix = inf_selected_strategy_affix
+        if inflectional == True:
+            selected_form = inf_selected_form
+            selected_meaning = inf_selected_meaning
+            selected_strategy_affix = inf_selected_strategy_affix
 
-            elif derivational == True:
-                selected_form = de_selected_form
-                selected_meaning = de_selected_meaning
-                selected_strategy_affix = de_selected_strategy_affix
+        elif derivational == True:
+            selected_form = de_selected_form
+            selected_meaning = de_selected_meaning
+            selected_strategy_affix = de_selected_strategy_affix
 
-            elif Not_found == True:
-                selected_form = not_selected_form
-                selected_meaning = not_selected_meaning
-                selected_strategy_affix = not_selected_strategy_affix
+        elif Not_found == True:
+            selected_form = not_selected_form
+            selected_meaning = not_selected_meaning
+            selected_strategy_affix = not_selected_strategy_affix
 
-            rest_word = untokenized_word.replace(selected_form, '')
+        if selected_form != None:
+            rest_word = self.word.replace(selected_form, '')
 
             if selected_strategy_affix == "prefix":
                 # print("Final segementation: ", selected_form, rest_word)
-                a = tokenizer.tokenize(selected_meaning)
-                b = tokenizer.tokenize(rest_word)
+                # a = tokenizer.tokenize(selected_meaning)
+                # b = tokenizer.tokenize(rest_word)
                 ls_morphemes.append(selected_form)
                 ls_morphemes.append(rest_word)
-
 
             elif selected_strategy_affix == "suffix":
                 # print("Final segementation: ", rest_word, selected_form)
-                a = tokenizer.tokenize(rest_word)
-                b = tokenizer.tokenize(selected_meaning)
+                # a = tokenizer.tokenize(rest_word)
+                # b = tokenizer.tokenize(selected_meaning)
                 ls_morphemes.append(rest_word)
                 ls_morphemes.append(selected_form)
-
+        else:
+            ls_morphemes.append(None)
+    # print(ls_morphemes, ls_tokenized_word, ls_tokenized_word_index)
+    # for i in range(len(ls_tokenized_word)):
+    #     ls_morphemes.insert(ls_tokenized_word_index[i], ls_tokenized_word[i])
+        print(ls_morphemes)
         return ls_morphemes
 
     # You could simply use a LRU cache for memoization,
     # to speed up your tokenizer if its slow (in exchange for greater memory consumption, of cause)
-    # @lru_cache(maxsize=1_000_000)
-    # def segment_with_fallback(word: str) -> None | list[str]:
-    #     """Your own tokenization approach with the fallback to a greedy tokenizer.
-    #
-    #     Args:
-    #         word (str): The word to segment.
-    #
-    #     Returns:
-    #         list[str]: Returns the list of morphemes or sub-word units in case of fallback.
-    #     """
-    #     maybe_morphemes = self.segment(word)
-    #
-    #     if maybe_morphemes is not None:
-    #         return maybe_morphemes
-    #     else:
-    #         return self.fallback_tokenizer.tokenize(word)
-    #
-    # def tokenize(sentence: str, add_special_tokens=True) -> list[str]:
+    @lru_cache(maxsize=1_000_000)
+    def segment_with_fallback(self):
+        """Your own tokenization approach with the fallback to a greedy tokenizer.
+
+        Args:
+            word (str): The word to segment.
+
+        Returns:
+            list[str]: Returns the list of morphemes or sub-word units in case of fallback.
+        """
+        maybe_morphemes = self.segment()
+        print("maybe_morphemes", maybe_morphemes)
+
+        if maybe_morphemes != [None]:
+            print("falling", maybe_morphemes)
+            return maybe_morphemes
+        else:
+            print("falling again", self.tokenize())
+            return self.tokenize()
+
+    # def tokenize(self):
     #     """Tokenization method for your own approach, including fallback greedy tokenization.
     #
     #     Args:
@@ -242,7 +267,7 @@ class WenxuTokenizer(PreTokenizer):
     #     Returns:
     #         list[str]: A list of tokens.
     #     """
-    #     words = self.pre_tokenize(sentence)
+    #     words = self.pre_tokenize()
     #
     #     tokenized_sentence = ["CLS"] if add_special_tokens else []
     #
@@ -254,7 +279,8 @@ class WenxuTokenizer(PreTokenizer):
 
 
 if __name__ == '__main__':
-    sentence = "It is greatful ozonising"
-    test = WenxuTokenizer(sentence)
-    ls = test.segment()
-    print(ls)
+    # sentence = "greatful It is ozonising inconsistency xxxxxxxx"
+    word = "xxxxxxxx"
+    tokens = WenxuTokenizer(word)
+    tokens.segment_with_fallback()
+    # print(tokens.segment_with_fallback())
