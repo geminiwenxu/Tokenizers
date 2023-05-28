@@ -8,8 +8,6 @@ import morphemes_lib as morphemes
 
 
 class GreedyTokenizer:
-    # def __init__(self, word):
-    #     self.word = word.lower()
 
     def word_tokenize(self, word):
         """Any kind of greedy sub-word unit tokenizer (BPE, SentencePiece, WordPiece, etc.).
@@ -145,7 +143,7 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
         Returns:
             None | list[str]: Returns the list of morphemes or None, if your approach could not segment the word.
         """
-        ls_morphemes = []
+        morphemes = []
         results, final_results = self.morphemes_finder(word)
 
         inflectional_affix = self.inflectional_finder(word)
@@ -160,10 +158,6 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
                 for affix, meaning in strategy_dict.items():
                     form = strategy_dict.get(affix)["form"]
                     meaning = strategy_dict.get(affix)["meaning"][0]
-                    # print(f"this is information about {strategy}:")
-                    # print("affix: ", affix)
-                    # print("form: ", form)
-                    # print("meaning: ", meaning)
                     # Multiple if's means your code would go and check all the if conditions,
                     # where as in case of elif, if one if condition satisfies it would not check other conditions.
                     if form == inflectional_affix:
@@ -211,24 +205,19 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
             rest_word = word.replace(selected_form, '')
 
             if selected_strategy_affix == "prefix":
-                # print("Final segementation: ", selected_form, rest_word)
                 # a = tokenizer.tokenize(selected_meaning)
                 # b = tokenizer.tokenize(rest_word)
-                ls_morphemes.append(selected_form)
-                ls_morphemes.append(rest_word)
+                morphemes.append(selected_form)
+                morphemes.append(rest_word)
 
             elif selected_strategy_affix == "suffix":
-                # print("Final segementation: ", rest_word, selected_form)
                 # a = tokenizer.tokenize(rest_word)
                 # b = tokenizer.tokenize(selected_meaning)
-                ls_morphemes.append(rest_word)
-                ls_morphemes.append(selected_form)
+                morphemes.append(rest_word)
+                morphemes.append(selected_form)
         else:
-            ls_morphemes.append(None)
-        # print(ls_morphemes, ls_tokenized_word, ls_tokenized_word_index)
-        # for i in range(len(ls_tokenized_word)):
-        #     ls_morphemes.insert(ls_tokenized_word_index[i], ls_tokenized_word[i])
-        return ls_morphemes
+            morphemes.append(None)
+        return morphemes
 
     # You could simply use a LRU cache for memoization,
     # to speed up your tokenizer if its slow (in exchange for greater memory consumption, of cause)
@@ -255,31 +244,23 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
             list[str]: A list of tokens.
         """
         ls_tokenized_word_index, ls_tokenized_word, ls_untokenized_word = self.pre_tokenize()
-        tokenizer = self.load_tokenizer()
+        ls_morphemes = []
         for untokenized_word in ls_untokenized_word:
-            print("untokenized_word", untokenized_word)
             resegment = self.segment(untokenized_word)
-            print("the resegmented word: ", resegment)
-            if resegment == [None]:
-                resegment = self.segment_with_fallback(untokenized_word)
-                print("the resegmented word 2: ", resegment)
 
-        # words = self.pre_tokenize()
-        #
-        # tokenized_sentence = ["CLS"] if add_special_tokens else []
-        #
-        # for word in words:
-        #     tokens = self.segment_with_fallback(word)
-        #     tokenized_sentence.expand(tokens)
-        #
-        # return tokenized_sentence
+            if resegment != [None]:
+                ls_morphemes.append(resegment)
+            else:
+                resegment = self.segment_with_fallback(untokenized_word)
+                ls_morphemes.append(resegment)
+
+        for i in range(len(ls_tokenized_word)):
+            ls_morphemes.insert(ls_tokenized_word_index[i], ls_tokenized_word[i])
+        return ls_morphemes
 
 
 if __name__ == '__main__':
     sentence = "greatful It is ozonising inconsistency xxxxxxxx"
-    word = "xxxxxxxx"
     tokens = WenxuTokenizer(sentence)
-    tokens.tokenize()
-    tokens.segment_with_fallback(word)
-    # test = GreedyTokenizer()
-    # print(test.word_tokenize(word))
+    print(tokens.tokenize())
+
