@@ -205,22 +205,16 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
             rest_word = word.replace(selected_form, '')
 
             if selected_strategy_affix == "prefix":
-                # a = tokenizer.tokenize(selected_meaning)
-                # b = tokenizer.tokenize(rest_word)
                 morphemes.append(selected_form)
                 morphemes.append(rest_word)
 
             elif selected_strategy_affix == "suffix":
-                # a = tokenizer.tokenize(rest_word)
-                # b = tokenizer.tokenize(selected_meaning)
                 morphemes.append(rest_word)
                 morphemes.append(selected_form)
         else:
             morphemes.append(None)
         return morphemes
 
-    # You could simply use a LRU cache for memoization,
-    # to speed up your tokenizer if its slow (in exchange for greater memory consumption, of cause)
     @lru_cache(maxsize=1_000_000)
     def segment_with_fallback(self, word):
         """Your own tokenization approach with the fallback to a greedy tokenizer.
@@ -232,6 +226,17 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
             list[str]: Returns the list of morphemes or sub-word units in case of fallback.
         """
         return self.word_tokenize(word)
+
+    def helper(self, result):
+        final = []
+        for x in result:
+            if isinstance(x, list):
+                for i in range(len(x)):
+                    temp = x[i]
+                    final.append(temp)
+            else:
+                final.append(x)
+        return final
 
     def tokenize(self):
         """Tokenization method for your own approach, including fallback greedy tokenization.
@@ -256,11 +261,12 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
 
         for i in range(len(ls_tokenized_word)):
             ls_morphemes.insert(ls_tokenized_word_index[i], ls_tokenized_word[i])
+        ls_morphemes = self.helper(ls_morphemes)
         return ls_morphemes
 
 
 if __name__ == '__main__':
     sentence = "greatful It is ozonising inconsistency xxxxxxxx"
     tokens = WenxuTokenizer(sentence)
-    print(tokens.tokenize())
-
+    result = tokens.tokenize()
+    print(result)
