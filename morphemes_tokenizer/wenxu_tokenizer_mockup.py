@@ -2,12 +2,23 @@ from functools import lru_cache
 
 import numpy as np
 import pandas as pd
+from datasets import *
 from transformers import BertTokenizer
 
 import morphemes_lib as morphemes
+import sys
+import os
+
+from baseline_tokenizer.training import hello
+
+
 
 
 class GreedyTokenizer:
+    def segmenter_output_data(self):
+        files = ["data.txt"]
+        dataset = load_dataset("text", data_files=files, split="train")
+        return dataset
 
     def word_tokenize(self, word):
         """Any kind of greedy sub-word unit tokenizer (BPE, SentencePiece, WordPiece, etc.).
@@ -19,6 +30,7 @@ class GreedyTokenizer:
         Returns:
             list[str]: Returns the list of tokens. Guaranteed to be a valid segmentation because of how the algorithm works, UNLESS there is an unknown character in the input word.
         """
+        # main()
         model_path = "pretrained-bert"
         tokenizer = BertTokenizer.from_pretrained(model_path)
         return tokenizer.tokenize(word)
@@ -248,14 +260,20 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
         """
         ls_tokenized_word_index, ls_tokenized_word, ls_untokenized_word = self.pre_tokenize()
         ls_morphemes = []
+        segmenter_output = []
         for untokenized_word in ls_untokenized_word:
             resegment = self.segment(untokenized_word)
 
             if resegment != [None]:
                 ls_morphemes.append(resegment)
             else:
-                resegment = self.segment_with_fallback(untokenized_word)
-                ls_morphemes.append(resegment)
+                print("attention", untokenized_word)
+                segmenter_output.append(untokenized_word)
+                # resegment = self.segment_with_fallback(untokenized_word)
+
+        with open('data.txt', 'w') as fp:
+            for w in segmenter_output:
+                fp.write("%s\n" % w)
 
         for i in range(len(ls_tokenized_word)):
             ls_morphemes.insert(ls_tokenized_word_index[i], ls_tokenized_word[i])
@@ -264,7 +282,8 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
 
 
 if __name__ == '__main__':
-    sentence = "greatful It is ozonising inconsistency xxxxxxxx"
+    sentence = "greatful It is ozonising inconsistency xxxxxxxx wwwwwww"
     tokens = WenxuTokenizer(sentence)
     result = tokens.tokenize()
     print(result)
+
