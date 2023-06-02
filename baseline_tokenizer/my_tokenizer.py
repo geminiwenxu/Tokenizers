@@ -14,7 +14,7 @@ def train_tokenizer():
     tokenizer = BertWordPieceTokenizer()
     tokenizer.train(files=files, vocab_size=vocab_size, special_tokens=special_tokens)
     tokenizer.enable_truncation(max_length=max_length)
-    model_path = "pretrained-bert"
+    model_path = "greedy_tokenizer"
     # make the directory if not already there
     if not os.path.isdir(model_path):
         os.mkdir(model_path)

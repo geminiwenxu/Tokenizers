@@ -2,22 +2,22 @@
 # Modeling (MLM) task
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
 
-from load_data import load_data, dataset_to_text
-from model import build_model
-from my_tokenizer import train_tokenizer
-from prepare_dataset import prepare_dataset
+from baseline_tokenizer.load_data import load_data, dataset_to_text
+from baseline_tokenizer.model import build_model
+from baseline_tokenizer.my_tokenizer import train_tokenizer
+from baseline_tokenizer.prepare_dataset import prepare_dataset
 
-data_train, data_test = load_data()
-dataset_to_text(data_train, "train.txt")
-dataset_to_text(data_test, "test.txt")
+# data_train, data_test = load_data()
+# dataset_to_text(data_train, "train.txt")
+# dataset_to_text(data_test, "test.txt")
 
 
-def training():
+def training(data_train, data_test):
     tokenizer = train_tokenizer()
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer, mlm=True, mlm_probability=0.2
     )
-    model_path = "pretrained-bert"
+    model_path = "greedy_tokenizer"
     model = build_model()
     training_args = TrainingArguments(
         output_dir=model_path,  # output directory to where save model checkpoint
@@ -46,4 +46,4 @@ def training():
 
 
 if __name__ == '__main__':
-    training()
+    pass

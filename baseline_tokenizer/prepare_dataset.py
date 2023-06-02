@@ -1,6 +1,6 @@
 from itertools import chain
 
-from tokenizer import train_tokenizer
+from baseline_tokenizer.my_tokenizer import train_tokenizer
 
 
 def encode_with_truncation(examples):
