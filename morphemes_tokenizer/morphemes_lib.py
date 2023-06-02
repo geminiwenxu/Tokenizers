@@ -4,7 +4,7 @@ import json
 
 import morphemes_wn as mdb
 
-data_directory_path = "data/"
+# data_directory_path = "data/"
 
 debug = 0
 
@@ -449,6 +449,6 @@ def close_neo4j():
 
 
 morphemes_filename = "morphemes.json"
-morphemes_filepath = data_directory_path + morphemes_filename
+morphemes_filepath = morphemes_filename
 morphemes_file = open(morphemes_filepath, "r")
 morphemes = json.loads(morphemes_file.read())

@@ -1,10 +1,10 @@
 # initialize the data collator, randomly masking 20% (default is 15%) of the tokens for the Masked Language
 # Modeling (MLM) task
-from my_tokenizer import train_tokenizer
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
 
 from load_data import load_data, dataset_to_text
 from model import build_model
+from my_tokenizer import train_tokenizer
 from prepare_dataset import prepare_dataset
 
 data_train, data_test = load_data()
@@ -12,7 +12,7 @@ dataset_to_text(data_train, "train.txt")
 dataset_to_text(data_test, "test.txt")
 
 
-def hello():
+def training():
     tokenizer = train_tokenizer()
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer, mlm=True, mlm_probability=0.2
@@ -46,4 +46,4 @@ def hello():
 
 
 if __name__ == '__main__':
-    hello()
+    training()

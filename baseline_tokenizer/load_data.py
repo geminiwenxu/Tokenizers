@@ -8,9 +8,6 @@ def load_data():
     return d["train"], d["test"]
 
 
-
-
-
 def dataset_to_text(dataset, output_filename="data.txt"):
     """Utility function to save dataset text to disk,
     useful for using the texts to train the tokenizer

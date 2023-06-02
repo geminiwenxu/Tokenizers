@@ -1,6 +1,5 @@
 import os
 
-import torch
 from transformers import BertForSequenceClassification
 
 
@@ -9,7 +8,6 @@ def model():
     model = BertForSequenceClassification.from_pretrained(os.path.join(model_path, "checkpoint-35000"),
                                                           use_auth_token=True, return_dict=True)
     return model
-
 
 
 # print(model(**tokenizer("hello, world", return_tensors="pt")))

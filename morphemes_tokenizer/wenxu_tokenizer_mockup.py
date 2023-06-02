@@ -6,12 +6,6 @@ from datasets import *
 from transformers import BertTokenizer
 
 import morphemes_lib as morphemes
-import sys
-import os
-
-from baseline_tokenizer.training import hello
-
-
 
 
 class GreedyTokenizer:
@@ -286,4 +280,3 @@ if __name__ == '__main__':
     tokens = WenxuTokenizer(sentence)
     result = tokens.tokenize()
     print(result)
-
