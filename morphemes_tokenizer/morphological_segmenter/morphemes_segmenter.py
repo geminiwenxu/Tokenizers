@@ -1,6 +1,5 @@
 from functools import lru_cache
 
-import numpy as np
 import pandas as pd
 from datasets import *
 from transformers import BertTokenizer
@@ -11,15 +10,23 @@ from baseline_tokenizer.train_model import training
 
 
 class GreedyTokenizer:
+    def __init__(self, sentence):
+        self.sentence = sentence
+
     def segmenter_output_data(self):
         files = ["data.txt"]
         dataset = load_dataset("text", data_files=files, split="train")
         d = dataset.train_test_split(test_size=0.1)
         return d["train"], d["test"]
 
+    def pretrained_tokenizer(self):
+        model_path = "pretrained-bert"
+        tokenizer = BertTokenizer.from_pretrained(model_path)
+        return tokenizer
+
     def word_tokenize(self, word):
-        """Any kind of greedy sub-word unit tokenizer (BPE, SentencePiece, WordPiece, etc.).
-        However, it needs to have been trained on the OUTPUT of your segmenter!!
+        """A greedy sub-word unit tokenizer: WordPiece,
+        which is trained on the OUTPUT of my segmenter!!
 
         Args:
             word (str): The word to tokenize.
@@ -36,72 +43,21 @@ class GreedyTokenizer:
         return tokenizer.tokenize(word)
 
 
-# Note:
-# You need to figure out, whether to implement your tokenizer using an interface from the huggingface libraries, or whether not to.
-#
-# In the first case, you will need to figure out how to work a new method into the tokenizers or transformers pipeline:
-# - you could implement your segmenter in the prepare_for_tokenization method from transformers.PreTrainedTokenizer, that is called before the tokenization actually happens, or
-# - you could implement it in the tokenizers library, which sound more complicated, but you do need to train a tokenizer in either case!
-#
-# In the second case, you may not be able to use pre-existing training scripts without changing the tokenization, which may be complicated, depending on how much abstraction is done (e.g. Trainer class from transformers does a lot of abstraction).
-class PreTokenizer:
-    def __init__(self, sentence):
-        self.sentence = sentence.lower()
-
-    def consecutive(self, data, stepsize=1):
-        return np.split(data, np.where(np.diff(data) != stepsize)[0] + 1)
-
-    def load_tokenizer(self):
-        model_path = "pretrained-bert"
-        tokenizer = BertTokenizer.from_pretrained(model_path)
-        return tokenizer
-
-    def pre_tokenize(self):
-        """Pre-tokenizer that tries to uncover words in the input sentence.
-
-        Args:
-            sentence (str): The sentence to pre-tokenize.
-
-        Returns:
-
-            list[str]: A list of words.
-        """
-
-        tokenizer = self.load_tokenizer()
-        tokens = tokenizer.tokenize(self.sentence)
-        print("tokens by pre-trained tokenizer: ", tokens)
-        ls = []  # store the index number of tokens starts with #
-        for idx, token in enumerate(tokens):
-            if token.startswith("#"):
-                ls.append(idx)
-        ls_array = self.consecutive(np.array(ls), stepsize=1)
-
-        ls_tokenized_word_index = [i for i in range(len(tokens))]
-        ls_untokenized_word = []
-        if len(ls) > 0:
-            for i in ls_array:
-                ls_tokenized_word_index.remove(i[0] - 1)
-                [ls_tokenized_word_index.remove(x) for x in i]
-                begin = i[0] - 1
-                i = np.insert(i, 0, begin, axis=0)
-                word = []
-                for j in i:
-                    word.append(tokens[j])
-                untokenized_word = "".join(word).replace("#", "")
-                print("the badly tokenized word: ", untokenized_word)
-                ls_untokenized_word.append(untokenized_word)
-        ls_tokenized_word = self.sentence.split()
-        for i in ls_untokenized_word:
-            ls_tokenized_word.remove(i)
-
-        return ls_tokenized_word_index, ls_tokenized_word, ls_untokenized_word
-
-
-class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
+class MorphemesTokenizer(GreedyTokenizer):
     """A mock-up of what your own tokenizer could look like.
     Note that there are obviously pieces missing, like a normalizer, etc."""
 
     def morphemes_finder(self, word):
+        """Searching for morphlogical segmentation and meaning.
+
+        Args:
+            word (str): a word
+
+        Returns:
+
+            result (dict): morphological result
+            final_result (dict): morphological result
+        """
         results = morphemes.discover_segments(word)
 
         if morphemes.format_results(results, "") == word:
@@ -112,6 +68,16 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
         return results, final_results
 
     def inflectional_finder(self, word):
+        """Searching for inflectional segmentation.
+
+        Args:
+            word (str): a word
+
+        Returns:
+
+            affix (str): inflectional affix or None
+
+        """
         inflectional_df = pd.read_csv('/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.inflectional.v1.tsv',
                                       sep='\t')
         inflectional_df.columns = ['word', 'inflectional_word', 'pos', 'affix']
@@ -132,34 +98,46 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
             return affix
 
     def derivational_finder(self, word):
-        inflectional_df = pd.read_csv('/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.derivational.v1.tsv',
-                                      sep='\t')
-        inflectional_df.columns = ['word', 'derivational_word', 'pos_0', 'pos_1', 'affix', 'strategy']
+        """Searching for inflectional segmentation.
 
-        answer_df = inflectional_df[inflectional_df.eq(word).any(axis=1)]
+        Args:
+            word (str): a word
+
+        Returns:
+
+            affix (str): derivational affix or None
+            strategy_affix(str): "prefix" or "suffix"
+
+        """
+        derivational_df = pd.read_csv('/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.derivational.v1.tsv',
+                                      sep='\t')
+        derivational_df.columns = ['word', 'derivational_word', 'pos_0', 'pos_1', 'affix', 'strategy']
+
+        answer_df = derivational_df[derivational_df.eq(word).any(axis=1)]
         if answer_df.empty:
             return None, None
         else:
-            df = inflectional_df.loc[inflectional_df['derivational_word'] == word]
+            df = derivational_df.loc[derivational_df['derivational_word'] == word]
             affix = df.affix.to_string().split()[1]
             strategy = df.strategy.to_string().split()
             strategy_affix = strategy[1]
             return affix, strategy_affix
 
     def segment(self, word):
-        """Your own tokenization approach.
+        """Morphological tokenization approach.
 
         Args:
             word (str): The word to segment.
 
         Returns:
-            None | list[str]: Returns the list of morphemes or None, if your approach could not segment the word.
+            morphemes(list[None] | list[str]: Returns the list of morphemes or None, if your approach could not segment the word.
         """
         morphemes = []
         results, final_results = self.morphemes_finder(word)
         inflectional_affix = self.inflectional_finder(word)
         derivational_affix, derivational_strategy_affix = self.derivational_finder(word)
-        print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
+        # print(word)
+        # print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
         inflectional = False
         derivational = False
         Not_found = False
@@ -177,43 +155,43 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
                         inf_selected_form = form
                         inf_selected_strategy_affix = "suffix"
                         inflectional = True
-                        print("inflectional selected form, meaning and strategy_affix: ", inf_selected_form,
-                              inf_selected_meaning,
-                              inf_selected_strategy_affix, inflectional)
+                        # print("inflectional selected form, meaning and strategy_affix: ", inf_selected_form,
+                        #       inf_selected_meaning,
+                        #       inf_selected_strategy_affix, inflectional)
                     if form == derivational_affix:
                         de_selected_meaning = meaning
                         de_selected_form = form
                         de_selected_strategy_affix = derivational_strategy_affix
                         derivational = True
-                        print("derivational selected form, meaning and strategy_affix: ", de_selected_form,
-                              de_selected_meaning,
-                              de_selected_strategy_affix, derivational)
+                        # print("derivational selected form, meaning and strategy_affix: ", de_selected_form,
+                        #       de_selected_meaning,
+                        #       de_selected_strategy_affix, derivational)
                     if form != inflectional_affix and form != derivational_affix:
                         not_selected_meaning = meaning
                         not_selected_form = form
                         not_selected_strategy_affix = strategy
                         Not_found = True
-                        print("None selected form, meaning and strategy_affix: ", not_selected_form,
-                              not_selected_meaning,
-                              not_selected_strategy_affix, Not_found)
+                        # print("None selected form, meaning and strategy_affix: ", not_selected_form,
+                        #       not_selected_meaning,
+                        #       not_selected_strategy_affix, Not_found)
         if inflectional == True:
             selected_form = inf_selected_form
             selected_meaning = inf_selected_meaning
             selected_strategy_affix = inf_selected_strategy_affix
-            print("1", selected_meaning)
+            # print("1", selected_meaning)
         elif derivational == True:
             selected_form = de_selected_form
             selected_meaning = de_selected_meaning
             selected_strategy_affix = de_selected_strategy_affix
-            print("2", selected_meaning)
+            # print("2", selected_meaning)
         elif Not_found == True:
             selected_form = not_selected_form
             selected_meaning = not_selected_meaning
             selected_strategy_affix = not_selected_strategy_affix
-            print("3", selected_meaning)
+            # print("3", selected_meaning)
         if selected_form != None:
             rest_word = word.replace(selected_form, '')
-            print(selected_form, rest_word)
+            # print(selected_form, rest_word)
             if selected_strategy_affix == "prefix":
                 morphemes.append(selected_meaning)
                 morphemes.append(rest_word)
@@ -227,7 +205,7 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
 
     @lru_cache(maxsize=1_000_000)
     def segment_with_fallback(self, word):
-        """Your own tokenization approach with the fallback to a greedy tokenizer.
+        """Morphological tokenization approach with the fallback to a greedy tokenizer.
 
         Args:
             word (str): The word to segment.
@@ -235,9 +213,23 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
         Returns:
             list[str]: Returns the list of morphemes or sub-word units in case of fallback.
         """
-        return self.word_tokenize(word)
+        maybe_morphemes = self.segment(word)
+
+        if maybe_morphemes != [None]:
+            return maybe_morphemes
+        else:
+            tokenizer = self.pretrained_tokenizer()
+            return tokenizer.tokenize(word)
 
     def helper(self, result):
+        """A help function to convert list of lists into a list.
+
+        Args:
+            list of lists.
+
+        Returns:
+            list[str]: Returns the list of morphemes.
+        """
         final = []
         for x in result:
             if isinstance(x, list):
@@ -248,8 +240,8 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
                 final.append(x)
         return final
 
-    def tokenize(self):
-        """Tokenization method for your own approach, including fallback greedy tokenization.
+    def tokenize(self, add_special_tokens=True):
+        """Morphological tokenization method, including fallback greedy tokenization.
 
         Args:
             sentence (str): The sentence to tokenize.
@@ -258,32 +250,18 @@ class WenxuTokenizer(GreedyTokenizer, PreTokenizer):
         Returns:
             list[str]: A list of tokens.
         """
-        ls_tokenized_word_index, ls_tokenized_word, ls_untokenized_word = self.pre_tokenize()
-        ls_morphemes = []
-        segmenter_output = []
-        for untokenized_word in ls_untokenized_word:
-            resegment = self.segment(untokenized_word)
+        tokenized_sentence = ["CLS"] if add_special_tokens else []
 
-            if resegment != [None]:
-                ls_morphemes.append(resegment)
-            else:
-                segmenter_output.append(untokenized_word)
-
-        with open('data.txt', 'w') as fp:
-            for w in segmenter_output:
-                fp.write("%s\n" % w)
-        for untokenized_word in segmenter_output:
-            resegment = self.segment_with_fallback(untokenized_word)
-            print("attention", resegment)
-
-        for i in range(len(ls_tokenized_word)):
-            ls_morphemes.insert(ls_tokenized_word_index[i], ls_tokenized_word[i])
-        ls_morphemes = self.helper(ls_morphemes)
-        return ls_morphemes
+        for word in self.sentence.split():
+            resegment = self.segment_with_fallback(word)
+            tokenized_sentence.extend(resegment)
+        return tokenized_sentence
 
 
 if __name__ == '__main__':
-    sentence = "greatful It is ozonising inconsistency xxxxxxxx wwwwwww xxxxxxxx wwwwwww xxxxxxxx wwwwwww xxxxxxxx wwwwwww xxxxxxxx wwwwwww xxxxxxxx wwwwwww"
-    tokens = WenxuTokenizer(sentence)
-    result = tokens.tokenize()
-    print(result)
+    sentence = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc", "hhhhhh bbbbb dddddd ssss hello"]
+    for sen in sentence:
+        print(sen)
+        tokens = MorphemesTokenizer(sen)
+        result = tokens.tokenize()
+        print(result)

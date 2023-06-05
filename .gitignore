@@ -13,3 +13,5 @@ baseline_tokenizer/tokenizer
 morfessor-2.0.6/
 morphemes_tokenizer/pretrained-bert/
 morphemes_tokenizer/best_model_state.bin
+morphemes_tokenizer/test.txt
+morphemes_tokenizer/train.txt

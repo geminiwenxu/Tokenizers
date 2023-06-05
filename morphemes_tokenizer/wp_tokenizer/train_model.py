@@ -2,18 +2,18 @@
 # Modeling (MLM) task
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
 
-from baseline_tokenizer.load_data import load_data, dataset_to_text
-from baseline_tokenizer.model import build_model
-from baseline_tokenizer.my_tokenizer import train_tokenizer
-from baseline_tokenizer.prepare_dataset import prepare_dataset
+from morphemes_tokenizer.wp_tokenizer.load_data import load_data, dataset_to_text
+from morphemes_tokenizer.wp_tokenizer.model import build_model
+from morphemes_tokenizer.wp_tokenizer.my_tokenizer import train_tokenizer
+from morphemes_tokenizer.wp_tokenizer.prepare_dataset import prepare_dataset
 
 # data_train, data_test = load_data()
 # dataset_to_text(data_train, "train.txt")
 # dataset_to_text(data_test, "test.txt")
 
 
-def training(data_train, data_test):
-    tokenizer = train_tokenizer()
+def training(data_train, data_test, special_tokens):
+    tokenizer = train_tokenizer(special_tokens)
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer, mlm=True, mlm_probability=0.2
     )
