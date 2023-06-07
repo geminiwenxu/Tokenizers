@@ -10,8 +10,6 @@ from baseline_tokenizer.train_model import training
 
 
 class GreedyTokenizer:
-    def __init__(self, sentence):
-        self.sentence = sentence
 
     def segmenter_output_data(self):
         files = ["data.txt"]
@@ -47,8 +45,11 @@ class MorphemesTokenizer(GreedyTokenizer):
     """A mock-up of what your own tokenizer could look like.
     Note that there are obviously pieces missing, like a normalizer, etc."""
 
+    def __init__(self, sentence):
+        self.sentence = sentence
+
     def morphemes_finder(self, word):
-        """Searching for morphlogical segmentation and meaning.
+        """Searching for morphological segmentation and meaning.
 
         Args:
             word (str): a word
@@ -218,6 +219,7 @@ class MorphemesTokenizer(GreedyTokenizer):
         if maybe_morphemes != [None]:
             return maybe_morphemes
         else:
+            # TODO if maybe_morphemes == [None], fallback segment by using the standalone tokenizer?
             tokenizer = self.pretrained_tokenizer()
             return tokenizer.tokenize(word)
 
@@ -261,7 +263,6 @@ class MorphemesTokenizer(GreedyTokenizer):
 if __name__ == '__main__':
     sentence = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc", "hhhhhh bbbbb dddddd ssss hello"]
     for sen in sentence:
-        print(sen)
         tokens = MorphemesTokenizer(sen)
         result = tokens.tokenize()
         print(result)
