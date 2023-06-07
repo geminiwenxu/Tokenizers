@@ -2,7 +2,7 @@
 
 from nltk.corpus import wordnet as wn
 
-import morphemes_lib as morphemes
+import morphemes_tokenizer.segmenter.morphemes_lib as morphemes
 
 debug = 0
 

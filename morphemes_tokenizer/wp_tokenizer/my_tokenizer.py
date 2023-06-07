@@ -42,4 +42,8 @@ def train_tokenizer(special_tokens):
 
 
 if __name__ == '__main__':
-    pass
+    special_tokens = [
+        "[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"
+    ]
+
+    train_tokenizer(special_tokens)

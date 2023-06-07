@@ -4,23 +4,22 @@ import pandas as pd
 from datasets import *
 from transformers import BertTokenizer
 
-import morphemes_lib as morphemes
+import morphemes_tokenizer.segmenter.morphemes_lib as morphemes
 from baseline_tokenizer.load_data import dataset_to_text
 from baseline_tokenizer.train_model import training
 
 
 class GreedyTokenizer:
+    def pretrained_tokenizer(self):
+        model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/morphemes_tokenizer/pretrained-bert"
+        tokenizer = BertTokenizer.from_pretrained(model_path)
+        return tokenizer
 
     def segmenter_output_data(self):
         files = ["data.txt"]
         dataset = load_dataset("text", data_files=files, split="train")
         d = dataset.train_test_split(test_size=0.1)
         return d["train"], d["test"]
-
-    def pretrained_tokenizer(self):
-        model_path = "pretrained-bert"
-        tokenizer = BertTokenizer.from_pretrained(model_path)
-        return tokenizer
 
     def word_tokenize(self, word):
         """A greedy sub-word unit tokenizer: WordPiece,
@@ -217,30 +216,13 @@ class MorphemesTokenizer(GreedyTokenizer):
         maybe_morphemes = self.segment(word)
 
         if maybe_morphemes != [None]:
+            print("maybe_morphemes", maybe_morphemes)
             return maybe_morphemes
         else:
             # TODO if maybe_morphemes == [None], fallback segment by using the standalone tokenizer?
             tokenizer = self.pretrained_tokenizer()
+            print("maybe_morphemes==[None]", tokenizer.tokenize(word))
             return tokenizer.tokenize(word)
-
-    def helper(self, result):
-        """A help function to convert list of lists into a list.
-
-        Args:
-            list of lists.
-
-        Returns:
-            list[str]: Returns the list of morphemes.
-        """
-        final = []
-        for x in result:
-            if isinstance(x, list):
-                for i in range(len(x)):
-                    temp = x[i]
-                    final.append(temp)
-            else:
-                final.append(x)
-        return final
 
     def tokenize(self, add_special_tokens=True):
         """Morphological tokenization method, including fallback greedy tokenization.
@@ -252,7 +234,7 @@ class MorphemesTokenizer(GreedyTokenizer):
         Returns:
             list[str]: A list of tokens.
         """
-        tokenized_sentence = ["CLS"] if add_special_tokens else []
+        tokenized_sentence = ["[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"] if add_special_tokens else []
 
         for word in self.sentence.split():
             resegment = self.segment_with_fallback(word)

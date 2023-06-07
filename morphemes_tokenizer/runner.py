@@ -1,7 +1,7 @@
 import yaml
 from pkg_resources import resource_filename
 
-from morphemes_tokenizer.morphological_segmenter.morphemes_segmenter import MorphemesTokenizer
+from morphemes_tokenizer.segmenter.morphemes_segmenter import MorphemesTokenizer
 from morphemes_tokenizer.wp_tokenizer.load_data import load_data
 from morphemes_tokenizer.wp_tokenizer.train_model import training
 
@@ -13,15 +13,21 @@ def get_config(path):
 
 
 config = get_config('/../config/config.yaml')
-file_path = config['file_path']
+file_path = resource_filename(__name__, config['train']['path'])
+vocab_size = config['vocab_size']
+max_length = config['max_length']
 
 
 def pipeline():
-    data_train, data_test = load_data(file_path)
+    data_train, data_test = load_data()
     sentences = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc", "hhhhhh bbbbb dddddd ssss hello"]
     special_tokens = []
     for sen in sentences:
         tokens = MorphemesTokenizer(sen)
         tokenized_sentence = tokens.tokenize()
         special_tokens.append(tokenized_sentence)
-    training(data_train, data_test, special_tokens)
+    training(data_train, data_test, special_tokens, vocab_size, max_length)
+
+
+if __name__ == '__main__':
+    pipeline()

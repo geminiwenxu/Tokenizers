@@ -1,8 +1,13 @@
-file_path:
-  /../data/cc_news_sample.txt
+train:
+  path: /../data/cc_news_sample.txt
 
 inflectional_path:
-  /../data/eng/eng.inflectional.v1.tsv
+  path: /../data/eng/eng.inflectional.v1.tsv
 
 derivational_path:
-  /../data/eng/eng.derivational.v1.tsv
+  path: /../data/eng/eng.derivational.v1.tsv
+
+vocab_size:
+  30_522
+max_length:
+  512

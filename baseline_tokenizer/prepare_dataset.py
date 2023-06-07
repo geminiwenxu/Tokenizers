@@ -1,5 +1,4 @@
-from itertools import chain
-
+from baseline_tokenizer.load_data import load_data
 from baseline_tokenizer.my_tokenizer import train_tokenizer
 
 
@@ -23,6 +22,8 @@ def prepare_dataset(data_train, data_test):
     encode = encode_with_truncation if truncate_longer_samples else encode_without_truncation
     # tokenizing the train dataset
     train_dataset = data_train.map(encode, batched=True)
+    print("1", data_train)
+    print("2", train_dataset)
     # tokenizing the testing dataset
     test_dataset = data_test.map(encode, batched=True)
     if truncate_longer_samples:
@@ -34,6 +35,7 @@ def prepare_dataset(data_train, data_test):
         test_dataset.set_format(columns=["input_ids", "attention_mask", "special_tokens_mask"])
         train_dataset.set_format(columns=["input_ids", "attention_mask", "special_tokens_mask"])
     return train_dataset, test_dataset
+
 
 # def group_texts(examples):
 #     # Concatenate all texts.
@@ -59,3 +61,6 @@ def prepare_dataset(data_train, data_test):
 #     # convert them from lists to torch tensors
 #     train_dataset.set_format("torch")
 #     test_dataset.set_format("torch")
+if __name__ == '__main__':
+    data_train, data_test = load_data()
+    prepare_dataset(data_train, data_test)

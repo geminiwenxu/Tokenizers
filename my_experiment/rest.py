@@ -83,3 +83,23 @@ class PreTokenizer:
             tokens.remove(p)
         ls_untokenized_tokens = tokens
         return ls_tokenized_word_index, ls_tokenized_word, ls_untokenized_word_index, ls_untokenized_word, ls_untokenized_tokens
+
+
+    def helper(self, result):
+        """A help function to convert list of lists into a list.
+
+        Args:
+            list of lists.
+
+        Returns:
+            list[str]: Returns the list of morphemes.
+        """
+        final = []
+        for x in result:
+            if isinstance(x, list):
+                for i in range(len(x)):
+                    temp = x[i]
+                    final.append(temp)
+            else:
+                final.append(x)
+        return final
