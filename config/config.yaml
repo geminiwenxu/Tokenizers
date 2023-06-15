@@ -11,3 +11,8 @@ vocab_size:
   30_522
 max_length:
   512
+
+epoch:
+  3
+batch_size:
+  100

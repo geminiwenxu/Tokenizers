@@ -49,6 +49,7 @@ def training(data_train, data_test, special_tokens, vocab_size, max_length):
         # save_total_limit=3,           # whether you don't have much space so you let only 3 model weights saved in the disk
     )
     # initialize the trainer and pass everything to it
+    print("ATTENTION",data_train)
     train_dataset, test_dataset = prepare_dataset(data_train, data_test, special_tokens)
     trainer = Trainer(
         model=model,

@@ -24,10 +24,10 @@ def prepare_dataset(data_train, data_test, special_tokens):
     # the encode function will depend on the truncate_longer_samples variable
     encode = encode_with_truncation if truncate_longer_samples else encode_without_truncation
     # tokenizing the train dataset
-    train_dataset = data_train.map(encode,special_tokens, batched=True)
+    train_dataset = data_train.map(encode, special_tokens, batched=True)
     print("1", train_dataset)
     # tokenizing the testing dataset
-    test_dataset = data_test.map(encode,special_tokens, batched=True)
+    test_dataset = data_test.map(encode, special_tokens, batched=True)
     if truncate_longer_samples:
         # remove other columns and set input_ids and attention_mask as PyTorch tensors
         train_dataset.set_format(type="torch", columns=["input_ids", "attention_mask"])

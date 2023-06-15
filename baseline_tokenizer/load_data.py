@@ -1,13 +1,10 @@
-from pathlib import Path
-
 from datasets import *
 
 
-def load_data():
-    files = ["cc_news_sample.txt"]
+def load_data(file_path):
+    files = [file_path]
     dataset = load_dataset("text", data_files=files, split="train")
     d = dataset.train_test_split(test_size=0.1)
-    print(d["train"], d["test"])
     return d["train"], d["test"]
 
 

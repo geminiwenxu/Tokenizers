@@ -10,9 +10,9 @@ def encode_with_truncation(examples):
                      max_length=max_length, return_special_tokens_mask=True)
 
 
-def encode_without_truncation(examples):
+def encode_without_truncation(examples, model_path):
     """Mapping function to tokenize the sentences passed without truncation"""
-    tokenizer = train_tokenizer()
+    tokenizer = train_tokenizer(model_path)
     return tokenizer(examples["text"], return_special_tokens_mask=True)
 
 
