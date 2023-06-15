@@ -6,7 +6,7 @@ data/
 *.pyc
 *.log
 pre-train_bert/pretrained_tokenizer/
-baseline_tokenizer/pretrained-bert/
+baseline_tokenizer/pretrained-tokenizer/
 baseline_tokenizer/test.txt
 baseline_tokenizer/train.txt
 baseline_tokenizer/tokenizer
