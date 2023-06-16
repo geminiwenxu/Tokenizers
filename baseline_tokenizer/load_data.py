@@ -4,7 +4,7 @@ from datasets import *
 def load_data(file_path):
     files = [file_path]
     dataset = load_dataset("text", data_files=files, split="train")
-    d = dataset.train_test_split(test_size=0.1)
+    d = dataset.train_test_split(test_size=0.2)
     return d["train"], d["test"]
 
 
