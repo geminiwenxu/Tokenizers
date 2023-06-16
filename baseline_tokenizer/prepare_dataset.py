@@ -22,8 +22,6 @@ def prepare_dataset(data_train, data_test):
     encode = encode_with_truncation if truncate_longer_samples else encode_without_truncation
     # tokenizing the train dataset
     train_dataset = data_train.map(encode, batched=True)
-    print("1", data_train)
-    print("2", train_dataset)
     # tokenizing the testing dataset
     test_dataset = data_test.map(encode, batched=True)
     if truncate_longer_samples:
