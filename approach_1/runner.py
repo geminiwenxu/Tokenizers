@@ -1,9 +1,9 @@
 import yaml
 from pkg_resources import resource_filename
 
-from morphemes_tokenizer.segmenter.morphemes_segmenter import MorphemesTokenizer
-from morphemes_tokenizer.wp_tokenizer.load_data import load_data
-from morphemes_tokenizer.wp_tokenizer.train_model import training
+from approach_1.segmenter.morphemes_segmenter import MorphemesTokenizer
+from approach_1.wp_tokenizer.load_data import load_data
+from approach_1.wp_tokenizer.train_model import training
 
 
 def get_config(path):
@@ -19,14 +19,17 @@ max_length = config['max_length']
 
 
 def pipeline():
+    baseline_tokenizer = load_model()
+    for sen in sentences:
+        tokens = baseline_tokenizer.tokenize(sen)
+        ls_untokenized_word= resemble(tokens)
+
+        segment_output = segmenter(ls_untokenized_word)
+
     data_train, data_test = load_data()
     sentences = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc", "hhhhhh bbbbb dddddd ssss hello"]
-    special_tokens = []
-    for sen in sentences:
-        tokens = MorphemesTokenizer(sen)
-        tokenized_sentence = tokens.tokenize()
-        special_tokens.append(tokenized_sentence)
-    training(data_train, data_test, special_tokens, vocab_size, max_length)
+
+    training(data_train, data_test, vocab_size, max_length)
 
 
 if __name__ == '__main__':

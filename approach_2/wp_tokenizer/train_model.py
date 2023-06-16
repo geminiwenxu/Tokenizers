@@ -2,9 +2,9 @@
 # Modeling (MLM) task
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
 
-from morphemes_tokenizer.wp_tokenizer.model import build_model
-from morphemes_tokenizer.wp_tokenizer.my_tokenizer import train_tokenizer
-from morphemes_tokenizer.wp_tokenizer.prepare_dataset import prepare_dataset
+from approach_2.wp_tokenizer.model import build_model
+from approach_2.wp_tokenizer.my_tokenizer import train_tokenizer
+from approach_2.wp_tokenizer.prepare_dataset import prepare_dataset
 
 
 def helper(ls_lists):

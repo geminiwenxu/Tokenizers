@@ -4,14 +4,14 @@ import pandas as pd
 from datasets import *
 from transformers import BertTokenizer
 
-import morphemes_tokenizer.segmenter.morphemes_lib as morphemes
+import approach_2.segmenter.morphemes_lib as morphemes
 from baseline_tokenizer.load_data import dataset_to_text
 from baseline_tokenizer.train_model import training
 
 
 class GreedyTokenizer:
     def pretrained_tokenizer(self):
-        model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/morphemes_tokenizer/pretrained-bert"
+        model_path = "/approach_2/pretrained-bert"
         tokenizer = BertTokenizer.from_pretrained(model_path)
         return tokenizer
 

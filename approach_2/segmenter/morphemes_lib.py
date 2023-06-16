@@ -2,7 +2,7 @@
 
 import json
 
-import morphemes_tokenizer.segmenter.morphemes_wn as mdb
+import approach_2.segmenter.morphemes_wn as mdb
 
 # data_directory_path = "data/"
 
@@ -448,7 +448,7 @@ def close_neo4j():
     mdb.close_neo4j()
 
 
-morphemes_filename = "/Users/geminiwenxu/PycharmProjects/Tokenizers/morphemes_tokenizer/segmenter/morphemes.json"
+morphemes_filename = "/approach_1/segmenter/morphemes.json"
 morphemes_filepath = morphemes_filename
 morphemes_file = open(morphemes_filepath, "r")
 morphemes = json.loads(morphemes_file.read())
