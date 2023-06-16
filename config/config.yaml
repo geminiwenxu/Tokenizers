@@ -1,5 +1,5 @@
 train:
-  path: /../data/cc_news_sample.txt
+  path: /../data/ccnews_enwiki.txt
 
 inflectional_path:
   path: /../data/eng/eng.inflectional.v1.tsv
@@ -11,8 +11,12 @@ vocab_size:
   30_522
 max_length:
   512
-
 epoch:
   3
 batch_size:
   100
+
+cc_news:
+  path: /../data/raw/cc_news.txt
+enwiki:
+  path: /../data/raw/enwiki-NS0-20220201.txt
