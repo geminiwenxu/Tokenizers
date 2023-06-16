@@ -11,7 +11,10 @@ def train_tokenizer(special_tokens):
     max_length = 512
     truncate_longer_samples = True
     tokenizer = BertWordPieceTokenizer()
-    tokenizer.train(files=files, vocab_size=vocab_size, special_tokens=special_tokens)
+    # tokenizer.add_special_tokens(["[XXX]"])
+    print("train_tokenzier", special_tokens)
+    tokenizer.add_special_tokens(special_tokens)
+    tokenizer.train(files=files, vocab_size=vocab_size)
     tokenizer.enable_truncation(max_length=max_length)
     model_path = "greedy_tokenizer"
     # make the directory if not already there

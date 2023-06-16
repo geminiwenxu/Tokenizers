@@ -1,13 +1,12 @@
+from transformers import BertTokenizerFast
+
 from approach_2.wp_tokenizer.load_data import load_data
-from approach_2.wp_tokenizer.my_tokenizer import train_tokenizer
 
 
-def encode_with_truncation(examples, special_tokens):
+def encode_with_truncation(examples, ):
     """Mapping function to tokenize the sentences passed with truncation"""
-    special_tokens = [
-        "[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"
-    ]
-    tokenizer = train_tokenizer(special_tokens)
+    model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/approach_2/pretrained-bert"
+    tokenizer = BertTokenizerFast.from_pretrained(model_path)
     max_length = 512
     return tokenizer(examples["text"], truncation=True, padding="max_length",
                      max_length=max_length, return_special_tokens_mask=True)
@@ -15,19 +14,19 @@ def encode_with_truncation(examples, special_tokens):
 
 def encode_without_truncation(examples, special_tokens):
     """Mapping function to tokenize the sentences passed without truncation"""
-    tokenizer = train_tokenizer(special_tokens)
+    model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/approach_2/pretrained-bert"
+    tokenizer = BertTokenizerFast.from_pretrained(model_path)
     return tokenizer(examples["text"], return_special_tokens_mask=True)
 
 
-def prepare_dataset(data_train, data_test, special_tokens):
+def prepare_dataset(data_train, data_test):
     truncate_longer_samples = True
     # the encode function will depend on the truncate_longer_samples variable
     encode = encode_with_truncation if truncate_longer_samples else encode_without_truncation
     # tokenizing the train dataset
-    train_dataset = data_train.map(encode, special_tokens, batched=True)
-    print("1", train_dataset)
+    train_dataset = data_train.map(encode, batched=True)
     # tokenizing the testing dataset
-    test_dataset = data_test.map(encode, special_tokens, batched=True)
+    test_dataset = data_test.map(encode, batched=True)
     if truncate_longer_samples:
         # remove other columns and set input_ids and attention_mask as PyTorch tensors
         train_dataset.set_format(type="torch", columns=["input_ids", "attention_mask"])
@@ -64,9 +63,4 @@ def prepare_dataset(data_train, data_test, special_tokens):
 #     train_dataset.set_format("torch")
 #     test_dataset.set_format("torch")
 if __name__ == '__main__':
-    data_train, data_test = load_data()
-    special_tokens = [
-        "[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"
-    ]
-    encode_with_truncation(data_train, special_tokens)
-    prepare_dataset(data_train, data_test, special_tokens)
+    pass

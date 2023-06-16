@@ -5,13 +5,13 @@ from datasets import *
 from transformers import BertTokenizer
 
 import approach_2.segmenter.morphemes_lib as morphemes
-from baseline_tokenizer.load_data import dataset_to_text
-from baseline_tokenizer.train_model import training
+from approach_2.wp_tokenizer.load_data import dataset_to_text
+from approach_2.wp_tokenizer.train_model import training
 
 
 class GreedyTokenizer:
     def pretrained_tokenizer(self):
-        model_path = "/approach_2/pretrained-bert"
+        model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/approach_2/pretrained-bert"
         tokenizer = BertTokenizer.from_pretrained(model_path)
         return tokenizer
 
@@ -234,8 +234,8 @@ class MorphemesTokenizer(GreedyTokenizer):
         Returns:
             list[str]: A list of tokens.
         """
-        tokenized_sentence = ["[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"] if add_special_tokens else []
-
+        # tokenized_sentence = ["[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"] if add_special_tokens else []
+        tokenized_sentence =[]
         for word in self.sentence.split():
             resegment = self.segment_with_fallback(word)
             tokenized_sentence.extend(resegment)

@@ -20,7 +20,7 @@ max_length = config['max_length']
 
 def pipeline():
     data_train, data_test = load_data()
-    sentences = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc", "hhhhhh bbbbb dddddd ssss hello"]
+    sentences = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc"]
     special_tokens = []
     for sen in sentences:
         tokens = MorphemesTokenizer(sen)

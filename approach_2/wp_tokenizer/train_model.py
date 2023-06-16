@@ -29,6 +29,7 @@ def helper(ls_lists):
 
 def training(data_train, data_test, special_tokens, vocab_size, max_length):
     special_tokens = helper(special_tokens)
+    print("USED IN TRAINING", special_tokens)
     tokenizer = train_tokenizer(special_tokens)
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer, mlm=True, mlm_probability=0.2
@@ -49,8 +50,7 @@ def training(data_train, data_test, special_tokens, vocab_size, max_length):
         # save_total_limit=3,           # whether you don't have much space so you let only 3 model weights saved in the disk
     )
     # initialize the trainer and pass everything to it
-    print("ATTENTION",data_train)
-    train_dataset, test_dataset = prepare_dataset(data_train, data_test, special_tokens)
+    train_dataset, test_dataset = prepare_dataset(data_train, data_test)
     trainer = Trainer(
         model=model,
         args=training_args,
