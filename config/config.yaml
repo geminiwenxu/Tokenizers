@@ -1,5 +1,5 @@
 train:
-  path: /../data/ccnews_enwiki.txt
+  path: /../data/raw/shuffled_ccnews_enwiki.txt
 
 inflectional_path:
   path: /../data/eng/eng.inflectional.v1.tsv
@@ -17,6 +17,6 @@ batch_size:
   100
 
 cc_news:
-  path: /../data/raw/cc_news.txt
+  path: /../data/cc_news_sample.txt
 enwiki:
-  path: /../data/raw/enwiki-NS0-20220201.txt
+  path: /../data/raw/train.txt
