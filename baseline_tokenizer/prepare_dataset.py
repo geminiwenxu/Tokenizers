@@ -1,10 +1,9 @@
-from baseline_tokenizer.load_data import load_data
-from baseline_tokenizer.my_tokenizer import train_tokenizer
 from transformers import BertTokenizerFast
+
 
 def encode_with_truncation(examples):
     """Mapping function to tokenize the sentences passed with truncation"""
-    model_path = "baseline_tokenizer/pretrained_tokenizer"
+    model_path = "pretrained_tokenizer"
     tokenizer = BertTokenizerFast.from_pretrained(model_path)
     max_length = 512
     return tokenizer(examples["text"], truncation=True, padding="max_length",
@@ -13,7 +12,7 @@ def encode_with_truncation(examples):
 
 def encode_without_truncation(examples):
     """Mapping function to tokenize the sentences passed without truncation"""
-    model_path = "baseline_tokenizer/pretrained_tokenizer"
+    model_path = "pretrained_tokenizer"
     tokenizer = BertTokenizerFast.from_pretrained(model_path)
     return tokenizer(examples["text"], return_special_tokens_mask=True)
 
@@ -62,5 +61,4 @@ def prepare_dataset(data_train, data_test):
 #     train_dataset.set_format("torch")
 #     test_dataset.set_format("torch")
 if __name__ == '__main__':
-    data_train, data_test = load_data()
-    prepare_dataset(data_train, data_test)
+    pass

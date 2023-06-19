@@ -6,8 +6,8 @@ from transformers import DataCollatorForLanguageModeling, TrainingArguments, Tra
 
 from baseline_tokenizer.load_data import load_data, dataset_to_text
 from baseline_tokenizer.model import build_model
-from baseline_tokenizer.my_tokenizer import train_tokenizer
 from baseline_tokenizer.prepare_dataset import prepare_dataset
+from baseline_tokenizer.train_tokenizer import train_tokenizer
 
 
 def get_config(path):
@@ -25,14 +25,14 @@ batch_size = config['batch_size']
 data_train, data_test = load_data(file_path)
 dataset_to_text(data_train, "train.txt")
 dataset_to_text(data_test, "test.txt")
+model_path = "pretrained_tokenizer"
 
 
 def training():
-    tokenizer = train_tokenizer()
+    tokenizer = train_tokenizer(vocab_size, max_length, model_path)
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer, mlm=True, mlm_probability=0.2
     )
-    model_path = "pretrained_tokenizer"
     model = build_model(vocab_size, max_length)
     model = model.to("cuda:0")
     training_args = TrainingArguments(

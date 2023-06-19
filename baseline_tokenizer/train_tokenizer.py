@@ -2,19 +2,15 @@ import json
 import os
 
 from tokenizers import BertWordPieceTokenizer
-from transformers import BertTokenizerFast
 
 
-def train_tokenizer():
+def train_tokenizer(vocab_size, max_length, model_path):
     special_tokens = ["[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"]
     files = ["train.txt"]
-    vocab_size = 30_522
-    max_length = 512
     truncate_longer_samples = True
     tokenizer = BertWordPieceTokenizer()
     tokenizer.train(files=files, vocab_size=vocab_size, special_tokens=special_tokens)
     tokenizer.enable_truncation(max_length=max_length)
-    model_path = "pretrained_tokenizer"
     # make the directory if not already there
     if not os.path.isdir(model_path):
         os.mkdir(model_path)
@@ -34,13 +30,4 @@ def train_tokenizer():
             "max_len": max_length,
         }
         json.dump(tokenizer_cfg, f)
-    # when the tokenizer is trained and configured, load it as BertTokenizerFast
-    # save_model method saves the vocabulary file into the path, we also manually save some tokenizer configurations,
-    # such as special tokens
-    tokenizer = BertTokenizerFast.from_pretrained(model_path)
-    # print(tokenizer.tokenize("hello world"))
     return tokenizer
-
-
-if __name__ == '__main__':
-    train_tokenizer()
