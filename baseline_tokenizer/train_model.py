@@ -34,6 +34,7 @@ def training():
     )
     model_path = "pretrained_tokenizer"
     model = build_model(vocab_size, max_length)
+    model = model.to("cuda:0")
     training_args = TrainingArguments(
         output_dir=model_path,  # output directory to where save model checkpoint
         evaluation_strategy="steps",  # evaluate each `logging_steps` steps
