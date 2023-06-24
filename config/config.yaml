@@ -14,7 +14,7 @@ max_length:
 epoch:
   3
 batch_size:
-  100
+  10
 
 cc_news:
   path: /../data/cc_news_sample.txt
