@@ -1,9 +1,9 @@
 import yaml
 from pkg_resources import resource_filename
 
-from approach_1.segmenter.morphemes_segmenter import MorphemesTokenizer
-from approach_1.wp_tokenizer.load_data import load_data
-from approach_1.wp_tokenizer.train_model import training
+from resegment.segmenter.morphemes_segmenter import MorphemesTokenizer
+from resegment.wp_tokenizer.load_data import load_data
+from resegment.wp_tokenizer.train_model import training
 
 
 def get_config(path):

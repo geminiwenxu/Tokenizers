@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from transformers import BertTokenizer
 
-import approach_1.segmenter.morphemes_lib as morphemes
+import resegment.segmenter.morphemes_lib as morphemes
 
 
 class PreTokenizer:
@@ -11,7 +11,7 @@ class PreTokenizer:
         return np.split(data, np.where(np.diff(data) != stepsize)[0] + 1)
 
     def load_tokenizer(self):
-        model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/approach_1/pretrained-bert"
+        model_path = "/resegment/pretrained-bert"
         tokenizer = BertTokenizer.from_pretrained(model_path)
         return tokenizer
 

@@ -2,9 +2,9 @@
 # Modeling (MLM) task
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
 
-from approach_2.wp_tokenizer.model import build_model
-from approach_2.wp_tokenizer.my_tokenizer import train_tokenizer
-from approach_2.wp_tokenizer.prepare_dataset import prepare_dataset
+from resegment.wp_tokenizer.model import build_model
+from resegment.wp_tokenizer.my_tokenizer import train_tokenizer
+from resegment.wp_tokenizer.prepare_dataset import prepare_dataset
 
 
 def helper(ls_lists):
@@ -27,14 +27,12 @@ def helper(ls_lists):
     return ls
 
 
-def training(data_train, data_test, special_tokens, vocab_size, max_length):
-    special_tokens = helper(special_tokens)
-    print("USED IN TRAINING", special_tokens)
-    tokenizer = train_tokenizer(special_tokens)
+def training(data_train, data_test, vocab_size, max_length):
+    tokenizer = train_tokenizer()
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer, mlm=True, mlm_probability=0.2
     )
-    model_path = "greedy_tokenizer"
+    model_path = "approach_1_tokenizer"
     model = build_model(vocab_size, max_length)
     training_args = TrainingArguments(
         output_dir=model_path,  # output directory to where save model checkpoint
