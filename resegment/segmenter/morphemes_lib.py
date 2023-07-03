@@ -2,7 +2,7 @@
 
 import json
 
-import approach_2.segmenter.morphemes_wn as mdb
+import resegment.segmenter.morphemes_wn as mdb
 
 # data_directory_path = "data/"
 
@@ -268,7 +268,7 @@ def find_likely_entries(prior_results, strategy_tuple, root_strategy):
                 best_entry, best_rx, all_rx = find_best_entry(strategy_leg, find_roots,
                                                               ret_results["word_components_potential"], root_strategy)
                 # if best_entry["key"] != "":
-                if len(max_entry) > 0 and len(best_entry) > 0: # add "and len(best_entry) > 0" to prevent roots={}
+                if len(max_entry) > 0 and len(best_entry) > 0:  # add "and len(best_entry) > 0" to prevent roots={}
                     ret_results = save_result("root", best_entry, best_rx, ret_results, all_rx)
         elif strategy_leg == "suffix":
             find_suffixes = find_suffixes_for_word_segment(ret_results["word_components_potential"])
@@ -448,7 +448,6 @@ def close_neo4j():
     mdb.close_neo4j()
 
 
-morphemes_filename = "/resegment/segmenter/morphemes.json"
-morphemes_filepath = morphemes_filename
+morphemes_filepath = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/morphemes.json"
 morphemes_file = open(morphemes_filepath, "r")
 morphemes = json.loads(morphemes_file.read())

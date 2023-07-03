@@ -7,6 +7,12 @@ inflectional_path:
 derivational_path:
   path: /../data/eng/eng.derivational.v1.tsv
 
+model_path:
+  path: /../data/pretrained-bert
+
+morphemes.json_path:
+  path: /../data/morphemes.json"
+
 vocab_size:
   30_522
 max_length:
