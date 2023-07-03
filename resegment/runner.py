@@ -1,5 +1,6 @@
 import yaml
 from pkg_resources import resource_filename
+from transformers import BertTokenizer
 
 from resegment.segmenter.morphemes_segmenter import MorphemesTokenizer
 
@@ -22,14 +23,17 @@ max_length = config['max_length']
 def pipeline():
     sentences = ["greatful It is ozonising inconsistency", "hello"]
     for sen in sentences:
+        wp = BertTokenizer.from_pretrained(model_path)
+        original = wp.tokenize(sen)
+        print(original)
+        print("----------------")
         tokens = MorphemesTokenizer(sen)
         result = tokens.tokenize(model_path, inflectional_path, derivational_path)
-        print(result)
-
-    # data_train, data_test = load_data()
-    # sentences = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc", "hhhhhh bbbbb dddddd ssss hello"]
-    #
-    # training(data_train, data_test, vocab_size, max_length)
+        # print(result)
+        tokenizer = tokens.load_tokenizer(model_path)
+        for t in result:
+            final_result = tokenizer.tokenize(t)
+            print(final_result)
 
 
 if __name__ == '__main__':

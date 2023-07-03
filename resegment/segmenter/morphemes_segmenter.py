@@ -201,7 +201,7 @@ class MorphemesTokenizer(PreTokenizer):
             morphemes.append(None)
         return morphemes
 
-    def tokenize(self, model_path, inflectional_path, derivational_path, add_special_tokens=True):
+    def tokenize(self, model_path, inflectional_path, derivational_path, add_special_tokens=False):
         """Morphological tokenization method, including fallback greedy tokenization.
 
         Args:
