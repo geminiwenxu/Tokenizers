@@ -1,17 +1,15 @@
 train:
   path: /../data/raw/shuffled_ccnews_enwiki.txt
 
-inflectional_path:
+inflectional:
   path: /../data/eng/eng.inflectional.v1.tsv
 
-derivational_path:
+derivational:
   path: /../data/eng/eng.derivational.v1.tsv
 
-model_path:
+model:
   path: /../data/pretrained-bert
 
-morphemes.json_path:
-  path: /../data/morphemes.json"
 
 vocab_size:
   30_522

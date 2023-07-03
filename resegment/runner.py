@@ -2,8 +2,6 @@ import yaml
 from pkg_resources import resource_filename
 
 from resegment.segmenter.morphemes_segmenter import MorphemesTokenizer
-from resegment.wp_tokenizer.load_data import load_data
-from resegment.wp_tokenizer.train_model import training
 
 
 def get_config(path):
@@ -14,22 +12,24 @@ def get_config(path):
 
 config = get_config('/../config/config.yaml')
 file_path = resource_filename(__name__, config['train']['path'])
+model_path = resource_filename(__name__, config['model']['path'])
+inflectional_path = resource_filename(__name__, config['inflectional']['path'])
+derivational_path = resource_filename(__name__, config['derivational']['path'])
 vocab_size = config['vocab_size']
 max_length = config['max_length']
 
 
 def pipeline():
-    baseline_tokenizer = load_model()
+    sentences = ["greatful It is ozonising inconsistency", "hello"]
     for sen in sentences:
-        tokens = baseline_tokenizer.tokenize(sen)
-        ls_untokenized_word= resemble(tokens)
+        tokens = MorphemesTokenizer(sen)
+        result = tokens.tokenize(model_path, inflectional_path, derivational_path)
+        print(result)
 
-        segment_output = segmenter(ls_untokenized_word)
-
-    data_train, data_test = load_data()
-    sentences = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc", "hhhhhh bbbbb dddddd ssss hello"]
-
-    training(data_train, data_test, vocab_size, max_length)
+    # data_train, data_test = load_data()
+    # sentences = ["greatful aaaa bbbb It is ozonising inconsistency xxxx wwww cccc", "hhhhhh bbbbb dddddd ssss hello"]
+    #
+    # training(data_train, data_test, vocab_size, max_length)
 
 
 if __name__ == '__main__':

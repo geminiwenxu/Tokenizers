@@ -448,6 +448,6 @@ def close_neo4j():
     mdb.close_neo4j()
 
 
-morphemes_filepath = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/morphemes.json"
-morphemes_file = open(morphemes_filepath, "r")
+morphemes_path = "../data/morphemes.json"
+morphemes_file = open(morphemes_path, "r")
 morphemes = json.loads(morphemes_file.read())
