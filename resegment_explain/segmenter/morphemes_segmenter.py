@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from transformers import BertTokenizer
+
 import resegment_explain.segmenter.morphemes_lib as morphemes
 
 
@@ -121,7 +122,7 @@ class MorphemesTokenizer(PreTokenizer):
             strategy_affix = strategy[1]
             return affix, strategy_affix
 
-    def segment(self, word, inflectional_path, derivational_path):
+    def segment(self, word, inflectional_path, derivational_path, resegment_only=True):
         """Morphological tokenization approach.
 
         Args:
@@ -191,17 +192,25 @@ class MorphemesTokenizer(PreTokenizer):
             rest_word = word.replace(selected_form, '')
             # print(selected_form, rest_word)
             if selected_strategy_affix == "prefix":
-                morphemes.append(selected_form)
-                morphemes.append(rest_word)
+                if resegment_only is True:
+                    morphemes.append(selected_form)
+                    morphemes.append(rest_word)
+                else:
+                    morphemes.append(selected_meaning)
+                    morphemes.append(rest_word)
 
             elif selected_strategy_affix == "suffix":
-                morphemes.append(rest_word)
-                morphemes.append(selected_form)
+                if resegment_only is True:
+                    morphemes.append(rest_word)
+                    morphemes.append(selected_form)
+                else:
+                    morphemes.append(selected_meaning)
+                    morphemes.append(rest_word)
         else:
             morphemes.append(None)
         return morphemes
 
-    def tokenize(self, model_path, inflectional_path, derivational_path, add_special_tokens=False):
+    def tokenize(self, model_path, inflectional_path, derivational_path, resegment_only, add_special_tokens=False):
         """Morphological tokenization method, including fallback greedy tokenization.
 
         Args:
@@ -216,7 +225,7 @@ class MorphemesTokenizer(PreTokenizer):
         for word in self.sentence.split():
             maybe_word = self.check_word(word, model_path)
             if maybe_word != None:
-                resegment = self.segment(word, inflectional_path, derivational_path)
+                resegment = self.segment(word, inflectional_path, derivational_path, resegment_only)
                 tokenized_sentence.extend(resegment)
             else:
                 tokenized_sentence.extend(list(word.split(" ")))
@@ -227,7 +236,7 @@ if __name__ == '__main__':
     model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained-bert"
     inflectional_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.inflectional.v1.tsv"
     derivational_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.derivational.v1.tsv"
-    sentences = ["greatful It is ozonising inconsistency"]
+    sentences = ["xxxxxxxxxx"]
     # sentences = ["hello"]
     for sen in sentences:
         tokens = MorphemesTokenizer(sen)

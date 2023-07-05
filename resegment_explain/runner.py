@@ -18,17 +18,18 @@ inflectional_path = resource_filename(__name__, config['inflectional']['path'])
 derivational_path = resource_filename(__name__, config['derivational']['path'])
 vocab_size = config['vocab_size']
 max_length = config['max_length']
+resegment_only = True
 
 
 def pipeline():
-    retokenized_sentence =[]
+    retokenized_sentence = []
     sentences = ["greatful", "ozonising", "inconsistency", "jogging", "undesirable", "unwearable"]
     for sen in sentences:
         wp = BertTokenizer.from_pretrained(model_path)
         original = wp.tokenize(sen)
         print(original)
         tokens = MorphemesTokenizer(sen)
-        result = tokens.tokenize(model_path, inflectional_path, derivational_path)
+        result = tokens.tokenize(model_path, inflectional_path, derivational_path, resegment_only)
         # print(result)
         tokenizer = tokens.load_tokenizer(model_path)
         for t in result:
