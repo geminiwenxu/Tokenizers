@@ -11,20 +11,20 @@
         # segmenter_output_index = []
         # ls_retokenized_word = []
         # for idx, untokenized_word in enumerate(ls_untokenized_word):
-        #     resegment = self.segment(untokenized_word)
-        #     if resegment != [None]:
-        #         print("resegment done", ls_untokenized_word_index[idx], untokenized_word)
-        #         ls_morphemes.append(resegment)
+        #     resegment_explain = self.segment(untokenized_word)
+        #     if resegment_explain != [None]:
+        #         print("resegment_explain done", ls_untokenized_word_index[idx], untokenized_word)
+        #         ls_morphemes.append(resegment_explain)
         #     else:
         #         segmenter_output.append(untokenized_word)
-        #         print("resegment NOT done", ls_untokenized_word_index[idx], untokenized_word)
+        #         print("resegment_explain NOT done", ls_untokenized_word_index[idx], untokenized_word)
         # with open('data.txt', 'w') as fp:
         #     for w in segmenter_output:
         #         fp.write("%s\n" % w)
         # for i in segmenter_output:
 
-        #     resegment = self.segment_with_fallback(i)
-        #     ls_retokenized_word.append(resegment)
+        #     resegment_explain = self.segment_with_fallback(i)
+        #     ls_retokenized_word.append(resegment_explain)
         # for i in range(len(ls_tokenized_word)):
         #     ls_morphemes.insert(ls_tokenized_word_index[i], ls_tokenized_word[i])
         # ls_morphemes = self.helper(ls_morphemes)

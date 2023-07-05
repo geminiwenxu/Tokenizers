@@ -1,5 +1,5 @@
-from resegment.wp_tokenizer.load_data import load_data
-from resegment.wp_tokenizer.my_tokenizer import train_tokenizer
+from resegment_explain.wp_tokenizer.load_data import load_data
+from resegment_explain.wp_tokenizer.my_tokenizer import train_tokenizer
 
 
 def encode_with_truncation(examples):

@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from transformers import BertTokenizer
-import resegment.segmenter.morphemes_lib as morphemes
+import resegment_explain.segmenter.morphemes_lib as morphemes
 
 
 class PreTokenizer:

@@ -16,7 +16,7 @@ approach_2/best_model_state.bin
 approach_2/test.txt
 approach_2/train.txt
 
-resegment/pretrained-bert/
-resegment/best_model_state.bin
-resegment/test.txt
-resegment/train.txt
+resegment_explain/pretrained-bert/
+resegment_explain/best_model_state.bin
+resegment_explain/test.txt
+resegment_explain/train.txt

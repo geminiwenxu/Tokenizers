@@ -2,7 +2,7 @@
 
 import json
 
-import resegment.segmenter.morphemes_wn as mdb
+import resegment_explain.segmenter.morphemes_wn as mdb
 
 # data_directory_path = "data/"
 
