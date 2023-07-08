@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from transformers import BertTokenizer
+from transformers import BertTokenizerFast
 
 import resegment_explain.segmenter.morphemes_lib as morphemes
 
@@ -8,14 +8,17 @@ import resegment_explain.segmenter.morphemes_lib as morphemes
 class PreTokenizer:
     """Tokenizing a word by the pre-trained tokenizer, return the original word if poorly tokenized"""
 
+    def __init__(self, model_path):
+        self.model_path = model_path
+
     def consecutive(self, data, stepsize=1):
         return np.split(data, np.where(np.diff(data) != stepsize)[0] + 1)
 
-    def load_tokenizer(self, model_path):
-        tokenizer = BertTokenizer.from_pretrained(model_path)
+    def wp_tokenizer(self):
+        tokenizer = BertTokenizerFast.from_pretrained(self.model_path)
         return tokenizer
 
-    def check_word(self, word, model_path):
+    def check_word(self, word):
         """Tokenize sentence by the pre-trained tokenizer.
 
             Args:
@@ -24,7 +27,7 @@ class PreTokenizer:
             Returns:
                 untokenized_word (str|None): word which is poorly tokenized by the pre-trained tokenizer
         """
-        tokenizer = self.load_tokenizer(model_path)
+        tokenizer = self.wp_tokenizer()
         tokens = tokenizer.tokenize(word)
         # print("tokens by pre-trained tokenizer: ", tokens)
         ls = []  # store the index number of tokens starts with #
@@ -47,8 +50,12 @@ class PreTokenizer:
 class MorphemesTokenizer(PreTokenizer):
     """Resegment those untokenized words by our segmenter"""
 
-    def __init__(self, sentence):
+    def __init__(self, model_path, sentence, inflectional_path, derivational_path, resegment_only=True):
+        PreTokenizer.__init__(self, model_path)
         self.sentence = sentence
+        self.resegment_only = resegment_only
+        self.inflectional_path = inflectional_path
+        self.derivational_path = derivational_path
 
     def morphemes_finder(self, word):
         """Searching for morphological segmentation and meaning.
@@ -69,7 +76,7 @@ class MorphemesTokenizer(PreTokenizer):
             final_results = morphemes.format_results(results, "+"), "failed"
         return results, final_results
 
-    def inflectional_finder(self, word, inflectional_path):
+    def inflectional_finder(self, word):
         """Searching for inflectional segmentation.
 
         Args:
@@ -79,7 +86,7 @@ class MorphemesTokenizer(PreTokenizer):
             affix (str): inflectional affix or None
 
         """
-        inflectional_df = pd.read_csv(inflectional_path, sep='\t')
+        inflectional_df = pd.read_csv(self.inflectional_path, sep='\t')
         inflectional_df.columns = ['word', 'inflectional_word', 'pos', 'affix']
         answer_df = inflectional_df[inflectional_df.eq(word).any(axis=1)]
         if answer_df.empty:
@@ -97,7 +104,7 @@ class MorphemesTokenizer(PreTokenizer):
             pos = df.pos.to_string().split()
             return affix
 
-    def derivational_finder(self, word, derivational_path):
+    def derivational_finder(self, word):
         """Searching for inflectional segmentation.
 
         Args:
@@ -109,7 +116,7 @@ class MorphemesTokenizer(PreTokenizer):
             strategy_affix(str): "prefix" or "suffix"
 
         """
-        derivational_df = pd.read_csv(derivational_path, sep='\t')
+        derivational_df = pd.read_csv(self.derivational_path, sep='\t')
         derivational_df.columns = ['word', 'derivational_word', 'pos_0', 'pos_1', 'affix', 'strategy']
 
         answer_df = derivational_df[derivational_df.eq(word).any(axis=1)]
@@ -122,7 +129,7 @@ class MorphemesTokenizer(PreTokenizer):
             strategy_affix = strategy[1]
             return affix, strategy_affix
 
-    def segment(self, word, inflectional_path, derivational_path, resegment_only=True):
+    def segment(self, word):
         """Morphological tokenization approach.
 
         Args:
@@ -133,8 +140,9 @@ class MorphemesTokenizer(PreTokenizer):
         """
         morphemes = []
         results, final_results = self.morphemes_finder(word)
-        inflectional_affix = self.inflectional_finder(word, inflectional_path)
-        derivational_affix, derivational_strategy_affix = self.derivational_finder(word, derivational_path)
+        inflectional_affix = self.inflectional_finder(word)
+        derivational_affix, derivational_strategy_affix = self.derivational_finder(word)
+        # print(results)
         # print(word)
         # print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
         inflectional = False
@@ -192,7 +200,7 @@ class MorphemesTokenizer(PreTokenizer):
             rest_word = word.replace(selected_form, '')
             # print(selected_form, rest_word)
             if selected_strategy_affix == "prefix":
-                if resegment_only is True:
+                if self.resegment_only is True:
                     morphemes.append(selected_form)
                     morphemes.append(rest_word)
                 else:
@@ -200,7 +208,7 @@ class MorphemesTokenizer(PreTokenizer):
                     morphemes.append(rest_word)
 
             elif selected_strategy_affix == "suffix":
-                if resegment_only is True:
+                if self.resegment_only is True:
                     morphemes.append(rest_word)
                     morphemes.append(selected_form)
                 else:
@@ -210,7 +218,7 @@ class MorphemesTokenizer(PreTokenizer):
             morphemes.append(None)
         return morphemes
 
-    def tokenize(self, model_path, inflectional_path, derivational_path, resegment_only, add_special_tokens=False):
+    def tokenize(self, add_special_tokens=False):
         """Morphological tokenization method, including fallback greedy tokenization.
 
         Args:
@@ -220,25 +228,24 @@ class MorphemesTokenizer(PreTokenizer):
         Returns:
             list[str]: A list of tokens.
         """
-        tokenized_sentence = ["[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>", "<T>"] if add_special_tokens else []
+        retokenized_sentence = ["[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>",
+                                "<T>"] if add_special_tokens else []
 
         for word in self.sentence.split():
-            maybe_word = self.check_word(word, model_path)
+            maybe_word = self.check_word(word)
             if maybe_word != None:
-                resegment = self.segment(word, inflectional_path, derivational_path, resegment_only)
-                tokenized_sentence.extend(resegment)
+                resegment = self.segment(word)
+                retokenized_sentence.extend(resegment)
             else:
-                tokenized_sentence.extend(list(word.split(" ")))
-        return tokenized_sentence
+                retokenized_sentence.extend(list(word.split(" ")))
+
+        for token in retokenized_sentence:
+            print(token)
+            final_result = self.wp_tokenizer().tokenize(token)
+            print(final_result)
+            token_input = self.wp_tokenizer()(token)
+            print(token_input)
 
 
 if __name__ == '__main__':
-    model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained-bert"
-    inflectional_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.inflectional.v1.tsv"
-    derivational_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/eng/eng.derivational.v1.tsv"
-    sentences = ["xxxxxxxxxx"]
-    # sentences = ["hello"]
-    for sen in sentences:
-        tokens = MorphemesTokenizer(sen)
-        result = tokens.tokenize(model_path, inflectional_path, derivational_path)
-        print(result)
+    pass
