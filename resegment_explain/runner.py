@@ -20,12 +20,11 @@ max_length = config['max_length']
 resegment_only = True
 
 if __name__ == '__main__':
-    retokenized_sentence = []
-    # sentences = ["coenriched", "ozonising", "inconsistency", "jogging", "undesirable", "unwearable", "went"]
-    sentences = ["undesirable"]
-
+    sentences = ["coenrich", "ozonis", "inconsistency", "jogging", "undesirable", "wearable", "went"]
+    # sentences = ["undesirable"]
     for sentence in sentences:
         tokens = MorphemesTokenizer(model_path, sentence, inflectional_path, derivational_path,
                                     resegment_only=resegment_only)
         tokens.tokenize()
+        print("-"*20)
 

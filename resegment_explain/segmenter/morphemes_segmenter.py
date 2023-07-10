@@ -218,7 +218,7 @@ class MorphemesTokenizer(PreTokenizer):
             morphemes.append(None)
         return morphemes
 
-    def tokenize(self, add_special_tokens=False):
+    def tokenize(self, add_special_tokens=True):
         """Morphological tokenization method, including fallback greedy tokenization.
 
         Args:
@@ -228,22 +228,23 @@ class MorphemesTokenizer(PreTokenizer):
         Returns:
             list[str]: A list of tokens.
         """
-        retokenized_sentence = ["[PAD]", "[UNK]", "[CLS]", "[SEP]", "[MASK]", "<S>",
-                                "<T>"] if add_special_tokens else []
+        retokenized_sentence = []
 
         for word in self.sentence.split():
+            print("result of original tokenizer", self.wp_tokenizer().tokenize(word))
             maybe_word = self.check_word(word)
             if maybe_word != None:
                 resegment = self.segment(word)
+                print("resegmentation result", resegment)
                 retokenized_sentence.extend(resegment)
             else:
                 retokenized_sentence.extend(list(word.split(" ")))
 
         for token in retokenized_sentence:
-            print(token)
+            print("token in the retokenized sentence: ", token)
             final_result = self.wp_tokenizer().tokenize(token)
-            print(final_result)
-            token_input = self.wp_tokenizer()(token)
+            print("token after the original tokenizer: ", final_result)
+            token_input = self.wp_tokenizer()(token, add_special_tokens=add_special_tokens)
             print(token_input)
 
 
