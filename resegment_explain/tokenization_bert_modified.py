@@ -19,7 +19,7 @@ import os
 from typing import List, Optional, Tuple
 
 import unicodedata
-from resegment_explain.segmenter.morphemes_segmenter import MorphemesTokenizer
+
 from resegment_explain.transformers.src.transformers.tokenization_utils import PreTrainedTokenizer, _is_control, \
     _is_punctuation, \
     _is_whitespace
@@ -543,6 +543,7 @@ class WordpieceTokenizer(object):
 
         output_tokens = []
         for token in whitespace_tokenize(text):
+            print("token: ", token)
             chars = list(token)
             if len(chars) > self.max_input_chars_per_word:
                 output_tokens.append(self.unk_token)
@@ -572,12 +573,39 @@ class WordpieceTokenizer(object):
                 output_tokens.append(self.unk_token)
             else:
                 output_tokens.extend(sub_tokens)
-        return output_tokens
+        print("wp", output_tokens)
+        test = MorphemesTokenizer(model_path, token, inflectional_path, derivational_path,
+                                  resegment_only=resegment_only)
+        result = test.tokenize()
+        return result
 
 
 if __name__ == '__main__':
+    import yaml
+    from pkg_resources import resource_filename
+
+    from resegment_explain.segmenter.morphemes_segmenter import MorphemesTokenizer
+
+
+    def get_config(path):
+        with open(resource_filename(__name__, path), 'r') as stream:
+            conf = yaml.safe_load(stream)
+        return conf
+
+
+    config = get_config('/../config/config.yaml')
+    file_path = resource_filename(__name__, config['train']['path'])
+    model_path = resource_filename(__name__, config['model']['path'])  # pretrained_tokenizer
+    inflectional_path = resource_filename(__name__, config['inflectional']['path'])
+    derivational_path = resource_filename(__name__, config['derivational']['path'])
+    vocab_size = config['vocab_size']
+    max_length = config['max_length']
+    resegment_only = True
     modified_tokenizer = ModifiedBertTokenizer(
         vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
-    tokens = modified_tokenizer.tokenize("undesirable")
-    print(tokens)
-
+    tokenizer = modified_tokenizer.from_pretrained(
+        "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
+    result = tokenizer.tokenize("undesirable")
+    print(result)
+    inputs = tokenizer("undesirable", return_tensors="pt")
+    print(inputs)

@@ -144,7 +144,7 @@ class MorphemesTokenizer(PreTokenizer):
         derivational_affix, derivational_strategy_affix = self.derivational_finder(word)
         # print(results)
         # print(word)
-        print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
+        # print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
         inflectional = False
         derivational = False
         Not_found = False
@@ -231,8 +231,9 @@ class MorphemesTokenizer(PreTokenizer):
         retokenized_sentence = []
 
         for word in self.sentence.split():
-            print("result of original tokenizer", self.wp_tokenizer().tokenize(word))
+            # print("result of original tokenizer", self.wp_tokenizer().tokenize(word))
             maybe_word = self.check_word(word)
+            # print("maybe_word", maybe_word)
             if maybe_word != None:
                 resegment = self.segment(word)
                 print("resegmentation result", resegment)
@@ -245,12 +246,13 @@ class MorphemesTokenizer(PreTokenizer):
             else:
                 retokenized_sentence.extend(list(word.split(" ")))
 
-        for token in retokenized_sentence:
-            print("token in the retokenized sentence: ", token)
-            final_result = self.wp_tokenizer().tokenize(token)
-            print("token after the original tokenizer: ", final_result)
-            token_input = self.wp_tokenizer()(token, add_special_tokens=add_special_tokens)
-            print(token_input)
+        return retokenized_sentence
+        # for token in retokenized_sentence:
+        #     print("token in the retokenized sentence: ", token)
+        #     final_result = self.wp_tokenizer().tokenize(token)
+        #     print("token after the original tokenizer: ", final_result)
+        #     token_input = self.wp_tokenizer()(token, add_special_tokens=add_special_tokens)
+        #     print(token_input)
 
 
 if __name__ == '__main__':
