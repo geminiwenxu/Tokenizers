@@ -20,8 +20,8 @@ max_length = config['max_length']
 resegment_only = True
 
 if __name__ == '__main__':
-    sentences = ["coenrich", "ozonis", "inconsistency", "jogging", "undesirable", "wearable", "went"]
-    # sentences = ["undesirable"]
+    # sentences = ["coenriched", "ozonising", "inconsistency", "jogging", "undesirable", "wearable", "went"]
+    sentences = ["undesirable"]
     for sentence in sentences:
         tokens = MorphemesTokenizer(model_path, sentence, inflectional_path, derivational_path,
                                     resegment_only=resegment_only)

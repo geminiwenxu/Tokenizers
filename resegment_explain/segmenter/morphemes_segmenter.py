@@ -144,7 +144,7 @@ class MorphemesTokenizer(PreTokenizer):
         derivational_affix, derivational_strategy_affix = self.derivational_finder(word)
         # print(results)
         # print(word)
-        # print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
+        print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
         inflectional = False
         derivational = False
         Not_found = False
@@ -236,6 +236,11 @@ class MorphemesTokenizer(PreTokenizer):
             if maybe_word != None:
                 resegment = self.segment(word)
                 print("resegmentation result", resegment)
+                # for resegmented_token in resegment:
+                #     if len(resegmented_token) >= 5:
+                #         print(resegmented_token)
+                #         resegment = self.segment(resegmented_token)
+                #         print(resegment)
                 retokenized_sentence.extend(resegment)
             else:
                 retokenized_sentence.extend(list(word.split(" ")))
