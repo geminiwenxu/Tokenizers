@@ -21,6 +21,6 @@ batch_size:
   2
 
 cc_news:
-  path: /../data/cc_news_sample.txt
+  path: /../data/raw/ccnews_enwiki.txt
 enwiki:
   path: /../data/raw/train.txt
