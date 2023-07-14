@@ -20,6 +20,7 @@ from typing import List, Optional, Tuple
 
 import unicodedata
 
+from resegment_explain.segmenter.morphemes_segmenter import MorphemesTokenizer
 from resegment_explain.transformers.src.transformers.tokenization_utils import PreTrainedTokenizer, _is_control, \
     _is_punctuation, \
     _is_whitespace
@@ -573,18 +574,16 @@ class WordpieceTokenizer(object):
                 output_tokens.append(self.unk_token)
             else:
                 output_tokens.extend(sub_tokens)
-        print("wp", output_tokens)
-        test = MorphemesTokenizer(model_path, token, inflectional_path, derivational_path,
-                                  resegment_only=resegment_only)
-        result = test.tokenize()
+            # print("wp result: ", output_tokens)
+            morphemes = MorphemesTokenizer(model_path, token, inflectional_path, derivational_path,
+                                           resegment_only=resegment_only)
+            result = morphemes.tokenize()
         return result
 
 
 if __name__ == '__main__':
     import yaml
     from pkg_resources import resource_filename
-
-    from resegment_explain.segmenter.morphemes_segmenter import MorphemesTokenizer
 
 
     def get_config(path):
@@ -605,7 +604,18 @@ if __name__ == '__main__':
         vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
     tokenizer = modified_tokenizer.from_pretrained(
         "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
-    result = tokenizer.tokenize("undesirable")
-    print(result)
-    inputs = tokenizer("undesirable", return_tensors="pt")
-    print(inputs)
+    sentences = ["world"]
+    # inputs = tokenizer(sentence, return_tensors="pt")
+    # print(inputs)
+    # from resegment_explain.transformers.src.transformers.models.bert.tokenization_bert import BertTokenizer
+    #
+    # test = BertTokenizer.from_pretrained(
+    #     "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
+    # test_inputs = tokenizer(sentence, return_tensors="pt")
+    # print(test_inputs)
+
+    for sentence in sentences:
+        result = tokenizer.tokenize(sentence)
+        print("retokenized sentence: ", result)
+        inputs = tokenizer(sentence, return_tensors="pt")
+        print(inputs)

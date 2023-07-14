@@ -8,8 +8,9 @@ import resegment_explain.segmenter.morphemes_lib as morphemes
 class PreTokenizer:
     """Tokenizing a word by the pre-trained tokenizer, return the original word if poorly tokenized"""
 
-    def __init__(self, model_path):
+    def __init__(self, model_path, word):
         self.model_path = model_path
+        self.word = word
 
     def consecutive(self, data, stepsize=1):
         return np.split(data, np.where(np.diff(data) != stepsize)[0] + 1)
@@ -42,17 +43,16 @@ class PreTokenizer:
                 word = []
                 for j in i:
                     word.append(tokens[j])
-                untokenized_word = "".join(word).replace("#", "")
-                # print("the tokenized word: ", untokenized_word)
-                return untokenized_word
+                poor_tokenized_word = "".join(word).replace("#", "")
+                # print("the poorly tokenized word: ", poor_tokenized_word)
+                return poor_tokenized_word
 
 
 class MorphemesTokenizer(PreTokenizer):
     """Resegment those untokenized words by our segmenter"""
 
-    def __init__(self, model_path, sentence, inflectional_path, derivational_path, resegment_only=True):
-        PreTokenizer.__init__(self, model_path)
-        self.sentence = sentence
+    def __init__(self, model_path, word, inflectional_path, derivational_path, resegment_only=True):
+        PreTokenizer.__init__(self, model_path, word)
         self.resegment_only = resegment_only
         self.inflectional_path = inflectional_path
         self.derivational_path = derivational_path
@@ -228,31 +228,23 @@ class MorphemesTokenizer(PreTokenizer):
         Returns:
             list[str]: A list of tokens.
         """
-        retokenized_sentence = []
-
-        for word in self.sentence.split():
-            # print("result of original tokenizer", self.wp_tokenizer().tokenize(word))
-            maybe_word = self.check_word(word)
-            # print("maybe_word", maybe_word)
-            if maybe_word != None:
-                resegment = self.segment(word)
-                print("resegmentation result", resegment)
+        retokenized_token = []
+        untokenized_word = self.check_word(self.word)
+        print("pporly tokenized_word", untokenized_word)
+        if untokenized_word != None:
+            resegment = self.segment(self.word)
+            if resegment != [None]:
                 # for resegmented_token in resegment:
                 #     if len(resegmented_token) >= 5:
                 #         print(resegmented_token)
                 #         resegment = self.segment(resegmented_token)
                 #         print(resegment)
-                retokenized_sentence.extend(resegment)
+                retokenized_token.extend(resegment)
             else:
-                retokenized_sentence.extend(list(word.split(" ")))
-
-        return retokenized_sentence
-        # for token in retokenized_sentence:
-        #     print("token in the retokenized sentence: ", token)
-        #     final_result = self.wp_tokenizer().tokenize(token)
-        #     print("token after the original tokenizer: ", final_result)
-        #     token_input = self.wp_tokenizer()(token, add_special_tokens=add_special_tokens)
-        #     print(token_input)
+                retokenized_token.extend(self.wp_tokenizer().tokenize(self.word))
+        else:
+            retokenized_token.extend(self.wp_tokenizer().tokenize(self.word))
+        return retokenized_token
 
 
 if __name__ == '__main__':

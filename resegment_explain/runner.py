@@ -21,7 +21,7 @@ resegment_only = True
 
 if __name__ == '__main__':
     # sentences = ["coenriched", "ozonising", "inconsistency", "jogging", "undesirable", "wearable", "went"]
-    sentences = ["undesirable"]
+    sentences = ["discourse"]
     for sentence in sentences:
         tokens = MorphemesTokenizer(model_path, sentence, inflectional_path, derivational_path,
                                     resegment_only=resegment_only)
