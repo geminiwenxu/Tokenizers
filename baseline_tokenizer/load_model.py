@@ -20,7 +20,7 @@ if __name__ == '__main__':
     #                                                       use_auth_token=True)
 
     tokens = tokenizer.tokenize("hello world undesirable")
-    print(tokens)
+    # print(tokens)
     inputs = tokenizer("undesirable, antisocial", return_tensors="pt")
     # outputs = model(**tokenizer("hello, world", return_tensors="pt"))
     print(inputs)

@@ -604,7 +604,7 @@ if __name__ == '__main__':
         vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
     tokenizer = modified_tokenizer.from_pretrained(
         "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
-    sentences = ["world"]
+    sentence = "greatful day"
     # inputs = tokenizer(sentence, return_tensors="pt")
     # print(inputs)
     # from resegment_explain.transformers.src.transformers.models.bert.tokenization_bert import BertTokenizer
@@ -614,8 +614,9 @@ if __name__ == '__main__':
     # test_inputs = tokenizer(sentence, return_tensors="pt")
     # print(test_inputs)
 
-    for sentence in sentences:
-        result = tokenizer.tokenize(sentence)
-        print("retokenized sentence: ", result)
-        inputs = tokenizer(sentence, return_tensors="pt")
-        print(inputs)
+    for word in sentence.split():
+        print(word)
+        result = tokenizer.tokenize(word)
+        print("retokenized tokens: ", result)
+        # inputs = tokenizer(sentence, return_tensors="pt")
+        # print(inputs)
