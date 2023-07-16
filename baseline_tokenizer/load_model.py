@@ -21,6 +21,6 @@ if __name__ == '__main__':
 
     tokens = tokenizer.tokenize("hello world undesirable")
     # print(tokens)
-    inputs = tokenizer("undesirable, antisocial", return_tensors="pt")
+    inputs = tokenizer("grateful day undesirable", return_tensors="pt")
     # outputs = model(**tokenizer("hello, world", return_tensors="pt"))
     print(inputs)

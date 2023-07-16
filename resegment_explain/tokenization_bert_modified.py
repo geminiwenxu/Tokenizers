@@ -544,7 +544,7 @@ class WordpieceTokenizer(object):
 
         output_tokens = []
         for token in whitespace_tokenize(text):
-            print("token: ", token)
+            print("word: ", token)
             chars = list(token)
             if len(chars) > self.max_input_chars_per_word:
                 output_tokens.append(self.unk_token)
@@ -574,7 +574,6 @@ class WordpieceTokenizer(object):
                 output_tokens.append(self.unk_token)
             else:
                 output_tokens.extend(sub_tokens)
-            # print("wp result: ", output_tokens)
             morphemes = MorphemesTokenizer(model_path, token, inflectional_path, derivational_path,
                                            resegment_only=resegment_only)
             result = morphemes.tokenize()
@@ -604,7 +603,7 @@ if __name__ == '__main__':
         vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
     tokenizer = modified_tokenizer.from_pretrained(
         "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
-    sentence = "greatful day"
+    sentence = "grateful day undesirable"
     # inputs = tokenizer(sentence, return_tensors="pt")
     # print(inputs)
     # from resegment_explain.transformers.src.transformers.models.bert.tokenization_bert import BertTokenizer
@@ -614,9 +613,12 @@ if __name__ == '__main__':
     # test_inputs = tokenizer(sentence, return_tensors="pt")
     # print(test_inputs)
 
-    for word in sentence.split():
-        print(word)
-        result = tokenizer.tokenize(word)
-        print("retokenized tokens: ", result)
-        # inputs = tokenizer(sentence, return_tensors="pt")
-        # print(inputs)
+    # for word in sentence.split():
+    #     result = tokenizer.tokenize(word)
+    #     print("retokenized tokens: ", result)
+    #     print("-" * 50)
+
+    inputs = tokenizer(sentence)
+    print("-" * 50)
+    print(inputs)
+    print(tokenizer.decode(inputs["input_ids"]))

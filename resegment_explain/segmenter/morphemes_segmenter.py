@@ -204,7 +204,7 @@ class MorphemesTokenizer(PreTokenizer):
             if selected_strategy_affix == "prefix":
                 if self.resegment_only is True:
                     morphemes.append(selected_form)
-                    morphemes.append(rest_word)
+                    morphemes.append(rest_word)  # add #
                 else:
                     morphemes.append(selected_meaning)
                     morphemes.append(rest_word)
@@ -212,7 +212,7 @@ class MorphemesTokenizer(PreTokenizer):
             elif selected_strategy_affix == "suffix":
                 if self.resegment_only is True:
                     morphemes.append(rest_word)
-                    morphemes.append(selected_form)
+                    morphemes.append(selected_form)  # add #
                 else:
                     morphemes.append(selected_meaning)
                     morphemes.append(rest_word)
@@ -232,10 +232,10 @@ class MorphemesTokenizer(PreTokenizer):
         """
         retokenized_token = []
         poor_word = self.check_word()
-        print("poorly tokenized_word", poor_word)
+        print("poorly tokenized_word: ", poor_word)
         if poor_word != None:
             resegment = self.segment(poor_word)
-            print("resegment result", resegment)
+            print("resegment result: ", resegment)
             if resegment != [None]:
                 # for resegmented_token in resegment:
                 #     if len(resegmented_token) >= 5:
@@ -244,11 +244,10 @@ class MorphemesTokenizer(PreTokenizer):
                 #         print(resegment)
                 retokenized_token.extend(resegment)
             else:
-                print("our approach can not resegment this word")
+                print("Our approach can not resegment this word")
                 retokenized_token.extend(self.wp_tokenizer().tokenize(poor_word))
         else:
-            print("no poorly tokenized word")
-            print(poor_word)
+            print("No poorly tokenized word!")
             retokenized_token.extend(self.wp_tokenizer().tokenize(self.word))
         return retokenized_token
 
