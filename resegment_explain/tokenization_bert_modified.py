@@ -603,7 +603,7 @@ if __name__ == '__main__':
         vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
     tokenizer = modified_tokenizer.from_pretrained(
         "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
-    sentence = "grateful day undesirable"
+    sentence = "grateful day undesirable 搜 😙😙😙😆 unquenchable"
     # inputs = tokenizer(sentence, return_tensors="pt")
     # print(inputs)
     # from resegment_explain.transformers.src.transformers.models.bert.tokenization_bert import BertTokenizer
@@ -613,12 +613,9 @@ if __name__ == '__main__':
     # test_inputs = tokenizer(sentence, return_tensors="pt")
     # print(test_inputs)
 
-    # for word in sentence.split():
-    #     result = tokenizer.tokenize(word)
-    #     print("retokenized tokens: ", result)
-    #     print("-" * 50)
-
+    print("attention", tokenizer.tokenize(sentence))
     inputs = tokenizer(sentence)
     print("-" * 50)
     print(inputs)
-    print(tokenizer.decode(inputs["input_ids"]))
+    decoded_tokens = tokenizer.decode(inputs["input_ids"])
+    print(decoded_tokens)

@@ -237,12 +237,16 @@ class MorphemesTokenizer(PreTokenizer):
             resegment = self.segment(poor_word)
             print("resegment result: ", resegment)
             if resegment != [None]:
-                # for resegmented_token in resegment:
-                #     if len(resegmented_token) >= 5:
-                #         print(resegmented_token)
-                #         resegment = self.segment(resegmented_token)
-                #         print(resegment)
-                retokenized_token.extend(resegment)
+                if resegment == self.wp_tokenizer().tokenize(resegment):
+                    print("attention", self.wp_tokenizer().tokenize(resegment))
+                    # for resegmented_token in resegment:
+                    #     if len(resegmented_token) >= 5:
+                    #         print(resegmented_token)
+                    #         resegment = self.segment(resegmented_token)
+                    #         print(resegment)
+                    retokenized_token.extend(resegment)
+                else:
+                    retokenized_token.extend(self.wp_tokenizer().tokenize(resegment))
             else:
                 print("Our approach can not resegment this word")
                 retokenized_token.extend(self.wp_tokenizer().tokenize(poor_word))
