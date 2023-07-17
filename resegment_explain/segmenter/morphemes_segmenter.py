@@ -238,7 +238,7 @@ class MorphemesTokenizer(PreTokenizer):
             print("resegment result: ", resegment)
             if resegment != [None]:
                 if resegment == self.wp_tokenizer().tokenize(resegment):
-                    print("attention", self.wp_tokenizer().tokenize(resegment))
+                    # print("attention", self.wp_tokenizer().tokenize(resegment))
                     # for resegmented_token in resegment:
                     #     if len(resegmented_token) >= 5:
                     #         print(resegmented_token)

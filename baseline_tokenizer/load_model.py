@@ -14,8 +14,10 @@ def get_config(path):
 config = get_config('/../config/config.yaml')
 model_path = resource_filename(__name__, config['model']['path'])
 if __name__ == '__main__':
-    tokenizer = BertTokenizer.from_pretrained(model_path)
-    # print(tokenizer)
+    # tokenizer = BertTokenizer.from_pretrained(model_path)
+    tokenizer = BertTokenizer(
+        vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
+    print(tokenizer)
     # model = BertForSequenceClassification.from_pretrained(os.path.join(model_path, "checkpoint-66000"),
     #                                                       use_auth_token=True)
 
@@ -23,4 +25,4 @@ if __name__ == '__main__':
     # print(tokens)
     inputs = tokenizer("grateful day undesirable", return_tensors="pt")
     # outputs = model(**tokenizer("hello, world", return_tensors="pt"))
-    print(inputs)
+    # print(inputs)

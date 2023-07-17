@@ -2,7 +2,7 @@ import json
 import os
 
 from tokenizers import BertWordPieceTokenizer
-from transformers import BertTokenizerFast
+from transformers import BertTokenizerFast,BertTokenizer
 
 
 def train_tokenizer(vocab_size, max_length, model_path):

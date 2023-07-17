@@ -2,12 +2,13 @@
 # Modeling (MLM) task
 import yaml
 from pkg_resources import resource_filename
+from tqdm import tqdm
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
 
 from resegment_explain.modified_tokenizer.load_data import load_data, dataset_to_text
 from resegment_explain.modified_tokenizer.model import build_model
 from resegment_explain.modified_tokenizer.prepare_dataset import prepare_dataset
-from resegment_explain.modified_tokenizer.train_tokenizer import train_tokenizer
+from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
 
 def get_config(path):
@@ -29,7 +30,10 @@ model_path = "pretrained_tokenizer"
 
 
 def training():
-    tokenizer = train_tokenizer(vocab_size, max_length, model_path)
+    modified_tokenizer = ModifiedBertTokenizer(
+        vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
+    tokenizer = modified_tokenizer.from_pretrained(
+        "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer, mlm=True, mlm_probability=0.2
     )
@@ -58,8 +62,14 @@ def training():
         eval_dataset=test_dataset,
     )
     # train the model
-    trainer.train()
+    for i in tqdm(trainer.train()):
+        print(i)
 
 
 if __name__ == '__main__':
-    training()
+    # training()
+    modified_tokenizer = ModifiedBertTokenizer(
+        vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
+    print(modified_tokenizer)
+    tokenizer = modified_tokenizer.from_pretrained(
+        "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
