@@ -19,12 +19,32 @@ import os
 from typing import List, Optional, Tuple
 
 import unicodedata
+import yaml
+from pkg_resources import resource_filename
 
 from resegment_explain.segmenter.morphemes_segmenter import MorphemesTokenizer
 from resegment_explain.transformers.src.transformers.tokenization_utils import PreTrainedTokenizer, _is_control, \
     _is_punctuation, \
     _is_whitespace
 from resegment_explain.transformers.src.transformers.utils import logging
+
+"""from line 34 to 47, extra paremeters"""
+
+
+def get_config(path):
+    with open(resource_filename(__name__, path), 'r') as stream:
+        conf = yaml.safe_load(stream)
+    return conf
+
+
+config = get_config('/../config/config.yaml')
+file_path = resource_filename(__name__, config['train']['path'])
+model_path = resource_filename(__name__, config['model']['path'])  # pretrained_tokenizer
+inflectional_path = resource_filename(__name__, config['inflectional']['path'])
+derivational_path = resource_filename(__name__, config['derivational']['path'])
+vocab_size = config['vocab_size']
+max_length = config['max_length']
+resegment_only = True
 
 logger = logging.get_logger(__name__)
 
@@ -581,38 +601,23 @@ class WordpieceTokenizer(object):
 
 
 if __name__ == '__main__':
-    # import yaml
-    # from pkg_resources import resource_filename
-    #
-    #
-    # def get_config(path):
-    #     with open(resource_filename(__name__, path), 'r') as stream:
-    #         conf = yaml.safe_load(stream)
-    #     return conf
-    #
-    #
-    # config = get_config('/../config/config.yaml')
-    # file_path = resource_filename(__name__, config['train']['path'])
-    # model_path = resource_filename(__name__, config['model']['path'])  # pretrained_tokenizer
-    # inflectional_path = resource_filename(__name__, config['inflectional']['path'])
-    # derivational_path = resource_filename(__name__, config['derivational']['path'])
-    # vocab_size = config['vocab_size']
-    # max_length = config['max_length']
-    # resegment_only = True
-    modified_tokenizer = ModifiedBertTokenizer(
-        vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
-    print(modified_tokenizer)
-    tokenizer = modified_tokenizer.from_pretrained(
-        "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
-    # sentence = "grateful day undesirable 搜 😙😙😙😆 unquenchable"
-    # sentence = "undesirable"
-    # inputs = tokenizer(sentence, return_tensors="pt")
+    vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt"
+    sentence = "day undesirable 搜 😙😙😙😆 unquenchable"
+
+    modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file_path)
+    print("tokens", modified_tokenizer.tokenize(sentence))
+    # inputs = modified_tokenizer(sentence, return_tensors="pt")
     # print(inputs)
 
+    # tokens = modified_tokenizer.tokenize(sentence)
+    # print(tokens)
+    # print("-" * 50)
+
+    # from transformers import BertTokenizer
+
     # from resegment_explain.transformers.src.transformers.models.bert.tokenization_bert import BertTokenizer
-    #
-    # test = BertTokenizer.from_pretrained(
-    #     "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
+
+    # test = BertTokenizer(vocab_file_path)
     # print(test.tokenize(sentence))
     # test_inputs = test(sentence, return_tensors="pt")
     # print(test_inputs)

@@ -1,8 +1,6 @@
-import os
-
 import yaml
 from pkg_resources import resource_filename
-from transformers import BertTokenizer, BertForSequenceClassification
+from transformers import BertTokenizer
 
 
 def get_config(path):
@@ -14,15 +12,20 @@ def get_config(path):
 config = get_config('/../config/config.yaml')
 model_path = resource_filename(__name__, config['model']['path'])
 if __name__ == '__main__':
-    # tokenizer = BertTokenizer.from_pretrained(model_path)
-    tokenizer = BertTokenizer(
+    tokenizer_1 = BertTokenizer.from_pretrained(model_path)
+    tokenizer_2 = BertTokenizer(
         vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
-    print(tokenizer)
-    # model = BertForSequenceClassification.from_pretrained(os.path.join(model_path, "checkpoint-66000"),
-    #                                                       use_auth_token=True)
+    print(tokenizer_1)
+    print(tokenizer_2)
 
-    tokens = tokenizer.tokenize("hello world undesirable")
-    # print(tokens)
-    inputs = tokenizer("grateful day undesirable", return_tensors="pt")
+    tokens_1 = tokenizer_1.tokenize("hello world undesirable")
+    inputs_1 = tokenizer_1("grateful day undesirable", return_tensors="pt")
+    print(tokens_1, inputs_1)
+    tokens_2 = tokenizer_2.tokenize("hello world undesirable")
+    inputs_2 = tokenizer_1("grateful day undesirable", return_tensors="pt")
+    print(tokens_2, inputs_2)
+
     # outputs = model(**tokenizer("hello, world", return_tensors="pt"))
     # print(inputs)
+    # model = BertForSequenceClassification.from_pretrained(os.path.join(model_path, "checkpoint-66000"),
+    #                                                       use_auth_token=True)
