@@ -18,7 +18,7 @@ max_length:
 epoch:
   3
 batch_size:
-  2
+  64
 
 cc_news:
   path: /../data/raw/ccnews_enwiki.txt

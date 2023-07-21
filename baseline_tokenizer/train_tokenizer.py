@@ -2,7 +2,7 @@ import json
 import os
 
 from tokenizers import BertWordPieceTokenizer
-from transformers import BertTokenizerFast,BertTokenizer
+from transformers import BertTokenizer
 
 
 def train_tokenizer(vocab_size, max_length, model_path):
@@ -31,5 +31,5 @@ def train_tokenizer(vocab_size, max_length, model_path):
             "max_len": max_length,
         }
         json.dump(tokenizer_cfg, f)
-    tokenizer = BertTokenizerFast.from_pretrained(model_path)
+    tokenizer = BertTokenizer.from_pretrained(model_path)
     return tokenizer
