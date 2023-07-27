@@ -20,3 +20,8 @@ resegment_explain/pretrained-bert/
 resegment_explain/best_model_state.bin
 resegment_explain/test.txt
 resegment_explain/train.txt
+
+disambig/
+xlmr-base/
+resegment_explain/modified_tokenizer/test.txt
+resegment_explain/modified_tokenizer/train.txt

@@ -602,10 +602,10 @@ class WordpieceTokenizer(object):
 
 if __name__ == '__main__':
     vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt"
-    sentence = "day undesirable 搜 😙😙😙😆 unquenchable XXXXX"
-
+    sentence = "day undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in"
     modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file_path)
     print("tokens", modified_tokenizer.tokenize(sentence))
+    print(modified_tokenizer(sentence))
     # inputs = modified_tokenizer(sentence, return_tensors="pt")
     # print(inputs)
 

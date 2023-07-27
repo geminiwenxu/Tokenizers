@@ -32,6 +32,8 @@ model_path = "pretrained_tokenizer"
 def training():
     modified_tokenizer = ModifiedBertTokenizer(
         vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
+    print(modified_tokenizer("day undesirable 搜 😙😙😙😆 unquenchable"))
+    print(modified_tokenizer.tokenize("day undesirable 搜 😙😙😙😆 unquenchable"))
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=modified_tokenizer, mlm=True, mlm_probability=0.2
     )
@@ -66,9 +68,9 @@ def training():
 
 if __name__ == '__main__':
     training()
-    modified_tokenizer = ModifiedBertTokenizer(
-        vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
-    print(modified_tokenizer("day undesirable 搜 😙😙😙😆 unquenchable"))
+    # modified_tokenizer = ModifiedBertTokenizer(
+    #     vocab_file="/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt")
+
     # tokenizer = modified_tokenizer.from_pretrained(
     #     "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer")
     # print(tokenizer)

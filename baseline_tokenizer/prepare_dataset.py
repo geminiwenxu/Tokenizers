@@ -3,7 +3,7 @@ from transformers import BertTokenizer
 
 def encode_with_truncation(examples):
     """Mapping function to tokenize the sentences passed with truncation"""
-    model_path = "pretrained_tokenizer_64"
+    model_path = "pretrained_tokenizer_32"
     tokenizer = BertTokenizer.from_pretrained(model_path)
     max_length = 512
     return tokenizer(examples["text"], truncation=True, padding="max_length",
@@ -12,7 +12,7 @@ def encode_with_truncation(examples):
 
 def encode_without_truncation(examples):
     """Mapping function to tokenize the sentences passed without truncation"""
-    model_path = "pretrained_tokenizer_64"
+    model_path = "pretrained_tokenizer_32"
     tokenizer = BertTokenizer.from_pretrained(model_path)
     return tokenizer(examples["text"], return_special_tokens_mask=True)
 
