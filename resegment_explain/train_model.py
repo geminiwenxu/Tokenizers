@@ -5,9 +5,9 @@ from pkg_resources import resource_filename
 from tqdm import tqdm
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
 
-from resegment_explain.modified_tokenizer.load_data import load_data, dataset_to_text
-from resegment_explain.modified_tokenizer.model import build_model
-from resegment_explain.modified_tokenizer.prepare_dataset import prepare_dataset
+from resegment_explain.load_data import load_data, dataset_to_text
+from resegment_explain.model import build_model
+from resegment_explain.prepare_dataset import prepare_dataset
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
 
@@ -17,7 +17,7 @@ def get_config(path):
     return conf
 
 
-config = get_config('/../../config/config.yaml')
+config = get_config('/../config/config.yaml')
 file_path = resource_filename(__name__, config['train']['path'])
 vocab_size = config['vocab_size']
 max_length = config['max_length']

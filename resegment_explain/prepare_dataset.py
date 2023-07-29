@@ -1,10 +1,10 @@
-from transformers import BertTokenizer
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
 
 def encode_with_truncation(examples):
     """Mapping function to tokenize the sentences passed with truncation"""
     max_length = 512
+    # model_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128"
     model_path = "/home/stud_homes/s1070771/Tokenizers/data/pretrained_tokenizer_128"
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_path)
     return modified_tokenizer(examples["text"], truncation=True, padding="max_length",
