@@ -199,17 +199,27 @@ class MorphemesTokenizer(PreTokenizer):
             selected_strategy_affix = not_selected_strategy_affix
             # print("3", selected_meaning)
         if selected_form != None:
-            rest_word = poor_word.replace(selected_form, '')
-            # print(selected_form, rest_word)
             if selected_strategy_affix == "prefix":
+                rest_word = poor_word[(len(selected_form)):]
+                # print("prefix", selected_form, rest_word, selected_strategy_affix)
                 if self.resegment_only is True:
                     morphemes.append(selected_form)
                     morphemes.append(rest_word)  # add #
                 else:
                     morphemes.append(selected_meaning)
                     morphemes.append(rest_word)
-
+            elif selected_strategy_affix == "root":
+                rest_word = poor_word[:-(len(selected_form))]
+                # print("root", selected_form, rest_word, selected_strategy_affix)
+                if self.resegment_only is True:
+                    morphemes.append(rest_word)
+                    morphemes.append(selected_form)  # add #
+                else:
+                    morphemes.append(selected_meaning)
+                    morphemes.append(rest_word)
             elif selected_strategy_affix == "suffix":
+                rest_word = poor_word[:-(len(selected_form))]
+                # print("suffix", selected_form, rest_word, selected_strategy_affix)
                 if self.resegment_only is True:
                     morphemes.append(rest_word)
                     morphemes.append(selected_form)  # add #

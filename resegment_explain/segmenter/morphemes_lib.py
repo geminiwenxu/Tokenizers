@@ -447,7 +447,7 @@ def get_results_meaning(results, leg):
 def close_neo4j():
     mdb.close_neo4j()
 
-# morphemes_path= "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/morphemes.json"
-morphemes_path = "/home/stud_homes/s1070771/Tokenizers/data/morphemes.json"
+morphemes_path= "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/morphemes.json"
+# morphemes_path = "/home/stud_homes/s1070771/Tokenizers/data/morphemes.json"
 morphemes_file = open(morphemes_path, "r")
 morphemes = json.loads(morphemes_file.read())
