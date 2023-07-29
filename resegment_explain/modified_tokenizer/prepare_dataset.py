@@ -1,20 +1,21 @@
-from transformers import BertTokenizerFast
+from transformers import BertTokenizer
+from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
 
 def encode_with_truncation(examples):
     """Mapping function to tokenize the sentences passed with truncation"""
-    model_path = "pretrained_tokenizer"
-    tokenizer = BertTokenizerFast.from_pretrained(model_path)
     max_length = 512
-    return tokenizer(examples["text"], truncation=True, padding="max_length",
+    model_path = "/home/stud_homes/s1070771/Tokenizers/data/pretrained_tokenizer_128"
+    modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_path)
+    return modified_tokenizer(examples["text"], truncation=True, padding="max_length",
                      max_length=max_length, return_special_tokens_mask=True)
 
 
 def encode_without_truncation(examples):
     """Mapping function to tokenize the sentences passed without truncation"""
-    model_path = "pretrained_tokenizer"
-    tokenizer = BertTokenizerFast.from_pretrained(model_path)
-    return tokenizer(examples["text"], return_special_tokens_mask=True)
+    model_path = "/home/stud_homes/s1070771/Tokenizers/data/pretrained_tokenizer_128"
+    modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_path)
+    return modified_tokenizer(examples["text"], return_special_tokens_mask=True)
 
 
 def prepare_dataset(data_train, data_test):

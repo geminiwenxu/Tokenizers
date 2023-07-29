@@ -564,7 +564,7 @@ class WordpieceTokenizer(object):
 
         output_tokens = []
         for token in whitespace_tokenize(text):
-            print("word: ", token)
+            # print("word: ", token)
             chars = list(token)
             if len(chars) > self.max_input_chars_per_word:
                 output_tokens.append(self.unk_token)
@@ -601,7 +601,7 @@ class WordpieceTokenizer(object):
 
 
 if __name__ == '__main__':
-    vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer/vocab.txt"
+    vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     sentence = "day undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in"
     modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file_path)
     print("tokens", modified_tokenizer.tokenize(sentence))

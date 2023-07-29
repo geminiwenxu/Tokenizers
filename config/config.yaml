@@ -8,8 +8,10 @@ derivational:
   path: /../data/eng/eng.derivational.v1.tsv
 
 model:
-  path: /../data/pretrained_tokenizer
+  path: /../data/pretrained_tokenizer_128
 
+vocab_file:
+  path: /../data/pretrained_tokenizer_128/vocab.txt
 
 vocab_size:
   30_522
@@ -18,7 +20,7 @@ max_length:
 epoch:
   3
 batch_size:
-  64
+  128
 
 cc_news:
   path: /../data/raw/ccnews_enwiki.txt
