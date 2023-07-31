@@ -11,11 +11,6 @@ baseline_tokenizer/test.txt
 baseline_tokenizer/train.txt
 baseline_tokenizer/tokenizer
 
-approach_2/pretrained-bert/
-approach_2/best_model_state.bin
-approach_2/test.txt
-approach_2/train.txt
-
 resegment_explain/pretrained-bert/
 resegment_explain/best_model_state.bin
 resegment_explain/test.txt
@@ -23,5 +18,4 @@ resegment_explain/train.txt
 
 disambig/
 xlmr-base/
-resegment_explain/modified_tokenizer/test.txt
-resegment_explain/modified_tokenizer/train.txt
+glue_data/
