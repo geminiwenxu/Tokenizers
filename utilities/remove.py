@@ -15,12 +15,17 @@ file_path = resource_filename(__name__, config['train']['path'])
 def remove():
     with open(file_path, "r") as f:
         lines = f.readlines()
-    with open("../yourfile.txt", "w") as f:
+    with open("newfile.txt", "w") as f:
         for line in lines:
-            if line.strip(
-                    "\n") != "yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti":
-                print(line)
+            tokens = line.split()
+            if len(tokens) != 1:
                 f.write(line)
+            else:
+                print(tokens)
+
+            # if line.strip(
+            #         "\n") != "acritopappusageratumalomiaclibadiumellenbergiaerythradeniagardnerinaguevariagymnocoroniskoanophyllonophryosporusphalacraearichteragoteixeiranthustrichogonia":
+            #     f.write(line)
 
 
 if __name__ == '__main__':
