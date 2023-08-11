@@ -18,14 +18,17 @@ def remove():
     with open("newfile.txt", "w") as f:
         for line in lines:
             tokens = line.split()
-            if len(tokens) != 1:
-                f.write(line)
-            else:
-                print(tokens)
-
-            # if line.strip(
-            #         "\n") != "acritopappusageratumalomiaclibadiumellenbergiaerythradeniagardnerinaguevariagymnocoroniskoanophyllonophryosporusphalacraearichteragoteixeiranthustrichogonia":
+            # if len(tokens) != 1:
             #     f.write(line)
+            # else:
+            #     if len(tokens[0]) < 150:
+            #         f.write(line)
+            #     else:
+            #         print(tokens)
+
+            if line.strip(
+                    "\n") != "appalarajupetaarikatotabusayavalasachandapuramchintalavalasaduppalapudienubaruvugollapetaitlamamidipallejannivalasakondakenguvakondapalavalasakotasirlamkottakkilollarapadumamidivalasamarrivalasamulachelagammutcherlavalasanaiduvalasanarasapurampataregapedachelagamramabhadrapuramravivalasarompallerompallivalasasamarthula":
+                f.write(line)
 
 
 if __name__ == '__main__':

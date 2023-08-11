@@ -561,7 +561,7 @@ class WordpieceTokenizer(object):
         Returns:
             A list of wordpiece tokens.
         """
-
+        result = []
         output_tokens = []
         for token in whitespace_tokenize(text):
             print("word: ", token)
@@ -596,14 +596,17 @@ class WordpieceTokenizer(object):
                 output_tokens.extend(sub_tokens)
             morphemes = MorphemesTokenizer(model_path, token, inflectional_path, derivational_path,
                                            resegment_only=resegment_only)
-            result = morphemes.tokenize()
+            token_result = morphemes.tokenize()
+            print("toke_result", token_result)
+            result.extend(token_result)
         return result
 
 
 if __name__ == '__main__':
     vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
-    sentence = "testes     day undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in"
-    # sentence = "yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    # sentence = "testes     day undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in"
+    sentence = "yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    # sentence = "383838920838948474747470202364492227748493927264484848489202039949494993737373737374050525253535469769048866569999555555555"
     modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file_path)
     print("tokens", modified_tokenizer.tokenize(sentence))
     print(modified_tokenizer(sentence))
