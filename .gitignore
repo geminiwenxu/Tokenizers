@@ -15,6 +15,7 @@ resegment_explain/pretrained-bert/
 resegment_explain/best_model_state.bin
 resegment_explain/test.txt
 resegment_explain/train.txt
+resegment_explain/modified_pretrained_tokenizer_128_attention/
 
 disambig/
 xlmr-base/

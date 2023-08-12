@@ -565,66 +565,58 @@ class WordpieceTokenizer(object):
         output_tokens = []
         for token in whitespace_tokenize(text):
             print("word: ", token)
-            chars = list(token)
-            if len(chars) > self.max_input_chars_per_word:
-                output_tokens.append(self.unk_token)
-                continue
-
-            is_bad = False
-            start = 0
-            sub_tokens = []
-            while start < len(chars):
-                end = len(chars)
-                cur_substr = None
-                while start < end:
-                    substr = "".join(chars[start:end])
-                    if start > 0:
-                        substr = "##" + substr
-                    if substr in self.vocab:
-                        cur_substr = substr
-                        break
-                    end -= 1
-                if cur_substr is None:
-                    is_bad = True
-                    break
-                sub_tokens.append(cur_substr)
-                start = end
-
-            if is_bad:
-                output_tokens.append(self.unk_token)
-            else:
-                output_tokens.extend(sub_tokens)
+            # chars = list(token)
+            # if len(chars) > self.max_input_chars_per_word:
+            #     output_tokens.append(self.unk_token)
+            #     continue
+            #
+            # is_bad = False
+            # start = 0
+            # sub_tokens = []
+            # while start < len(chars):
+            #     end = len(chars)
+            #     cur_substr = None
+            #     while start < end:
+            #         substr = "".join(chars[start:end])
+            #         if start > 0:
+            #             substr = "##" + substr
+            #         if substr in self.vocab:
+            #             cur_substr = substr
+            #             break
+            #         end -= 1
+            #     if cur_substr is None:
+            #         is_bad = True
+            #         break
+            #     sub_tokens.append(cur_substr)
+            #     start = end
+            #
+            # if is_bad:
+            #     output_tokens.append(self.unk_token)
+            # else:
+            #     output_tokens.extend(sub_tokens)
             morphemes = MorphemesTokenizer(model_path, token, inflectional_path, derivational_path,
                                            resegment_only=resegment_only)
             token_result = morphemes.tokenize()
-            print("toke_result", token_result)
             result.extend(token_result)
         return result
 
 
 if __name__ == '__main__':
     vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
-    # sentence = "testes     day undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in"
-    sentence = "yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    sentence = "testes     day undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
     # sentence = "383838920838948474747470202364492227748493927264484848489202039949494993737373737374050525253535469769048866569999555555555"
     modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file_path)
     print("tokens", modified_tokenizer.tokenize(sentence))
-    print(modified_tokenizer(sentence))
-    # inputs = modified_tokenizer(sentence, return_tensors="pt")
-    # print(inputs)
+    print(modified_tokenizer(sentence, return_tensors="pt"))
 
-    # tokens = modified_tokenizer.tokenize(sentence)
-    # print(tokens)
-    # print("-" * 50)
+    print("-" * 50)
 
-    # from transformers import BertTokenizer
+    from transformers import BertTokenizer
 
-    # from resegment_explain.transformers.src.transformers.models.bert.tokenization_bert import BertTokenizer
-
-    # test = BertTokenizer(vocab_file_path)
-    # print(test.tokenize(sentence))
-    # test_inputs = test(sentence, return_tensors="pt")
-    # print(test_inputs)
+    test = BertTokenizer(vocab_file_path)
+    print(test.tokenize(sentence))
+    test_inputs = test(sentence, return_tensors="pt")
+    print(test_inputs)
 
     # print("attention", tokenizer.tokenize(sentence))
     # inputs = tokenizer(sentence)

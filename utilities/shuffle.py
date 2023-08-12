@@ -12,7 +12,7 @@ def get_config(path):
 
 def shuffle():
     config = get_config('/../config/config.yaml')
-    ccnews_enwiki_path = resource_filename(__name__, config['train']['path'])
+    ccnews_enwiki_path = resource_filename(__name__, config['ccnews_enwiki']['path'])
 
     file = open(ccnews_enwiki_path)
     text_list = file.readlines()
