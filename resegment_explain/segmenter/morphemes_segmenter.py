@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from transformers import BertTokenizerFast
-
+import functools
 import resegment_explain.segmenter.morphemes_lib as morphemes
 
 
@@ -130,6 +130,7 @@ class MorphemesTokenizer(PreTokenizer):
             strategy_affix = strategy[1]
             return affix, strategy_affix
 
+    @functools.lru_cache(maxsize=None)
     def segment(self, poor_word):
         """Morphological tokenization approach.
 

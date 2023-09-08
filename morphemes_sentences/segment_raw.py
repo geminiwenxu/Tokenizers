@@ -121,9 +121,9 @@ class SegmenterRaw():
         results, final_results = self.morphemes_finder(poor_word)
         inflectional_affix = self.inflectional_finder(poor_word)
         derivational_affix, derivational_strategy_affix = self.derivational_finder(poor_word)
-        # print(results)
+        print(results)
         # print(word)
-        # print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
+        print("inflectional and derivational: ", inflectional_affix, "|", derivational_affix)
         inflectional = False
         derivational = False
         Not_found = False
@@ -131,6 +131,7 @@ class SegmenterRaw():
         for strategy in ['prefix', 'root', "suffix"]:
             if strategy in results:
                 strategy_dict = results[strategy][0]['all_entries']
+                print("attention",strategy_dict)
                 for affix, meaning in strategy_dict.items():
                     form = strategy_dict.get(affix)["form"]
                     meaning = strategy_dict.get(affix)["meaning"][0]
