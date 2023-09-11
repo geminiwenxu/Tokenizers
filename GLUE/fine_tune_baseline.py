@@ -4,10 +4,8 @@ import numpy as np
 import yaml
 from datasets import load_dataset, load_metric
 from pkg_resources import resource_filename
-from transformers import BertForSequenceClassification
+from transformers import BertForSequenceClassification, BertTokenizer
 from transformers import TrainingArguments, Trainer
-
-from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
 
 def get_config(path):
@@ -29,7 +27,7 @@ dataset = load_dataset("glue", actual_task)
 metric = load_metric('glue', actual_task)
 
 # Preprocessing the data
-modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file)
+baseline_tokenizer = BertTokenizer(vocab_file=vocab_file)
 task_to_keys = {
     "cola": ("sentence", None),
     "mnli": ("premise", "hypothesis"),
@@ -52,15 +50,15 @@ else:
 
 def preprocess_function(examples):
     if sentence2_key is None:
-        return modified_tokenizer(examples[sentence1_key], truncation=True)
-    return modified_tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
+        return baseline_tokenizer(examples[sentence1_key], truncation=True)
+    return baseline_tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
 
 
 encoded_dataset = dataset.map(preprocess_function, batched=True)
 
 # Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
-model = BertForSequenceClassification.from_pretrained(os.path.join(model_path, "checkpoint-10000"),
+model = BertForSequenceClassification.from_pretrained(os.path.join(model_path, "checkpoint-37000"),
                                                       num_labels=num_labels)
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
 model_name = "baseline"
@@ -95,10 +93,10 @@ trainer = Trainer(
     args,
     train_dataset=encoded_dataset["train"],
     eval_dataset=encoded_dataset[validation_key],
-    tokenizer=modified_tokenizer,
+    tokenizer=baseline_tokenizer,
     compute_metrics=compute_metrics
 )
 
 if __name__ == '__main__':
     trainer.train()
-
+    trainer.evaluate()
