@@ -1,5 +1,3 @@
-import os
-
 import numpy as np
 import yaml
 from datasets import load_dataset, load_metric
@@ -17,19 +15,18 @@ def get_config(path):
 
 
 config = get_config('/../config/config.yaml')
-model_path = resource_filename(__name__, config['model']['path'])
-vocab_file = resource_filename(__name__, config['vocab_file']['path'])
 epoch = config['epoch']
 batch_size = config['batch_size']
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
 task = "cola"
+model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
 metric = load_metric('glue', actual_task)
 
 # Preprocessing the data
-modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file)
+tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
 task_to_keys = {
     "cola": ("sentence", None),
     "mnli": ("premise", "hypothesis"),
@@ -52,18 +49,18 @@ else:
 
 def preprocess_function(examples):
     if sentence2_key is None:
-        return modified_tokenizer(examples[sentence1_key], truncation=True)
-    return modified_tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
+        return tokenizer(examples[sentence1_key], truncation=True)
+    return tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
 
 
 encoded_dataset = dataset.map(preprocess_function, batched=True)
 
 # Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
-model = BertForSequenceClassification.from_pretrained(os.path.join(model_path, "checkpoint-10000"),
+model = BertForSequenceClassification.from_pretrained(model_checkpoint,
                                                       num_labels=num_labels)
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
-model_name = "baseline"
+model_name = model_checkpoint.split("/")[-1]
 
 args = TrainingArguments(
     f"{model_name}-finetuned-{task}",
@@ -75,8 +72,7 @@ args = TrainingArguments(
     num_train_epochs=5,
     weight_decay=0.01,
     load_best_model_at_end=True,
-    metric_for_best_model=metric_name,
-    push_to_hub=True,
+    metric_for_best_model=metric_name
 )
 
 
@@ -95,11 +91,10 @@ trainer = Trainer(
     args,
     train_dataset=encoded_dataset["train"],
     eval_dataset=encoded_dataset[validation_key],
-    tokenizer=modified_tokenizer,
+    tokenizer=tokenizer,
     compute_metrics=compute_metrics
 )
 
 if __name__ == '__main__':
     trainer.train()
     trainer.evaluate()
-

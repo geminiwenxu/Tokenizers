@@ -1,7 +1,9 @@
+import functools
+
 import numpy as np
 import pandas as pd
 from transformers import BertTokenizerFast
-import functools
+
 import resegment_explain.segmenter.morphemes_lib as morphemes
 
 
@@ -255,7 +257,9 @@ class MorphemesTokenizer(PreTokenizer):
                     #         print(resegmented_token)
                     #         resegment = self.segment(resegmented_token)
                     #         print(resegment)
+                    retokenized_token = [resegment[0], "##" + resegment[1]]
                     retokenized_token = resegment
+                    print("Implemented resegment", retokenized_token)
                 else:
                     # print("works")
                     retokenized_token = self.wp_tokenizer().tokenize(self.word)

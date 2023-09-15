@@ -12,7 +12,7 @@ def extract():
     config = get_config('/../config/config.yaml')
     cc_news_path = resource_filename(__name__, config['cc_news']['path'])
     f = open(cc_news_path, "r")
-    out = open("extracted", "w")
+    out = open("../data/raw/extracted", "w")
     i = 0
     for x in f:
         print(x)

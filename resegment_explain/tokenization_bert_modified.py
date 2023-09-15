@@ -39,7 +39,8 @@ def get_config(path):
 
 config = get_config('/../config/config.yaml')
 file_path = resource_filename(__name__, config['train']['path'])
-model_path = resource_filename(__name__, config['model']['path'])  # pretrained_tokenizer
+# model_path = resource_filename(__name__, config['model']['path'])  # pretrained_tokenizer
+model_path = "bert-base-cased"
 inflectional_path = resource_filename(__name__, config['inflectional']['path'])
 derivational_path = resource_filename(__name__, config['derivational']['path'])
 vocab_size = config['vocab_size']
@@ -564,7 +565,7 @@ class WordpieceTokenizer(object):
         result = []
         output_tokens = []
         for token in whitespace_tokenize(text):
-            print("word: ", token)
+            # print("word: ", token)
             # chars = list(token)
             # if len(chars) > self.max_input_chars_per_word:
             #     output_tokens.append(self.unk_token)
@@ -602,22 +603,66 @@ class WordpieceTokenizer(object):
 
 
 if __name__ == '__main__':
-    vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
+    # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     sentence = "testes     day undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
-    # sentence = "383838920838948474747470202364492227748493927264484848489202039949494993737373737374050525253535469769048866569999555555555"
-    modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file_path)
+    model_checkpoint = "bert-base-cased"
+    modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     print("tokens", modified_tokenizer.tokenize(sentence))
     print(modified_tokenizer(sentence, return_tensors="pt"))
-
     print("-" * 50)
-
     from transformers import BertTokenizer
+    baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
+    print("tokens", baseline_tokenizer.tokenize(sentence))
+    print(baseline_tokenizer(sentence, return_tensors="pt"))
 
-    test = BertTokenizer(vocab_file_path)
-    print(test.tokenize(sentence))
-    test_inputs = test(sentence, return_tensors="pt")
-    print(test_inputs)
+    # test = BertTokenizer(vocab_file_path)
+    # print(test.tokenize(sentence))
+    # test_inputs = test(sentence, return_tensors="pt")
+    # print(test_inputs)
 
+    # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
+    # sentence = "testes     day undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    #
+    # modified_tokenizer = ModifiedBertTokenizer(vocab_file=vocab_file_path)
+    #
+    # from transformers import BertTokenizer
+    #
+    # test_tokenizer = BertTokenizer(vocab_file_path)
+    # f = open("../data/raw/extracted.txt", "r")
+    # modified = open("modified.txt", "w")
+    # baseline = open("baseline.txt", "w")
+    # log = open("non-match.txt", "w")
+    # num_unk = 0
+    # for sentence in f:
+    #     test_tokenizer(sentence, return_tensors="pt")
+        # modified_tokenizer(sentence, return_tensors="pt")
+    #     print(sentence)
+    #     modified.write(sentence)
+    #     modified.write(' '.join(modified_tokenizer.tokenize(sentence)))
+    #     modified_token = modified_tokenizer(sentence, return_tensors="pt")["input_ids"].tolist()[0]
+    #     modified.write(" ".join([str(n) for n in modified_token]) + "\n")
+    #     print("modified", modified_tokenizer.tokenize(sentence))
+    #     print("modified_token", modified_token)
+    #
+    #     baseline.write(sentence)
+    #     baseline.write(' '.join(test_tokenizer.tokenize(sentence)))
+    #     test_token = test_tokenizer(sentence, return_tensors="pt")["input_ids"].tolist()[0]
+    #     baseline.write(" ".join([str(n) for n in test_token]) + "\n")
+    #     print("baseline", test_tokenizer.tokenize(sentence))
+    #     print("baseline_token", test_token)
+    #     print(len(modified_token) == len(test_token))
+    #     non_match = []
+    #     for i in range(len(modified_token)):
+    #         if modified_token[i] == 1 or test_token[i] == 1:
+    #             num_unk += 1
+    #         if modified_token[i] != test_token[i]:
+    #             non_match.append(modified_token[i])
+    #
+    #     print(non_match)
+    #     log.write(" ".join([str(n) for n in non_match]) + "\n")
+    #
+    #     print("-" * 50)
+    # print(num_unk)
     # print("attention", tokenizer.tokenize(sentence))
     # inputs = tokenizer(sentence)
     # print("-" * 50)
