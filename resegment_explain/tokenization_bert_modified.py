@@ -547,6 +547,8 @@ class WordpieceTokenizer(object):
         self.vocab = vocab
         self.unk_token = unk_token
         self.max_input_chars_per_word = max_input_chars_per_word
+        self.morphemes = MorphemesTokenizer(model_path, inflectional_path, derivational_path,
+                                            resegment_only=resegment_only)
 
     def tokenize(self, text):
         """
@@ -595,25 +597,32 @@ class WordpieceTokenizer(object):
             #     output_tokens.append(self.unk_token)
             # else:
             #     output_tokens.extend(sub_tokens)
-            morphemes = MorphemesTokenizer(model_path, token, inflectional_path, derivational_path,
-                                           resegment_only=resegment_only)
-            token_result = morphemes.tokenize()
+
+            token_result = self.morphemes.tokenize(token)
             result.extend(token_result)
         return result
 
 
 if __name__ == '__main__':
+    import time
+
     # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     sentence = "testes progressing undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
     model_checkpoint = "bert-base-cased"
+    t0 = time.time()
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     print("tokens", modified_tokenizer.tokenize(sentence))
     print(modified_tokenizer(sentence, return_tensors="pt"))
+    t1 = time.time()
+    print("modified time", t1-t0)
     print("-" * 50)
     from transformers import BertTokenizer
+    t2 = time.time()
     baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     print("tokens", baseline_tokenizer.tokenize(sentence))
     print(baseline_tokenizer(sentence, return_tensors="pt"))
+    t3 = time.time()
+    print("original time", t3-t2)
 
     # test = BertTokenizer(vocab_file_path)
     # print(test.tokenize(sentence))
@@ -635,7 +644,7 @@ if __name__ == '__main__':
     # num_unk = 0
     # for sentence in f:
     #     test_tokenizer(sentence, return_tensors="pt")
-        # modified_tokenizer(sentence, return_tensors="pt")
+    # modified_tokenizer(sentence, return_tensors="pt")
     #     print(sentence)
     #     modified.write(sentence)
     #     modified.write(' '.join(modified_tokenizer.tokenize(sentence)))
