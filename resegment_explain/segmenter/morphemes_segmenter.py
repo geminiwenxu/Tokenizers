@@ -36,6 +36,7 @@ class MorphemesTokenizer(PreTokenizer):
         self.inflectional_df.columns = ['word', 'inflectional_word', 'pos', 'affix']
         self.derivational_df = pd.read_csv(derivational_path, sep='\t')
         self.derivational_df.columns = ['word', 'derivational_word', 'pos_0', 'pos_1', 'affix', 'strategy']
+        print("files open once")
         self.resegment_only = resegment_only
 
     def morphemes_finder(self, poor_word):
@@ -46,16 +47,9 @@ class MorphemesTokenizer(PreTokenizer):
 
         Returns:
             result (dict): morphological result
-            final_result (dict): morphological result
         """
         results = morphemes.discover_segments(poor_word)
-
-        if morphemes.format_results(results, "") == poor_word:
-            final_results = morphemes.generate_final_results(results)
-
-        else:
-            final_results = morphemes.format_results(results, "+"), "failed"
-        return results, final_results
+        return results
 
     def inflectional_finder(self, poor_word):
         """Searching for inflectional segmentation.
@@ -80,7 +74,6 @@ class MorphemesTokenizer(PreTokenizer):
                 affix = df.affix.to_string().split()[1].split('|')[1]
             except:
                 pass
-            pos = df.pos.to_string().split()
             return affix
 
     def derivational_finder(self, poor_word):
@@ -118,7 +111,7 @@ class MorphemesTokenizer(PreTokenizer):
                                             list[None]: when the approach can not segment the word.
         """
         morphemes = []
-        results, final_results = self.morphemes_finder(poor_word)
+        results = self.morphemes_finder(poor_word)
         inflectional_affix = self.inflectional_finder(poor_word)
         derivational_affix, derivational_strategy_affix = self.derivational_finder(poor_word)
         inflectional = False
@@ -131,32 +124,21 @@ class MorphemesTokenizer(PreTokenizer):
                 for affix, meaning in strategy_dict.items():
                     form = strategy_dict.get(affix)["form"]
                     meaning = strategy_dict.get(affix)["meaning"][0]
-                    # Multiple if's means your code would go and check all the if conditions,
-                    # where as in case of elif, if one if condition satisfies it would not check other conditions.
                     if form == inflectional_affix:
                         inf_selected_meaning = meaning
                         inf_selected_form = form
                         inf_selected_strategy_affix = "suffix"
                         inflectional = True
-                        # print("inflectional selected form, meaning and strategy_affix: ", inf_selected_form,
-                        #       inf_selected_meaning,
-                        #       inf_selected_strategy_affix, inflectional)
                     if form == derivational_affix:
                         de_selected_meaning = meaning
                         de_selected_form = form
                         de_selected_strategy_affix = derivational_strategy_affix
                         derivational = True
-                        # print("derivational selected form, meaning and strategy_affix: ", de_selected_form,
-                        #       de_selected_meaning,
-                        #       de_selected_strategy_affix, derivational)
                     if form != inflectional_affix and form != derivational_affix:
                         not_selected_meaning = meaning
                         not_selected_form = form
                         not_selected_strategy_affix = strategy
                         Not_found = True
-                        # print("None selected form, meaning and strategy_affix: ", not_selected_form,
-                        #       not_selected_meaning,
-                        #       not_selected_strategy_affix, Not_found)
         if inflectional == True:
             selected_form = inf_selected_form
             selected_meaning = inf_selected_meaning
@@ -175,28 +157,25 @@ class MorphemesTokenizer(PreTokenizer):
         if selected_form != None:
             if selected_strategy_affix == "prefix":
                 rest_word = poor_word[(len(selected_form)):]
-                # print("prefix", selected_form, rest_word, selected_strategy_affix)
                 if self.resegment_only is True:
                     morphemes.append(selected_form)
-                    morphemes.append(rest_word)  # add #
+                    morphemes.append(rest_word)
                 else:
                     morphemes.append(selected_meaning)
                     morphemes.append(rest_word)
             elif selected_strategy_affix == "root":
                 rest_word = poor_word[:-(len(selected_form))]
-                # print("root", selected_form, rest_word, selected_strategy_affix)
                 if self.resegment_only is True:
                     morphemes.append(rest_word)
-                    morphemes.append(selected_form)  # add #
+                    morphemes.append(selected_form)
                 else:
                     morphemes.append(selected_meaning)
                     morphemes.append(rest_word)
             elif selected_strategy_affix == "suffix":
                 rest_word = poor_word[:-(len(selected_form))]
-                # print("suffix", selected_form, rest_word, selected_strategy_affix)
                 if self.resegment_only is True:
                     morphemes.append(rest_word)
-                    morphemes.append(selected_form)  # add #
+                    morphemes.append(selected_form)
                 else:
                     morphemes.append(selected_meaning)
                     morphemes.append(rest_word)
@@ -221,8 +200,10 @@ class MorphemesTokenizer(PreTokenizer):
                 if resegment == self.wp_tokenizer.tokenize(resegment):
                     if len(resegment[1]) < 3:
                         retokenized_token = [resegment[0], "##" + resegment[1]]
+                        print("retokenized_token", retokenized_token)
                     else:
                         retokenized_token = resegment
+                        print("resegment", resegment)
                 else:
                     retokenized_token = self.wp_tokenizer.tokenize(word)
             else:

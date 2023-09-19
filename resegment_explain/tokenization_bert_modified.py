@@ -16,6 +16,7 @@
 
 import collections
 import os
+import time
 from typing import List, Optional, Tuple
 
 import unicodedata
@@ -549,6 +550,7 @@ class WordpieceTokenizer(object):
         self.max_input_chars_per_word = max_input_chars_per_word
         self.morphemes = MorphemesTokenizer(model_path, inflectional_path, derivational_path,
                                             resegment_only=resegment_only)
+        print("morphemes initialized once")
 
     def tokenize(self, text):
         """
@@ -565,64 +567,30 @@ class WordpieceTokenizer(object):
             A list of wordpiece tokens.
         """
         result = []
-        output_tokens = []
+        t0 = time.time()
         for token in whitespace_tokenize(text):
-            # print("word: ", token)
-            # chars = list(token)
-            # if len(chars) > self.max_input_chars_per_word:
-            #     output_tokens.append(self.unk_token)
-            #     continue
-            #
-            # is_bad = False
-            # start = 0
-            # sub_tokens = []
-            # while start < len(chars):
-            #     end = len(chars)
-            #     cur_substr = None
-            #     while start < end:
-            #         substr = "".join(chars[start:end])
-            #         if start > 0:
-            #             substr = "##" + substr
-            #         if substr in self.vocab:
-            #             cur_substr = substr
-            #             break
-            #         end -= 1
-            #     if cur_substr is None:
-            #         is_bad = True
-            #         break
-            #     sub_tokens.append(cur_substr)
-            #     start = end
-            #
-            # if is_bad:
-            #     output_tokens.append(self.unk_token)
-            # else:
-            #     output_tokens.extend(sub_tokens)
-
             token_result = self.morphemes.tokenize(token)
             result.extend(token_result)
+        t1 = time.time()
+        print("total", t1 - t0)
         return result
 
 
 if __name__ == '__main__':
-    import time
-
     # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     sentence = "testes progressing undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
     model_checkpoint = "bert-base-cased"
-    t0 = time.time()
+
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     print("tokens", modified_tokenizer.tokenize(sentence))
     print(modified_tokenizer(sentence, return_tensors="pt"))
-    t1 = time.time()
-    print("modified time", t1-t0)
+
     print("-" * 50)
     from transformers import BertTokenizer
-    t2 = time.time()
+
     baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     print("tokens", baseline_tokenizer.tokenize(sentence))
     print(baseline_tokenizer(sentence, return_tensors="pt"))
-    t3 = time.time()
-    print("original time", t3-t2)
 
     # test = BertTokenizer(vocab_file_path)
     # print(test.tokenize(sentence))
