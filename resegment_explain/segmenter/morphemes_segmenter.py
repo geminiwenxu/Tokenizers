@@ -155,6 +155,9 @@ class MorphemesTokenizer(PreTokenizer):
             selected_meaning = not_selected_meaning
             selected_strategy_affix = not_selected_strategy_affix
         if selected_form is not None:
+            # 4: using "is"
+            # 5: combine root and suffix
+            # 6: using match case
             match selected_strategy_affix:
                 case "prefix":
                     rest_word = poor_word[(len(selected_form)):]
