@@ -4,8 +4,11 @@ from datasets import load_dataset, load_metric
 from pkg_resources import resource_filename
 from transformers import BertForSequenceClassification
 from transformers import TrainingArguments, Trainer
+from transformers.trainer_utils import enable_full_determinism
 
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
+
+enable_full_determinism(1337)
 
 
 def get_config(path):
@@ -19,7 +22,7 @@ epoch = config['epoch']
 batch_size = config['batch_size']
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "wnli"
+task = "cola"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -53,7 +56,7 @@ def preprocess_function(examples):
     return tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
 
 
-encoded_dataset = dataset.map(preprocess_function, batched=True)
+encoded_dataset = dataset.map(preprocess_function, num_proc=26)
 
 # Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
@@ -97,25 +100,25 @@ trainer = Trainer(
 
 
 # Hyperparameter search
-def model_init():  # TODO: TO LOAD THE BEST MODEL?
-    return BertForSequenceClassification.from_pretrained(model_checkpoint,
-                                                         num_labels=num_labels)
-
-
-trainer_hp = Trainer(
-    model_init=model_init,
-    args=args,
-    train_dataset=encoded_dataset["train"],
-    eval_dataset=encoded_dataset[validation_key],
-    tokenizer=tokenizer,
-    compute_metrics=compute_metrics
-)
+# def model_init():  # TODO: TO LOAD THE BEST MODEL?
+#     return BertForSequenceClassification.from_pretrained(model_checkpoint,
+#                                                          num_labels=num_labels)
+#
+#
+# trainer_hp = Trainer(
+#     model_init=model_init,
+#     args=args,
+#     train_dataset=encoded_dataset["train"],
+#     eval_dataset=encoded_dataset[validation_key],
+#     tokenizer=tokenizer,
+#     compute_metrics=compute_metrics
+# )
 
 if __name__ == '__main__':
     trainer.train()
     trainer.evaluate()
-    best_run = trainer_hp.hyperparameter_search(n_trials=10, direction="maximize")
-    print(best_run)
-    for n, v in best_run.hyperparameters.items():
-        setattr(trainer.args, n, v)
-    trainer_hp.train()
+    # best_run = trainer_hp.hyperparameter_search(n_trials=10, direction="maximize")
+    # print(best_run)
+    # for n, v in best_run.hyperparameters.items():
+    #     setattr(trainer.args, n, v)
+    # trainer_hp.train()

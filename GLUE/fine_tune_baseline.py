@@ -4,6 +4,9 @@ from datasets import load_dataset, load_metric
 from pkg_resources import resource_filename
 from transformers import BertForSequenceClassification, BertTokenizer
 from transformers import TrainingArguments, Trainer
+from transformers.trainer_utils import enable_full_determinism
+
+enable_full_determinism(1337)
 
 
 def get_config(path):
@@ -53,7 +56,7 @@ def preprocess_function(examples):
     return tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
 
 
-encoded_dataset = dataset.map(preprocess_function, batched=True)
+encoded_dataset = dataset.map(preprocess_function, num_proc=26)
 
 # Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2

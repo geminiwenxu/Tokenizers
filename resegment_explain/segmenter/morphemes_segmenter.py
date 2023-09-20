@@ -1,7 +1,7 @@
 import functools
 
 import pandas as pd
-from transformers import BertTokenizerFast
+from transformers import BertTokenizer
 
 import resegment_explain.segmenter.morphemes_lib as morphemes
 
@@ -11,7 +11,7 @@ class PreTokenizer:
 
     def __init__(self, model_path):
         self.model_path = model_path
-        self.wp_tokenizer = BertTokenizerFast.from_pretrained(self.model_path)
+        self.wp_tokenizer = BertTokenizer.from_pretrained(self.model_path)
 
     def check_word(self, word):
         """Tokenize sentence by the pre-trained tokenizer to find out the poorly tokenized words split by #.
@@ -23,7 +23,7 @@ class PreTokenizer:
                 untokenized(original) word (str|None): word which is split by the pre-trained tokenizer
                                              None words is not split
         """
-        if len(self.wp_tokenizer(word)) > 1:
+        if len(self.wp_tokenizer.tokenize(word)) > 1:
             return word
 
 
@@ -190,15 +190,15 @@ class MorphemesTokenizer(PreTokenizer):
             list[str]: A list of tokens.
         """
         poor_word = self.check_word(word)
-        if poor_word != None:
+        if poor_word is not None:
             resegment = self.segment(poor_word)
             if resegment != [None]:
-                if resegment == self.wp_tokenizer.tokenize(resegment):
-                    # retokenized_token = resegment
-                    if len(resegment[1]) < 3:
-                        retokenized_token = [resegment[0], "##" + resegment[1]]
-                    else:
-                        retokenized_token = resegment
+                if resegment == self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1]):
+                    retokenized_token = resegment
+                    # if len(resegment[1]) < 3:
+                    #     retokenized_token = [resegment[0], "##" + resegment[1]]
+                    # else:
+                    #     retokenized_token = resegment
                 else:
                     retokenized_token = self.wp_tokenizer.tokenize(word)
             else:
