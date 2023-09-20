@@ -36,7 +36,6 @@ class MorphemesTokenizer(PreTokenizer):
         self.inflectional_df.columns = ['word', 'inflectional_word', 'pos', 'affix']
         self.derivational_df = pd.read_csv(derivational_path, sep='\t')
         self.derivational_df.columns = ['word', 'derivational_word', 'pos_0', 'pos_1', 'affix', 'strategy']
-        print("files open once")
         self.resegment_only = resegment_only
 
     def morphemes_finder(self, poor_word):
@@ -112,6 +111,7 @@ class MorphemesTokenizer(PreTokenizer):
         """
         morphemes = []
         results = self.morphemes_finder(poor_word)
+
         inflectional_affix = self.inflectional_finder(poor_word)
         derivational_affix, derivational_strategy_affix = self.derivational_finder(poor_word)
         inflectional = False
@@ -124,61 +124,54 @@ class MorphemesTokenizer(PreTokenizer):
                 for affix, meaning in strategy_dict.items():
                     form = strategy_dict.get(affix)["form"]
                     meaning = strategy_dict.get(affix)["meaning"][0]
-                    if form == inflectional_affix:
-                        inf_selected_meaning = meaning
-                        inf_selected_form = form
-                        inf_selected_strategy_affix = "suffix"
-                        inflectional = True
+                    # 0: change multiple ifs to elif, so in each for hit one and break
+                    # 1: in each for prefer derivational over others
                     if form == derivational_affix:
                         de_selected_meaning = meaning
                         de_selected_form = form
                         de_selected_strategy_affix = derivational_strategy_affix
                         derivational = True
-                    if form != inflectional_affix and form != derivational_affix:
+                    elif form == inflectional_affix:
+                        inf_selected_meaning = meaning
+                        inf_selected_form = form
+                        inf_selected_strategy_affix = "suffix"
+                        inflectional = True
+                    elif form != inflectional_affix and form != derivational_affix:
                         not_selected_meaning = meaning
                         not_selected_form = form
                         not_selected_strategy_affix = strategy
                         Not_found = True
-        if inflectional == True:
-            selected_form = inf_selected_form
-            selected_meaning = inf_selected_meaning
-            selected_strategy_affix = inf_selected_strategy_affix
-            # print("1", selected_meaning)
-        elif derivational == True:
+        # 3: the flags could be multiple True, but derivational is also preferred
+        if derivational is True:
             selected_form = de_selected_form
             selected_meaning = de_selected_meaning
             selected_strategy_affix = de_selected_strategy_affix
-            # print("2", selected_meaning)
-        elif Not_found == True:
+        elif inflectional is True:
+            selected_form = inf_selected_form
+            selected_meaning = inf_selected_meaning
+            selected_strategy_affix = inf_selected_strategy_affix
+        elif Not_found is True:
             selected_form = not_selected_form
             selected_meaning = not_selected_meaning
             selected_strategy_affix = not_selected_strategy_affix
-            # print("3", selected_meaning)
-        if selected_form != None:
-            if selected_strategy_affix == "prefix":
-                rest_word = poor_word[(len(selected_form)):]
-                if self.resegment_only is True:
-                    morphemes.append(selected_form)
-                    morphemes.append(rest_word)
-                else:
-                    morphemes.append(selected_meaning)
-                    morphemes.append(rest_word)
-            elif selected_strategy_affix == "root":
-                rest_word = poor_word[:-(len(selected_form))]
-                if self.resegment_only is True:
-                    morphemes.append(rest_word)
-                    morphemes.append(selected_form)
-                else:
-                    morphemes.append(selected_meaning)
-                    morphemes.append(rest_word)
-            elif selected_strategy_affix == "suffix":
-                rest_word = poor_word[:-(len(selected_form))]
-                if self.resegment_only is True:
-                    morphemes.append(rest_word)
-                    morphemes.append(selected_form)
-                else:
-                    morphemes.append(selected_meaning)
-                    morphemes.append(rest_word)
+        if selected_form is not None:
+            match selected_strategy_affix:
+                case "prefix":
+                    rest_word = poor_word[(len(selected_form)):]
+                    if self.resegment_only is True:
+                        morphemes.append(selected_form)
+                        morphemes.append(rest_word)
+                    else:
+                        morphemes.append(selected_meaning)
+                        morphemes.append(rest_word)
+                case "root" | "suffix":
+                    rest_word = poor_word[:-(len(selected_form))]
+                    if self.resegment_only is True:
+                        morphemes.append(rest_word)
+                        morphemes.append(selected_form)
+                    else:
+                        morphemes.append(rest_word)
+                        morphemes.append(selected_meaning)
         else:
             morphemes.append(None)
         return morphemes
