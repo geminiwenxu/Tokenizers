@@ -567,12 +567,12 @@ class WordpieceTokenizer(object):
             A list of wordpiece tokens.
         """
         result = []
-        t0 = time.time()
+        # t0 = time.time()
         for token in whitespace_tokenize(text):
             token_result = self.morphemes.tokenize(token)
             result.extend(token_result)
-        t1 = time.time()
-        print("total", t1 - t0)
+        # t1 = time.time()
+        # print("total", t1 - t0)
         return result
 
 

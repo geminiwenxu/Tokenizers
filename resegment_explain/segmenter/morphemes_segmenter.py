@@ -198,12 +198,11 @@ class MorphemesTokenizer(PreTokenizer):
             resegment = self.segment(poor_word)
             if resegment != [None]:
                 if resegment == self.wp_tokenizer.tokenize(resegment):
+                    # retokenized_token = resegment
                     if len(resegment[1]) < 3:
                         retokenized_token = [resegment[0], "##" + resegment[1]]
-                        print("retokenized_token", retokenized_token)
                     else:
                         retokenized_token = resegment
-                        print("resegment", resegment)
                 else:
                     retokenized_token = self.wp_tokenizer.tokenize(word)
             else:

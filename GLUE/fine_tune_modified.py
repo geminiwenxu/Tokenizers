@@ -95,6 +95,27 @@ trainer = Trainer(
     compute_metrics=compute_metrics
 )
 
+
+# Hyperparameter search
+def model_init():  # TODO: TO LOAD THE BEST MODEL?
+    return BertForSequenceClassification.from_pretrained(model_checkpoint,
+                                                         num_labels=num_labels)
+
+
+trainer_hp = Trainer(
+    model_init=model_init,
+    args=args,
+    train_dataset=encoded_dataset["train"],
+    eval_dataset=encoded_dataset[validation_key],
+    tokenizer=tokenizer,
+    compute_metrics=compute_metrics
+)
+
 if __name__ == '__main__':
     trainer.train()
     trainer.evaluate()
+    best_run = trainer_hp.hyperparameter_search(n_trials=10, direction="maximize")
+    print(best_run)
+    for n, v in best_run.hyperparameters.items():
+        setattr(trainer.args, n, v)
+    trainer_hp.train()
