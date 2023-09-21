@@ -576,6 +576,8 @@ class WordpieceTokenizer(object):
 
 
 if __name__ == '__main__':
+    import time
+
     # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     model_checkpoint = "bert-base-cased"
     sentence = "testes progressing undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
@@ -583,11 +585,13 @@ if __name__ == '__main__':
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     with open(test_data) as f:
         data = f.readlines()
+    t0 = time.time()
     for sentence in data:
         modified_tokenizer(sentence, return_tensors="pt")
         # print("tokens", modified_tokenizer.tokenize(sentence))
         # print(modified_tokenizer(sentence, return_tensors="pt"))
-
+    t1 = time.time()
+    print("total", t1 - t0)
     # print("-" * 50)
     # from transformers import BertTokenizer
     # baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)

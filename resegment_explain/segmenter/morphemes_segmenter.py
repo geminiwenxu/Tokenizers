@@ -23,8 +23,14 @@ class PreTokenizer:
                 untokenized(original) word (str|None): word which is split by the pre-trained tokenizer
                                              None words is not split
         """
-        if len(self.wp_tokenizer.tokenize(word)) > 2:
-            return word
+        pre_result = self.wp_tokenizer.tokenize(word)
+
+        if len(pre_result) > 2:
+            poor_word_happens = True
+            return word, poor_word_happens
+        else:
+            poor_word_happens = False
+            return pre_result, poor_word_happens
 
 
 class MorphemesTokenizer(PreTokenizer):
@@ -189,24 +195,20 @@ class MorphemesTokenizer(PreTokenizer):
         Returns:
             list[str]: A list of tokens.
         """
-        poor_word = self.check_word(word)
-        if poor_word is not None:
-            resegment = self.segment(poor_word)
+        pre_result, poor_word_happens = self.check_word(word)
+        if poor_word_happens is True:
+            resegment = self.segment(pre_result)
             if resegment != [None]:
                 if resegment == self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1]):
                     retokenized_token = resegment
-                    print(self.wp_tokenizer.tokenize(word))
-                    print(resegment)
-                    # if len(resegment[1]) < 3:
-                    #     retokenized_token = [resegment[0], "##" + resegment[1]]
-                    # else:
-                    #     retokenized_token = resegment
+                    # print(self.wp_tokenizer.tokenize(word))
+                    # print(resegment)
                 else:
-                    retokenized_token = self.wp_tokenizer.tokenize(word)
+                    retokenized_token = pre_result
             else:
-                retokenized_token = self.wp_tokenizer.tokenize(word)
+                retokenized_token = pre_result
         else:
-            retokenized_token = self.wp_tokenizer.tokenize(word)
+            retokenized_token = pre_result
         return retokenized_token
 
 
