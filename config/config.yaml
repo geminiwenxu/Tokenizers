@@ -27,4 +27,4 @@ cc_news:
 enwiki:
   path: /../data/raw/enwiki.txt
 ccnews_enwiki:
-  path: /../data/raw/ccnews_enwiki.txt
+  path: /../data/raw/shuffled_ccnews_enwiki.txt

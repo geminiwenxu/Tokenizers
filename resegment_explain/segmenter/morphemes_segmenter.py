@@ -23,7 +23,7 @@ class PreTokenizer:
                 untokenized(original) word (str|None): word which is split by the pre-trained tokenizer
                                              None words is not split
         """
-        if len(self.wp_tokenizer.tokenize(word)) > 1:
+        if len(self.wp_tokenizer.tokenize(word)) > 2:
             return word
 
 
@@ -195,6 +195,8 @@ class MorphemesTokenizer(PreTokenizer):
             if resegment != [None]:
                 if resegment == self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1]):
                     retokenized_token = resegment
+                    print(self.wp_tokenizer.tokenize(word))
+                    print(resegment)
                     # if len(resegment[1]) < 3:
                     #     retokenized_token = [resegment[0], "##" + resegment[1]]
                     # else:

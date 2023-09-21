@@ -16,7 +16,6 @@
 
 import collections
 import os
-import time
 from typing import List, Optional, Tuple
 
 import unicodedata
@@ -578,19 +577,22 @@ class WordpieceTokenizer(object):
 
 if __name__ == '__main__':
     # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
-    sentence = "testes progressing undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
     model_checkpoint = "bert-base-cased"
-
+    sentence = "testes progressing undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    test_data = resource_filename(__name__, config['ccnews_enwiki']['path'])
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    print("tokens", modified_tokenizer.tokenize(sentence))
-    print(modified_tokenizer(sentence, return_tensors="pt"))
+    with open(test_data) as f:
+        data = f.readlines()
+    for sentence in data:
+        modified_tokenizer(sentence, return_tensors="pt")
+        # print("tokens", modified_tokenizer.tokenize(sentence))
+        # print(modified_tokenizer(sentence, return_tensors="pt"))
 
-    print("-" * 50)
-    from transformers import BertTokenizer
-
-    baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    print("tokens", baseline_tokenizer.tokenize(sentence))
-    print(baseline_tokenizer(sentence, return_tensors="pt"))
+    # print("-" * 50)
+    # from transformers import BertTokenizer
+    # baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
+    # print("tokens", baseline_tokenizer.tokenize(sentence))
+    # print(baseline_tokenizer(sentence, return_tensors="pt"))
 
     # test = BertTokenizer(vocab_file_path)
     # print(test.tokenize(sentence))
