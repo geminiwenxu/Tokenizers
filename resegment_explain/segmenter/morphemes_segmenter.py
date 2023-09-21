@@ -6,12 +6,17 @@ from transformers import BertTokenizer
 import resegment_explain.segmenter.morphemes_lib as morphemes
 
 
-class PreTokenizer:
-    """Tokenizing a word by the pre-trained tokenizer, return the original word if poorly tokenized"""
+class MorphemesTokenizer():
+    """Resegment those untokenized words by our segmenter"""
 
-    def __init__(self, model_path):
+    def __init__(self, model_path, inflectional_path, derivational_path, resegment_only=True):
         self.model_path = model_path
         self.wp_tokenizer = BertTokenizer.from_pretrained(self.model_path)
+        self.inflectional_df = pd.read_csv(inflectional_path, sep='\t')
+        self.inflectional_df.columns = ['word', 'inflectional_word', 'pos', 'affix']
+        self.derivational_df = pd.read_csv(derivational_path, sep='\t')
+        self.derivational_df.columns = ['word', 'derivational_word', 'pos_0', 'pos_1', 'affix', 'strategy']
+        self.resegment_only = resegment_only
 
     def check_word(self, word):
         """Tokenize sentence by the pre-trained tokenizer to find out the poorly tokenized words split by #.
@@ -23,26 +28,9 @@ class PreTokenizer:
                 untokenized(original) word (str|None): word which is split by the pre-trained tokenizer
                                              None words is not split
         """
-        pre_result = self.wp_tokenizer.tokenize(word)
 
-        if len(pre_result) > 2:
-            poor_word_happens = True
-            return word, poor_word_happens
-        else:
-            poor_word_happens = False
-            return pre_result, poor_word_happens
-
-
-class MorphemesTokenizer(PreTokenizer):
-    """Resegment those untokenized words by our segmenter"""
-
-    def __init__(self, model_path, inflectional_path, derivational_path, resegment_only=True):
-        PreTokenizer.__init__(self, model_path)
-        self.inflectional_df = pd.read_csv(inflectional_path, sep='\t')
-        self.inflectional_df.columns = ['word', 'inflectional_word', 'pos', 'affix']
-        self.derivational_df = pd.read_csv(derivational_path, sep='\t')
-        self.derivational_df.columns = ['word', 'derivational_word', 'pos_0', 'pos_1', 'affix', 'strategy']
-        self.resegment_only = resegment_only
+        if len(self.wp_tokenizer.tokenize(word)) > 2:
+            return word
 
     def morphemes_finder(self, poor_word):
         """Searching for morphological segmentation and meaning.
@@ -195,20 +183,20 @@ class MorphemesTokenizer(PreTokenizer):
         Returns:
             list[str]: A list of tokens.
         """
-        pre_result, poor_word_happens = self.check_word(word)
-        if poor_word_happens is True:
-            resegment = self.segment(pre_result)
+        poor_word = self.check_word(word)
+        if poor_word is not None:
+            resegment = self.segment(poor_word)
             if resegment != [None]:
                 if resegment == self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1]):
                     retokenized_token = resegment
-                    # print(self.wp_tokenizer.tokenize(word))
-                    # print(resegment)
+                    print(self.wp_tokenizer.tokenize(word))
+                    print(resegment)
                 else:
-                    retokenized_token = pre_result
+                    retokenized_token = self.wp_tokenizer.tokenize(word)
             else:
-                retokenized_token = pre_result
+                retokenized_token = self.wp_tokenizer.tokenize(word)
         else:
-            retokenized_token = pre_result
+            retokenized_token = self.wp_tokenizer.tokenize(word)
         return retokenized_token
 
 
