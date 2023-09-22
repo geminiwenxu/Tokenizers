@@ -576,6 +576,8 @@ class WordpieceTokenizer(object):
 
 
 if __name__ == '__main__':
+    import time
+
     # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     model_checkpoint = "bert-base-cased"
     # test_data = resource_filename(__name__, config['ccnews_enwiki']['path'])
@@ -589,6 +591,7 @@ if __name__ == '__main__':
     # print("total", t1 - t0)
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     sentence = "undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    # sentence = "XXXXX"
     print("tokens", modified_tokenizer.tokenize(sentence))
     # print(modified_tokenizer(sentence, return_tensors="pt"))
     # print("-" * 50)
