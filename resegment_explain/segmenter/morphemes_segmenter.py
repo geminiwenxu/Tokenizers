@@ -115,9 +115,16 @@ class MorphemesTokenizer():
         for strategy in ['suffix', 'root', "prefix"]:
             if strategy in results:
                 strategy_dict = results[strategy][0]['all_entries']
-                for key, value in strategy_dict.items():
+                for key, value in strategy_dict.items():  # the later key and value -> form and meaning will OVERWRITES!
+                    # each key, value -> form and meaning TURNING ON different FLAG!
+                    # by 1st key, value-> TFF
+                    # by 2nd key, value-> FFF
+                    # result: FFF -> F
+                    # by 1st key, value-> FFF
+                    # by 2nd key, value-> TFF
+                    # result: TFF -> T
                     form = strategy_dict[key]["form"]
-                    meaning = strategy_dict[key]["meaning"][0]
+                    meaning = strategy_dict[key]["meaning"][0]  # extract the FIRST meaning!
                     # 0: keep mutiple if, as in each for, it should check every case
                     # 1: in each for prefer derivational over others
                     if form == derivational_form:
