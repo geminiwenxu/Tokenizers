@@ -577,13 +577,8 @@ class WordpieceTokenizer(object):
 
 if __name__ == '__main__':
     import time
-
     # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     model_checkpoint = "bert-base-cased"
-    # modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    # sentence = "testes progressing undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
-    # print("tokens", modified_tokenizer.tokenize(sentence))
-    # print(modified_tokenizer(sentence, return_tensors="pt"))
     test_data = resource_filename(__name__, config['ccnews_enwiki']['path'])
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     with open(test_data) as f:
@@ -591,10 +586,12 @@ if __name__ == '__main__':
     t0 = time.time()
     for sentence in data:
         modified_tokenizer(sentence, return_tensors="pt")
-        # print("tokens", modified_tokenizer.tokenize(sentence))
-        # print(modified_tokenizer(sentence, return_tensors="pt"))
     t1 = time.time()
     print("total", t1 - t0)
+    # modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
+    # sentence = "testes progressing undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    # print("tokens", modified_tokenizer.tokenize(sentence))
+    # print(modified_tokenizer(sentence, return_tensors="pt"))
     # print("-" * 50)
     # from transformers import BertTokenizer
     # baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)

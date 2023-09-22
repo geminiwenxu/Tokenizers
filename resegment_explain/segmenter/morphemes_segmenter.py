@@ -106,35 +106,35 @@ class MorphemesTokenizer():
         morphemes = []
         results = self.morphemes_finder(poor_word)
 
-        inflectional_affix = self.inflectional_finder(poor_word)
-        derivational_affix, derivational_strategy_affix = self.derivational_finder(poor_word)
+        inflectional_form = self.inflectional_finder(poor_word)
+        derivational_form, derivational_strategy_affix = self.derivational_finder(poor_word)
         inflectional = False
         derivational = False
-        Not_found = False
+        not_found = False
         selected_form = None
-        for strategy in ['prefix', 'root', "suffix"]:
+        for strategy in ['suffix', 'root', "prefix"]:
             if strategy in results:
                 strategy_dict = results[strategy][0]['all_entries']
-                for affix, meaning in strategy_dict.items():
-                    form = strategy_dict.get(affix)["form"]
-                    meaning = strategy_dict.get(affix)["meaning"][0]
-                    # 0: change multiple ifs to elif, so in each for hit one and break
+                for key, value in strategy_dict.items():
+                    form = strategy_dict[key]["form"]
+                    meaning = strategy_dict[key]["meaning"][0]
+                    # 0: keep mutiple if, as in each for, it should check every case
                     # 1: in each for prefer derivational over others
-                    if form == derivational_affix:
+                    if form == derivational_form:
                         de_selected_meaning = meaning
                         de_selected_form = form
                         de_selected_strategy_affix = derivational_strategy_affix
                         derivational = True
-                    elif form == inflectional_affix:
+                    elif form == inflectional_form:
                         inf_selected_meaning = meaning
                         inf_selected_form = form
                         inf_selected_strategy_affix = "suffix"
                         inflectional = True
-                    elif form != inflectional_affix and form != derivational_affix:
+                    elif form != inflectional_form and form != derivational_form:
                         not_selected_meaning = meaning
                         not_selected_form = form
                         not_selected_strategy_affix = strategy
-                        Not_found = True
+                        not_found = True
         # 3: the flags could be multiple True, but derivational is also preferred
         if derivational is True:
             selected_form = de_selected_form
@@ -144,7 +144,7 @@ class MorphemesTokenizer():
             selected_form = inf_selected_form
             selected_meaning = inf_selected_meaning
             selected_strategy_affix = inf_selected_strategy_affix
-        elif Not_found is True:
+        elif not_found is True:
             selected_form = not_selected_form
             selected_meaning = not_selected_meaning
             selected_strategy_affix = not_selected_strategy_affix
@@ -193,6 +193,7 @@ class MorphemesTokenizer():
                     print(resegment)
                 else:
                     retokenized_token = self.wp_tokenizer.tokenize(word)
+                    # print("11111", retokenized_token)
             else:
                 retokenized_token = self.wp_tokenizer.tokenize(word)
         else:
