@@ -22,7 +22,7 @@ epoch = config['epoch']
 batch_size = config['batch_size']
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "cola"
+task = "wnli"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -56,7 +56,7 @@ def preprocess_function(examples):
     return tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
 
 
-encoded_dataset = dataset.map(preprocess_function, num_proc=26)
+encoded_dataset = dataset.map(preprocess_function, num_proc=3)
 
 # Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2

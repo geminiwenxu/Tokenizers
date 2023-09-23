@@ -580,19 +580,19 @@ if __name__ == '__main__':
 
     # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     model_checkpoint = "bert-base-cased"
-    # test_data = resource_filename(__name__, config['ccnews_enwiki']['path'])
-    # modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    # with open(test_data) as f:
-    #     data = f.readlines()
-    # t0 = time.time()
-    # for sentence in data:
-    #     modified_tokenizer(sentence, return_tensors="pt")
-    # t1 = time.time()
-    # print("total", t1 - t0)
+    test_data = resource_filename(__name__, config['ccnews_enwiki']['path'])
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    sentence = "undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
-    # sentence = "XXXXX"
-    print("tokens", modified_tokenizer.tokenize(sentence))
+    with open(test_data) as f:
+        data = f.readlines()
+    t0 = time.time()
+    for sentence in data:
+        modified_tokenizer(sentence, return_tensors="pt")
+    t1 = time.time()
+    print("total", t1 - t0)
+    # modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
+    # # sentence = "unbreakables overmatching undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    # sentence = "unbreakables"
+    # print("tokens", modified_tokenizer.tokenize(sentence))
     # print(modified_tokenizer(sentence, return_tensors="pt"))
     # print("-" * 50)
     # from transformers import BertTokenizer
