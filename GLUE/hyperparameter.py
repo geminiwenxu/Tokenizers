@@ -8,8 +8,6 @@ from transformers.trainer_utils import enable_full_determinism
 
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
-enable_full_determinism(1337)
-
 
 def get_config(path):
     with open(resource_filename(__name__, path), 'r') as stream:
@@ -20,6 +18,10 @@ def get_config(path):
 config = get_config('/../config/config.yaml')
 epoch = config['epoch']
 batch_size = config['batch_size']
+random_seed = config['random_seed']
+
+# Enable random seed
+enable_full_determinism(random_seed)
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
 task = "wnli"
@@ -60,8 +62,6 @@ encoded_dataset = dataset.map(preprocess_function, num_proc=3)
 
 # Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
-model = BertForSequenceClassification.from_pretrained(model_checkpoint,
-                                                      num_labels=num_labels)
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
 model_name = model_checkpoint.split("/")[-1]
 
@@ -72,7 +72,7 @@ args = TrainingArguments(
     learning_rate=2e-5,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
-    num_train_epochs=5,
+    num_train_epochs=epoch,
     weight_decay=0.01,
     load_best_model_at_end=True,
     metric_for_best_model=metric_name
@@ -89,16 +89,9 @@ def compute_metrics(eval_pred):
 
 
 validation_key = "validation_mismatched" if task == "mnli-mm" else "validation_matched" if task == "mnli" else "validation"
-trainer = Trainer(
-    model,
-    args,
-    train_dataset=encoded_dataset["train"],
-    eval_dataset=encoded_dataset[validation_key],
-    tokenizer=tokenizer,
-    compute_metrics=compute_metrics
-)
 
 
+# Define the hyperparameter search space
 def optuna_hp_space(trial):
     return {
         "learning_rate": trial.suggest_float("learning_rate", 1e-6, 1e-4, log=True),
@@ -106,14 +99,29 @@ def optuna_hp_space(trial):
     }
 
 
+# Define a model_init function and pass it to the trainer
+def model_init():
+    return BertForSequenceClassification.from_pretrained(model_checkpoint, num_labels=num_labels)
+
+
+# Create a Trainer with the model_init function, training arguments, training and test datasets and evaluation function
+trainer = Trainer(
+    model_init=model_init,
+    args=args,
+    train_dataset=encoded_dataset["train"].shard(index=1, num_shards=10),  # get 1/10 of the dataset
+    eval_dataset=encoded_dataset[validation_key],
+    tokenizer=tokenizer,
+    compute_metrics=compute_metrics
+)
+
 if __name__ == '__main__':
-    best_run = trainer.hyperparameter_search(
-        n_trials=20,
+    best_trial = trainer.hyperparameter_search(
         direction="maximize",
         backend="optuna",
         hp_space=optuna_hp_space,
+        n_trials=2,
     )
-    print(best_run)
-    for n, v in best_run.hyperparameters.items():
+    print(best_trial)
+    for n, v in best_trial.hyperparameters.items():
         setattr(trainer.args, n, v)
     trainer.train()

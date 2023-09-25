@@ -8,8 +8,6 @@ from transformers.trainer_utils import enable_full_determinism
 
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
-enable_full_determinism(1337)
-
 
 def get_config(path):
     with open(resource_filename(__name__, path), 'r') as stream:
@@ -20,6 +18,10 @@ def get_config(path):
 config = get_config('/../config/config.yaml')
 epoch = config['epoch']
 batch_size = config['batch_size']
+random_seed = config['random_seed']
+
+# Enable random seed
+enable_full_determinism(random_seed)
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
 task = "wnli"
@@ -72,7 +74,7 @@ args = TrainingArguments(
     learning_rate=2e-5,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
-    num_train_epochs=5,
+    num_train_epochs=epoch,
     weight_decay=0.01,
     load_best_model_at_end=True,
     metric_for_best_model=metric_name
@@ -98,27 +100,6 @@ trainer = Trainer(
     compute_metrics=compute_metrics
 )
 
-
-# Hyperparameter search
-# def model_init():  # TODO: TO LOAD THE BEST MODEL?
-#     return BertForSequenceClassification.from_pretrained(model_checkpoint,
-#                                                          num_labels=num_labels)
-#
-#
-# trainer_hp = Trainer(
-#     model_init=model_init,
-#     args=args,
-#     train_dataset=encoded_dataset["train"],
-#     eval_dataset=encoded_dataset[validation_key],
-#     tokenizer=tokenizer,
-#     compute_metrics=compute_metrics
-# )
-
 if __name__ == '__main__':
     trainer.train()
     trainer.evaluate()
-    # best_run = trainer_hp.hyperparameter_search(n_trials=10, direction="maximize")
-    # print(best_run)
-    # for n, v in best_run.hyperparameters.items():
-    #     setattr(trainer.args, n, v)
-    # trainer_hp.train()

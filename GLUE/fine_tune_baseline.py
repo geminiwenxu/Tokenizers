@@ -6,8 +6,6 @@ from transformers import BertForSequenceClassification, BertTokenizer
 from transformers import TrainingArguments, Trainer
 from transformers.trainer_utils import enable_full_determinism
 
-enable_full_determinism(1337)
-
 
 def get_config(path):
     with open(resource_filename(__name__, path), 'r') as stream:
@@ -16,10 +14,12 @@ def get_config(path):
 
 
 config = get_config('/../config/config.yaml')
-model_path = resource_filename(__name__, config['model']['path'])
-vocab_file = resource_filename(__name__, config['vocab_file']['path'])
 epoch = config['epoch']
 batch_size = config['batch_size']
+random_seed = config['random_seed']
+
+# Enable random seed
+enable_full_determinism(random_seed)
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
 task = "rte"
@@ -72,7 +72,7 @@ args = TrainingArguments(
     learning_rate=2e-5,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
-    num_train_epochs=5,
+    num_train_epochs=epoch,
     weight_decay=0.01,
     load_best_model_at_end=True,
     metric_for_best_model=metric_name

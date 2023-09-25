@@ -18,9 +18,11 @@ vocab_size:
 max_length:
   512
 epoch:
-  3
+  5
 batch_size:
   128
+random_seed:
+  1337
 
 cc_news:
   path: /../data/raw/cc_news.txt
