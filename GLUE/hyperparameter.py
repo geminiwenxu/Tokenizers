@@ -101,12 +101,20 @@ trainer = Trainer(
     compute_metrics=compute_metrics
 )
 
+
+def my_objective(eval_pred):
+    result = compute_metrics(eval_pred)
+    f1_score = result['f1']
+    return f1_score
+
+
 if __name__ == '__main__':
     best_trial = trainer.hyperparameter_search(
         direction="maximize",
         backend="optuna",
         hp_space=optuna_hp_space,
         n_trials=20,
+        compute_objective=my_objective
     )
     print(best_trial)
     for n, v in best_trial.hyperparameters.items():
