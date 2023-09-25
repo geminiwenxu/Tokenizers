@@ -334,6 +334,9 @@ class MorphemesTokenizer():
                     retokenized_token = resegment
                     print(self.wp_tokenizer.tokenize(word))
                     print(resegment)
+                    # """line 338-339: only for calculating the percentage"""
+                    # with open('qnli_test.txt', 'a') as f:
+                    #     print('compare', self.wp_tokenizer.tokenize(word), resegment, file=f)
                 else:
                     retokenized_token = self.wp_tokenizer.tokenize(word)
             else:

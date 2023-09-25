@@ -28,3 +28,67 @@ enwiki:
   path: /../data/raw/enwiki.txt
 ccnews_enwiki:
   path: /../data/raw/shuffled_ccnews_enwiki.txt
+
+
+cola_train:
+  path: /../data/glue_data/CoLA/train.tsv
+cola_dev:
+  path: /../data/glue_data/CoLA/dev.tsv
+cola_test:
+  path: /../data/glue_data/CoLA/test.tsv
+
+mnli_train:
+  path: /../data/glue_data/MNLI/train.tsv
+mnli_dev:
+  path: /../data/glue_data/MNLI/dev_matched.tsv
+mnli_test:
+  path: /../data/glue_data/MNLI/test_matched.tsv
+
+mrpc_train:
+  path: /../data/glue_data/MRPC/msr_paraphrase_train.txt
+mrpc_dev:
+  path: /../data/glue_data/MRPC/dev.tsv
+mrpc_test:
+  path: /../data/glue_data/MRPC/test.tsv
+
+sst_train:
+  path: /../data/glue_data/SST-2/train.tsv
+sst_dev:
+  path: /../data/glue_data/SST-2/dev.tsv
+sst_test:
+  path: /../data/glue_data/SST-2/test.tsv
+
+sts_train:
+  path: /../data/glue_data/STS-B/train.tsv
+sts_dev:
+  path: /../data/glue_data/STS-B/dev.tsv
+sts_test:
+  path: /../data/glue_data/STS-B/test.tsv
+
+rte_train:
+  path: /../data/glue_data/RTE/train.tsv
+rte_dev:
+  path: /../data/glue_data/RTE/dev.tsv
+rte_test:
+  path: /../data/glue_data/RTE/test.tsv
+
+wnli_train:
+  path: /../data/glue_data/WNLI/train.tsv
+wnli_dev:
+  path: /../data/glue_data/WNLI/dev.tsv
+wnli_test:
+  path: /../data/glue_data/WNLI/test.tsv
+
+qnli_train:
+  path: /../data/glue_data/QNLI/train.tsv
+qnli_dev:
+  path: /../data/glue_data/QNLI/dev.tsv
+qnli_test:
+  path: /../data/glue_data/QNLI/test.tsv
+
+qqp_train:
+  path: /../data/glue_data/QQP/train.tsv
+qqp_dev:
+  path: /../data/glue_data/QQP/dev.tsv
+qqp_test:
+  path: /../data/glue_data/QQP/test.tsv
