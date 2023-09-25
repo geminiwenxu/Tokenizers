@@ -20,9 +20,9 @@ max_length:
 epoch:
   5
 batch_size:
-  128
-random_seed:
-  1337
+  32
+learning_rate:
+  2e-5
 
 cc_news:
   path: /../data/raw/cc_news.txt

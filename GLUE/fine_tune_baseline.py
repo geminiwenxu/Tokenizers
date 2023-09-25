@@ -16,10 +16,10 @@ def get_config(path):
 config = get_config('/../config/config.yaml')
 epoch = config['epoch']
 batch_size = config['batch_size']
-random_seed = config['random_seed']
+learning_rate = config['learning_rate']
 
 # Enable random seed
-enable_full_determinism(random_seed)
+enable_full_determinism(1337)
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
 task = "rte"

@@ -82,8 +82,6 @@ def optuna_hp_space(trial):
 def my_hp_space(trial):
     return {
         "learning_rate": trial.suggest_float("learning_rate", 1e-6, 1e-2, log=True),
-        "num_train_epochs": trial.suggest_int("num_train_epochs", 1, 5),
-        "seed": trial.suggest_int("seed", 1, 42),
         "per_device_train_batch_size": trial.suggest_categorical("per_device_train_batch_size", [16, 32, 64, 128]),
     }
 
@@ -106,8 +104,8 @@ trainer = Trainer(
 if __name__ == '__main__':
     best_trial = trainer.hyperparameter_search(
         direction="maximize",
-        # backend="optuna",
-        hp_space=my_hp_space,
+        backend="optuna",
+        hp_space=optuna_hp_space,
         n_trials=20,
     )
     print(best_trial)
