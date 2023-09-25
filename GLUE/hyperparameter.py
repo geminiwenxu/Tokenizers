@@ -56,7 +56,7 @@ encoded_dataset = dataset.map(preprocess_function, num_proc=3)
 
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
-training_args = TrainingArguments("test", evaluate_during_training=True, eval_steps=500, disable_tqdm=False)
+training_args = TrainingArguments("test", eval_steps=500, disable_tqdm=False)
 
 
 def compute_metrics(eval_pred):
@@ -97,7 +97,7 @@ def model_init():
 trainer = Trainer(
     model_init=model_init,
     args=training_args,
-    train_dataset=encoded_dataset["train"], #.shard(index=1, num_shards=10),  # get 1/10 of the dataset
+    train_dataset=encoded_dataset["train"],  # .shard(index=1, num_shards=10),  # get 1/10 of the dataset
     eval_dataset=encoded_dataset[validation_key],
     tokenizer=tokenizer,
     compute_metrics=compute_metrics
