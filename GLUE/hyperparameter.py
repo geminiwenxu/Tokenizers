@@ -56,15 +56,18 @@ encoded_dataset = dataset.map(preprocess_function, num_proc=3)
 
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
-training_args = TrainingArguments("test", eval_steps=500, disable_tqdm=False)
+training_args = TrainingArguments("test", num_train_epochs=20, evaluation_strategy="steps", eval_steps=500,
+                                  disable_tqdm=True)
 
 
 def compute_metrics(eval_pred):
+    print("attention!", eval_pred)
     predictions, labels = eval_pred
     if task != "stsb":
         predictions = np.argmax(predictions, axis=1)
     else:
         predictions = predictions[:, 0]
+    print("the result!", metric.compute(predictions=predictions, references=labels))
     return metric.compute(predictions=predictions, references=labels)
 
 
@@ -102,10 +105,9 @@ trainer = Trainer(
 )
 
 
-def my_objective(eval_pred):
-    result = compute_metrics(eval_pred)
-    f1_score = result['f1']
-    return f1_score
+def my_objective(metrics):
+    print("11111111", metrics, metrics['eval_f1'])
+    return metrics['eval_f1']
 
 
 if __name__ == '__main__':
@@ -116,7 +118,4 @@ if __name__ == '__main__':
         n_trials=20,
         compute_objective=my_objective
     )
-    print(best_trial)
-    for n, v in best_trial.hyperparameters.items():
-        setattr(trainer.args, n, v)
-    trainer.train()
+    print("The best trail: ", best_trial)
