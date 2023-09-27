@@ -1,21 +1,16 @@
+import os
+
 import numpy as np
 from datasets import load_dataset, load_metric
-from transformers import BertForSequenceClassification, BertTokenizer
+from transformers import BertForSequenceClassification
 from transformers import TrainingArguments, Trainer
+from transformers.trainer_utils import enable_full_determinism
 
-# def get_config(path):
-#     with open(resource_filename(__name__, path), 'r') as stream:
-#         conf = yaml.safe_load(stream)
-#     return conf
-#
-#
-# config = get_config('/../config/config.yaml')
-# epoch = config['epoch']
-# batch_size = config['batch_size']
-# random_seed = config['random_seed']
+from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
 # Enable random seed put on hold, to search for the best seed
-# enable_full_determinism(random_seed)
+enable_full_determinism(1337)
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
 task = "mrpc"
@@ -25,7 +20,7 @@ dataset = load_dataset("glue", actual_task)
 metric = load_metric('glue', actual_task)
 
 # Preprocessing the data
-tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
+tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
 task_to_keys = {
     "cola": ("sentence", None),
     "mnli": ("premise", "hypothesis"),
@@ -52,7 +47,7 @@ def preprocess_function(examples):
     return tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
 
 
-encoded_dataset = dataset.map(preprocess_function, num_proc=3)
+encoded_dataset = dataset.map(preprocess_function, num_proc=26)
 
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"

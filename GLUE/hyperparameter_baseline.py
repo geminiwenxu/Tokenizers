@@ -1,27 +1,12 @@
-import numpy as np
 import os
-import yaml
+
+import numpy as np
 from datasets import load_dataset, load_metric
-from pkg_resources import resource_filename
-from transformers import BertForSequenceClassification
+from transformers import BertForSequenceClassification, BertTokenizer
 from transformers import TrainingArguments, Trainer
 from transformers.trainer_utils import enable_full_determinism
 
-from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
-
-
-def get_config(path):
-    with open(resource_filename(__name__, path), 'r') as stream:
-        conf = yaml.safe_load(stream)
-    return conf
-
-
-config = get_config('/../config/config.yaml')
-epoch = config['epoch']
-batch_size = config['batch_size']
-learning_rate = config['learning_rate']
-
-# Enable random seed
+# Enable random seed put on hold, to search for the best seed
 enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -33,7 +18,7 @@ dataset = load_dataset("glue", actual_task)
 metric = load_metric('glue', actual_task)
 
 # Preprocessing the data
-tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
+tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
 task_to_keys = {
     "cola": ("sentence", None),
     "mnli": ("premise", "hypothesis"),
@@ -62,46 +47,68 @@ def preprocess_function(examples):
 
 encoded_dataset = dataset.map(preprocess_function, num_proc=26)
 
-# Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
-model = BertForSequenceClassification.from_pretrained(model_checkpoint,
-                                                      num_labels=num_labels)
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
-model_name = model_checkpoint.split("/")[-1]
-
-args = TrainingArguments(
-    f"{model_name}-finetuned-{task}",
-    evaluation_strategy="epoch",
-    save_strategy="epoch",
-    learning_rate=learning_rate,
-    per_device_train_batch_size=batch_size,
-    per_device_eval_batch_size=batch_size,
-    num_train_epochs=epoch,
-    weight_decay=0.01,
-    load_best_model_at_end=True,
-    metric_for_best_model=metric_name
-)
+training_args = TrainingArguments("test", num_train_epochs=20, evaluation_strategy="steps", eval_steps=500,
+                                  disable_tqdm=True)
 
 
 def compute_metrics(eval_pred):
+    print("attention!", eval_pred)
     predictions, labels = eval_pred
     if task != "stsb":
         predictions = np.argmax(predictions, axis=1)
     else:
         predictions = predictions[:, 0]
+    print("the result!", metric.compute(predictions=predictions, references=labels))
     return metric.compute(predictions=predictions, references=labels)
 
 
 validation_key = "validation_mismatched" if task == "mnli-mm" else "validation_matched" if task == "mnli" else "validation"
+
+
+# Define the hyperparameter search space
+def optuna_hp_space(trial):
+    return {
+        "learning_rate": trial.suggest_float("learning_rate", 1e-6, 1e-4, log=True),
+        "per_device_train_batch_size": trial.suggest_categorical("per_device_train_batch_size", [16, 32, 64, 128]),
+    }
+
+
+def my_hp_space(trial):
+    return {
+        "learning_rate": trial.suggest_float("learning_rate", 1e-6, 1e-2, log=True),
+        "per_device_train_batch_size": trial.suggest_categorical("per_device_train_batch_size", [16, 32, 64, 128]),
+    }
+
+
+# Define a model_init function and pass it to the trainer
+def model_init():
+    return BertForSequenceClassification.from_pretrained(model_checkpoint, num_labels=num_labels)
+
+
+# Create a Trainer with the model_init function, training arguments, training and test datasets and evaluation function
 trainer = Trainer(
-    model,
-    args,
-    train_dataset=encoded_dataset["train"],
+    model_init=model_init,
+    args=training_args,
+    train_dataset=encoded_dataset["train"],  # .shard(index=1, num_shards=10),  # get 1/10 of the dataset
     eval_dataset=encoded_dataset[validation_key],
     tokenizer=tokenizer,
     compute_metrics=compute_metrics
 )
 
+
+def my_objective(metrics):
+    print("11111111", metrics, metrics['eval_f1'])
+    return metrics['eval_f1']
+
+
 if __name__ == '__main__':
-    trainer.train()
-    trainer.evaluate()
+    best_trial = trainer.hyperparameter_search(
+        direction="maximize",
+        backend="optuna",
+        hp_space=optuna_hp_space,
+        n_trials=20,
+        compute_objective=my_objective
+    )
+    print("The best trail: ", best_trial)

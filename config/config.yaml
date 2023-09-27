@@ -22,7 +22,7 @@ epoch:
 batch_size:
   32
 learning_rate:
-  5.143277929370312e-5:
+  5.143277929370312e-5
 
 cc_news:
   path: /../data/raw/cc_news.txt
