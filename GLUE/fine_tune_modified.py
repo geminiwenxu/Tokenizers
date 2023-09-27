@@ -1,5 +1,6 @@
-import numpy as np
 import os
+
+import numpy as np
 import yaml
 from datasets import load_dataset, load_metric
 from pkg_resources import resource_filename
@@ -103,5 +104,6 @@ trainer = Trainer(
 )
 
 if __name__ == '__main__':
+    print("Modified fine tune for", actual_task, "with LR and BS: ", learning_rate, batch_size)
     trainer.train()
     trainer.evaluate()
