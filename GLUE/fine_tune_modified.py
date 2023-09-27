@@ -24,7 +24,7 @@ learning_rate = config['learning_rate']
 enable_full_determinism(1337)
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "wnli"
+task = "mrpc"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -58,7 +58,7 @@ def preprocess_function(examples):
     return tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
 
 
-encoded_dataset = dataset.map(preprocess_function, num_proc=3)
+encoded_dataset = dataset.map(preprocess_function, num_proc=26)
 
 # Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
@@ -71,7 +71,7 @@ args = TrainingArguments(
     f"{model_name}-finetuned-{task}",
     evaluation_strategy="epoch",
     save_strategy="epoch",
-    learning_rate=2e-5,
+    learning_rate=learning_rate,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
     num_train_epochs=epoch,
@@ -101,5 +101,8 @@ trainer = Trainer(
 )
 
 if __name__ == '__main__':
+    import torch
+
+    print(torch.cuda.is_available(), torch.cuda.device_count(), torch.cuda.current_device())
     trainer.train()
     trainer.evaluate()

@@ -69,7 +69,7 @@ args = TrainingArguments(
     f"{model_name}-finetuned-{task}",
     evaluation_strategy="epoch",
     save_strategy="epoch",
-    learning_rate=2e-5,
+    learning_rate=learning_rate,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
     num_train_epochs=epoch,

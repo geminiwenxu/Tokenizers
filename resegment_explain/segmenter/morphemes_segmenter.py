@@ -163,6 +163,7 @@ class MorphemesTokenizer():
             # print(strategy)
             if strategy in results:
                 strategy_dict = results[strategy][0]['all_entries']
+                print(strategy_dict)
                 for key, value in strategy_dict.items():
                     form = strategy_dict[key]["form"]
                     meaning = strategy_dict[key]["meaning"][0]
