@@ -155,15 +155,11 @@ class MorphemesTokenizer():
     @functools.lru_cache(maxsize=None)
     def test_segment(self, poor_word):
         inflectional_form = self.inflectional_finder(poor_word)
-        # print(inflectional_form)
         derivational_form, derivational_strategy_affix = self.derivational_finder(poor_word)
-        # print(derivational_form)
         results = self.morphemes_finder(poor_word)
         for strategy in ['prefix', 'root', "suffix"]:
-            # print(strategy)
             if strategy in results:
                 strategy_dict = results[strategy][0]['all_entries']
-                print(strategy_dict)
                 for key, value in strategy_dict.items():
                     form = strategy_dict[key]["form"]
                     meaning = strategy_dict[key]["meaning"][0]
@@ -186,7 +182,6 @@ class MorphemesTokenizer():
                                     first = rest_word
                                     second = meaning
                         morphemes = [first, second]
-                        # print("derivational", morphemes)
                         return morphemes
                     elif inflectional_form == form:
                         rest_word = poor_word[:-(len(inflectional_form))]
@@ -198,12 +193,10 @@ class MorphemesTokenizer():
                             second = meaning
 
                         morphemes = [first, second]
-                        # print("inflectional", morphemes)
                         return morphemes
                     else:
                         match strategy:
                             case "prefix":
-                                # print("else prefix", form)
                                 rest_word = poor_word[(len(form)):]
                                 if self.resegment_only is True:
                                     first = form
@@ -212,7 +205,6 @@ class MorphemesTokenizer():
                                     first = rest_word
                                     second = meaning
                             case "root" | "suffix":
-                                # print("else root/suffix")
                                 rest_word = poor_word[:-(len(form))]
                                 if self.resegment_only is True:
                                     first = rest_word
@@ -221,7 +213,6 @@ class MorphemesTokenizer():
                                     first = rest_word
                                     second = meaning
                         morphemes = [first, second]
-                        # print("else", morphemes)
             else:
                 morphemes = [None]
         return morphemes
@@ -327,14 +318,11 @@ class MorphemesTokenizer():
         poor_word = self.check_word(word)
         if poor_word is not None:
             resegment = self.test_segment(poor_word)
-            # print("resegment", resegment)
             if resegment != [None]:
-                # print("1", self.wp_tokenizer.tokenize(resegment[0]))
-                # print("2", self.wp_tokenizer.tokenize(resegment[1]))
                 if resegment == (self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1])):
                     retokenized_token = resegment
-                    print(self.wp_tokenizer.tokenize(word))
-                    print(resegment)
+                    # print(self.wp_tokenizer.tokenize(word))
+                    # print(resegment)
                     # """line 338-339: only for calculating the percentage"""
                     # with open('qnli_test.txt', 'a') as f:
                     #     print('compare', self.wp_tokenizer.tokenize(word), resegment, file=f)
