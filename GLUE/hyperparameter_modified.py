@@ -56,13 +56,11 @@ training_args = TrainingArguments("test", num_train_epochs=20, evaluation_strate
 
 
 def compute_metrics(eval_pred):
-    print("attention!", eval_pred)
     predictions, labels = eval_pred
     if task != "stsb":
         predictions = np.argmax(predictions, axis=1)
     else:
         predictions = predictions[:, 0]
-    print("the result!", metric.compute(predictions=predictions, references=labels))
     return metric.compute(predictions=predictions, references=labels)
 
 
@@ -101,11 +99,11 @@ trainer = Trainer(
 
 
 def my_objective(metrics):
-    print("11111111", metrics, metrics['eval_f1'])
     return metrics['eval_f1']
 
 
 if __name__ == '__main__':
+    print("Actual task", actual_task)
     best_trial = trainer.hyperparameter_search(
         direction="maximize",
         backend="optuna",
