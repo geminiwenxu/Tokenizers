@@ -93,66 +93,6 @@ class MorphemesTokenizer():
             return affix, strategy_affix
 
     @functools.lru_cache(maxsize=None)
-    def new_segment(self, poor_word):
-        morphemes = []
-        inflectional_form = self.inflectional_finder(poor_word)
-        derivational_form, derivational_strategy_affix = self.derivational_finder(poor_word)
-        results = self.morphemes_finder(poor_word)
-        for strategy in ['suffix', 'root', "prefix"]:
-            if strategy in results:
-                strategy_dict = results[strategy][0]['all_entries']
-                for key, value in strategy_dict.items():
-                    form = strategy_dict[key]["form"]
-                    meaning = strategy_dict[key]["meaning"][0]
-                    match form:
-                        case inflectional_form if inflectional_form == form:  # inflectional must be suffix
-                            rest_word = poor_word[:-(len(inflectional_form))]
-                            if self.resegment_only is True:
-                                morphemes.append(rest_word)
-                                morphemes.append(inflectional_form)
-                            else:
-                                morphemes.append(rest_word)
-                                morphemes.append(meaning)
-                        case derivational_form if derivational_form == form:
-                            match derivational_strategy_affix:
-                                case "prefix":
-                                    rest_word = poor_word[(len(derivational_form)):]
-                                    if self.resegment_only is True:
-                                        morphemes.append(derivational_form)
-                                        morphemes.append(rest_word)
-                                    else:
-                                        morphemes.append(meaning)
-                                        morphemes.append(rest_word)
-                                case "root" | "suffix":
-                                    rest_word = poor_word[:-(len(derivational_form))]
-                                    if self.resegment_only is True:
-                                        morphemes.append(rest_word)
-                                        morphemes.append(derivational_form)
-                                    else:
-                                        morphemes.append(rest_word)
-                                        morphemes.append(derivational_form)
-                        case _:
-                            match strategy:
-                                case "prefix":
-                                    rest_word = poor_word[(len(derivational_form)):]
-                                    if self.resegment_only is True:
-                                        morphemes.append(derivational_form)
-                                        morphemes.append(rest_word)
-                                    else:
-                                        morphemes.append(meaning)
-                                        morphemes.append(rest_word)
-                                case "root" | "suffix":
-                                    rest_word = poor_word[:-(len(derivational_form))]
-                                    if self.resegment_only is True:
-                                        morphemes.append(rest_word)
-                                        morphemes.append(derivational_form)
-                                    else:
-                                        morphemes.append(rest_word)
-                                        morphemes.append(derivational_form)
-
-        return morphemes
-
-    @functools.lru_cache(maxsize=None)
     def test_segment(self, poor_word):
         inflectional_form = self.inflectional_finder(poor_word)
         derivational_form, derivational_strategy_affix = self.derivational_finder(poor_word)
@@ -321,8 +261,8 @@ class MorphemesTokenizer():
             if resegment != [None]:
                 if resegment == (self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1])):
                     retokenized_token = resegment
-                    # print(self.wp_tokenizer.tokenize(word))
-                    # print(resegment)
+                    print(self.wp_tokenizer.tokenize(word))
+                    print(resegment)
                     # """line 338-339: only for calculating the percentage"""
                     # with open('qnli_test.txt', 'a') as f:
                     #     print('compare', self.wp_tokenizer.tokenize(word), resegment, file=f)
