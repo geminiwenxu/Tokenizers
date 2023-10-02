@@ -2,14 +2,15 @@ import os
 
 import numpy as np
 from datasets import load_dataset, load_metric
+from optuna.samplers import TPESampler
 from transformers import BertForSequenceClassification
 from transformers import TrainingArguments, Trainer
 from transformers.trainer_utils import enable_full_determinism
 
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
-# Enable random seed put on hold, to search for the best seed
-enable_full_determinism(1337)
+# Enable random seed
+enable_full_determinism(42)
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
@@ -71,14 +72,7 @@ validation_key = "validation_mismatched" if task == "mnli-mm" else "validation_m
 def optuna_hp_space(trial):
     return {
         "learning_rate": trial.suggest_float("learning_rate", 1e-6, 1e-4, log=True),
-        "per_device_train_batch_size": trial.suggest_categorical("per_device_train_batch_size", [16, 32, 64, 128]),
-    }
-
-
-def my_hp_space(trial):
-    return {
-        "learning_rate": trial.suggest_float("learning_rate", 1e-6, 1e-2, log=True),
-        "per_device_train_batch_size": trial.suggest_categorical("per_device_train_batch_size", [16, 32, 64, 128]),
+        "per_device_train_batch_size": trial.suggest_categorical("per_device_train_batch_size", [16, 32, 64, 128])
     }
 
 
@@ -99,16 +93,21 @@ trainer = Trainer(
 
 
 def my_objective(metrics):
+    # print("attention", metrics)
     return metrics['eval_f1']
+    # return metrics['eval_matthews_correlation']
+    # return metrics['eval_pearson']
+    # return metrics['eval_accuracy']
 
 
 if __name__ == '__main__':
-    print("Actual task of Basline", actual_task)
+    print("Actual task of Modified", actual_task)
     best_trial = trainer.hyperparameter_search(
         direction="maximize",
         backend="optuna",
         hp_space=optuna_hp_space,
         n_trials=20,
-        compute_objective=my_objective
+        compute_objective=my_objective,
+        sampler=TPESampler(seed=42)
     )
     print("The best trail: ", best_trial)
