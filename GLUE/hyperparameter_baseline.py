@@ -12,7 +12,7 @@ enable_full_determinism(42)
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "wnli"
+task = "mrpc"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -92,10 +92,10 @@ trainer = Trainer(
 
 def my_objective(metrics):
     # print("attention", metrics)
-    # return metrics['eval_f1']
+    return metrics['eval_f1']
     # return metrics['eval_matthews_correlation']
     # return metrics['eval_pearson']
-    return metrics['eval_accuracy']
+    # return metrics['eval_accuracy']
 
 
 if __name__ == '__main__':
