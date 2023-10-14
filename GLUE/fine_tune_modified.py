@@ -31,6 +31,7 @@ task = "stsb"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
+print(dataset)
 metric = load_metric('glue', actual_task)
 
 # Preprocessing the data
@@ -107,3 +108,4 @@ if __name__ == '__main__':
     print("Modified fine tune for", actual_task, "with LR and BS: ", learning_rate, batch_size)
     trainer.train()
     trainer.evaluate()
+    trainer.predict(test_dataset=encoded_dataset["test"])

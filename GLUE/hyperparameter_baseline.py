@@ -1,5 +1,7 @@
 import os
 
+DEV = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 import numpy as np
 from datasets import load_dataset, load_metric
 from optuna.samplers import TPESampler
@@ -8,11 +10,11 @@ from transformers import TrainingArguments, Trainer
 from transformers.trainer_utils import enable_full_determinism
 
 # Enable random seed
-enable_full_determinism(42)
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+enable_full_determinism(1337)
+os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "mrpc"
+task = "sst2"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -50,7 +52,7 @@ encoded_dataset = dataset.map(preprocess_function, num_proc=26)
 
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
-training_args = TrainingArguments("test", num_train_epochs=20, evaluation_strategy="steps", eval_steps=500,
+training_args = TrainingArguments("test", num_train_epochs=10, evaluation_strategy="steps", eval_steps=500,
                                   disable_tqdm=True)
 
 
@@ -92,10 +94,10 @@ trainer = Trainer(
 
 def my_objective(metrics):
     # print("attention", metrics)
-    return metrics['eval_f1']
+    # return metrics['eval_f1']
     # return metrics['eval_matthews_correlation']
     # return metrics['eval_pearson']
-    # return metrics['eval_accuracy']
+    return metrics['eval_accuracy']
 
 
 if __name__ == '__main__':
@@ -104,8 +106,8 @@ if __name__ == '__main__':
         direction="maximize",
         backend="optuna",
         hp_space=optuna_hp_space,
-        n_trials=20,
+        n_trials=30,
         compute_objective=my_objective,
-        sampler=TPESampler(seed=42)
+        sampler=TPESampler(seed=1337)
     )
     print("The best trail: ", best_trial)
