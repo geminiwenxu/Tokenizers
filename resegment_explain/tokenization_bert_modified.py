@@ -582,22 +582,14 @@ if __name__ == '__main__':
     model_checkpoint = "bert-base-cased"
     test_data = resource_filename(__name__, config['ccnews_enwiki']['path'])
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    with open(test_data) as f:
-        data = f.readlines()
-    t0 = time.time()
-    for sentence in data:
-        modified_tokenizer(sentence, return_tensors="pt")
-    t1 = time.time()
-    print("total", t1 - t0)
-    # modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    # # sentence = "unbreakables overmatching undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
-    # sentence = "unbreakables"
-    # print("tokens", modified_tokenizer.tokenize(sentence))
+    # sentence = "unbreakable overmatching undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    sentence = "unbreakables"
+    print("tokens", modified_tokenizer.tokenize(sentence))
     # print(modified_tokenizer(sentence, return_tensors="pt"))
-    # print("-" * 50)
-    # from transformers import BertTokenizer
-    # baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    # print("tokens", baseline_tokenizer.tokenize(sentence))
+    print("-" * 50)
+    from transformers import BertTokenizer
+    baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
+    print("tokens", baseline_tokenizer.tokenize(sentence))
     # print(baseline_tokenizer(sentence, return_tensors="pt"))
 
     # test = BertTokenizer(vocab_file_path)

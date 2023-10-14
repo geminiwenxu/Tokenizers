@@ -122,6 +122,7 @@ class MorphemesTokenizer():
                                     first = rest_word
                                     second = meaning
                         morphemes = [first, second]
+                        print("1", morphemes)
                         return morphemes
                     elif inflectional_form == form:
                         rest_word = poor_word[:-(len(inflectional_form))]
@@ -133,6 +134,7 @@ class MorphemesTokenizer():
                             second = meaning
 
                         morphemes = [first, second]
+                        print("2", morphemes)
                         return morphemes
                     else:
                         match strategy:
@@ -153,8 +155,11 @@ class MorphemesTokenizer():
                                     first = rest_word
                                     second = meaning
                         morphemes = [first, second]
+                        print("3", morphemes)
             else:
                 morphemes = [None]
+                print("1", morphemes)
+        print("4", morphemes)
         return morphemes
 
     @functools.lru_cache(maxsize=None)
@@ -258,11 +263,13 @@ class MorphemesTokenizer():
         poor_word = self.check_word(word)
         if poor_word is not None:
             resegment = self.test_segment(poor_word)
+            print("attention",resegment)
             if resegment != [None]:
                 if resegment == (self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1])):
                     retokenized_token = resegment
+                    # retokenized_token = [resegment[0], "##" + resegment[1]]
                     print(self.wp_tokenizer.tokenize(word))
-                    print(resegment)
+                    print(retokenized_token)
                     # """line 338-339: only for calculating the percentage"""
                     # with open('qnli_test.txt', 'a') as f:
                     #     print('compare', self.wp_tokenizer.tokenize(word), resegment, file=f)
