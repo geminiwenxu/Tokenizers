@@ -1,5 +1,6 @@
 import os
-
+DEV ="1"
+os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 import numpy as np
 import yaml
 from datasets import load_dataset, load_metric
@@ -22,10 +23,10 @@ learning_rate = config['learning_rate']
 
 # Enable random seed
 enable_full_determinism(1337)
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "stsb"
+task = "wnli"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)

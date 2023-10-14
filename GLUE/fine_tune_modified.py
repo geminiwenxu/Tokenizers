@@ -1,5 +1,6 @@
 import os
-
+DEV ="1"
+os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 import numpy as np
 import yaml
 from datasets import load_dataset, load_metric
@@ -24,14 +25,13 @@ learning_rate = config['learning_rate']
 
 # Enable random seed
 enable_full_determinism(1337)
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
 task = "stsb"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
-print(dataset)
 metric = load_metric('glue', actual_task)
 
 # Preprocessing the data
@@ -108,4 +108,6 @@ if __name__ == '__main__':
     print("Modified fine tune for", actual_task, "with LR and BS: ", learning_rate, batch_size)
     trainer.train()
     trainer.evaluate()
+    import pandas as pd
+    pd.DataFrame(trainer.state.log_history)
     trainer.predict(test_dataset=encoded_dataset["test"])
