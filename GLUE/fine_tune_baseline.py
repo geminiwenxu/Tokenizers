@@ -1,13 +1,15 @@
 import os
-DEV ="1"
+
+DEV = "0"
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 import numpy as np
 import yaml
 from datasets import load_dataset, load_metric
 from pkg_resources import resource_filename
 from transformers import BertForSequenceClassification, BertTokenizer
-from transformers import TrainingArguments, Trainer
+from transformers import TrainingArguments, Trainer, TrainerCallback
 from transformers.trainer_utils import enable_full_determinism
+from copy import deepcopy
 
 
 def get_config(path):
@@ -26,7 +28,7 @@ enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "wnli"
+task = "mrpc"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -79,7 +81,10 @@ args = TrainingArguments(
     num_train_epochs=epoch,
     weight_decay=0.01,
     load_best_model_at_end=True,
-    metric_for_best_model=metric_name
+    metric_for_best_model=metric_name,
+    logging_steps=10,
+    logging_strategy="epoch",
+    lr_scheduler_type="cosine"
 )
 
 
@@ -102,10 +107,31 @@ trainer = Trainer(
     compute_metrics=compute_metrics
 )
 
+
+class CustomCallback(TrainerCallback):
+
+    def __init__(self, trainer) -> None:
+        super().__init__()
+        self._trainer = trainer
+
+    def on_epoch_end(self, args, state, control, **kwargs):
+        if control.should_evaluate:
+            control_copy = deepcopy(control)
+            self._trainer.evaluate(eval_dataset=self._trainer.train_dataset, metric_key_prefix="train")
+            return control_copy
+
+
 if __name__ == '__main__':
     print("Baseline fine tune for", actual_task, "with LR and BS: ", learning_rate, batch_size)
-    trainer.train()
+    trainer.add_callback(CustomCallback(trainer))
+    train = trainer.train()
+    print("train log", train)
     trainer.evaluate()
-    import pandas as pd
-    pd.DataFrame(trainer.state.log_history)
-    trainer.predict(test_dataset=encoded_dataset["test"])
+    log_history = trainer.state.log_history
+    print("log history", log_history)
+    print(encoded_dataset[validation_key])
+    print(encoded_dataset["test"])
+    prediction = trainer.predict(encoded_dataset["test"])
+    print(prediction)
+    ids = getattr(prediction, "label_ids")
+    print(len(ids))
