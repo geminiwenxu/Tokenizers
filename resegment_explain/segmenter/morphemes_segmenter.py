@@ -112,7 +112,7 @@ class MorphemesTokenizer():
                                     second = rest_word
                                 else:
                                     first = meaning
-                                    second = derivational_form
+                                    second = rest_word
                             case "root" | "suffix":
                                 rest_word = poor_word[:-(len(derivational_form))]
                                 if self.resegment_only is True:
@@ -158,8 +158,8 @@ class MorphemesTokenizer():
                         print("3", morphemes)
             else:
                 morphemes = [None]
-                print("1", morphemes)
-        print("4", morphemes)
+                print("4", morphemes)
+        print("5", morphemes)
         return morphemes
 
     @functools.lru_cache(maxsize=None)
@@ -263,7 +263,7 @@ class MorphemesTokenizer():
         poor_word = self.check_word(word)
         if poor_word is not None:
             resegment = self.test_segment(poor_word)
-            print("attention",resegment)
+            print("attention", resegment)
             if resegment != [None]:
                 if resegment == (self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1])):
                     retokenized_token = resegment

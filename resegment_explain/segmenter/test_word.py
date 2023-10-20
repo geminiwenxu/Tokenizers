@@ -10,16 +10,17 @@ startTime = datetime.now()
 
 pp = pprint.PrettyPrinter()
 
-word = sys.argv[1]
+word = "Willoughby"
 
 results = morphemes.discover_segments(word)
+pp.pprint(results)
+if __name__ == '__main__':
+	if morphemes.format_results(results, "") == word:
+		final_results = morphemes.generate_final_results(results)
+		# print(final_results)
+		# pp.pprint(final_results)
+	else:
+		print(morphemes.format_results(results, "+"), "failed")
 
-if morphemes.format_results(results, "") == word:
-	final_results = morphemes.generate_final_results(results)
-	#print(final_results)
-	pp.pprint(final_results)
-else:
-	print(morphemes.format_results(results, "+"), "failed")
-
-timeElapsed=datetime.now()-startTime 
-print('script: time elapsed (hh:mm:ss.ms) {}'.format(timeElapsed))
+	timeElapsed=datetime.now()-startTime
+	print('script: time elapsed (hh:mm:ss.ms) {}'.format(timeElapsed))
