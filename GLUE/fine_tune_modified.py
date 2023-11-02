@@ -1,5 +1,6 @@
 import os
-DEV ="1"
+
+DEV = "1"
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 import numpy as np
 import yaml
@@ -8,7 +9,9 @@ from pkg_resources import resource_filename
 from transformers import BertForSequenceClassification
 from transformers import TrainingArguments, Trainer
 from transformers.trainer_utils import enable_full_determinism
-
+from copy import deepcopy
+from transformers.integrations import TrainerCallback
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
 
@@ -28,7 +31,7 @@ enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "stsb"
+task = "wnli"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -74,14 +77,18 @@ model_name = model_checkpoint.split("/")[-1]
 args = TrainingArguments(
     f"{model_name}-finetuned-{task}",
     evaluation_strategy="epoch",
-    save_strategy="epoch",
     learning_rate=learning_rate,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
     num_train_epochs=epoch,
     weight_decay=0.01,
+    logging_steps=10,
+    logging_strategy="epoch",
+    save_total_limit=1,
+    save_strategy="epoch",
+    metric_for_best_model=metric_name,
     load_best_model_at_end=True,
-    metric_for_best_model=metric_name
+    greater_is_better=True
 )
 
 
@@ -104,10 +111,45 @@ trainer = Trainer(
     compute_metrics=compute_metrics
 )
 
+
+class CustomCallback(TrainerCallback):
+
+    def __init__(self, trainer) -> None:
+        super().__init__()
+        self._trainer = trainer
+
+    def on_epoch_end(self, args, state, control, **kwargs):
+        if control.should_evaluate:
+            control_copy = deepcopy(control)
+            self._trainer.evaluate(eval_dataset=self._trainer.train_dataset, metric_key_prefix="train")
+            return control_copy
+
+
 if __name__ == '__main__':
     print("Modified fine tune for", actual_task, "with LR and BS: ", learning_rate, batch_size)
-    trainer.train()
+    trainer.add_callback(CustomCallback(trainer))
+    train = trainer.train()
+    trainer.save_model(f"saved_model_{actual_task}")
+    print("train log", train)
     trainer.evaluate()
-    import pandas as pd
-    pd.DataFrame(trainer.state.log_history)
-    trainer.predict(test_dataset=encoded_dataset["test"])
+    log_history = trainer.state.log_history
+    print("log history", log_history)
+
+    prediction = trainer.predict(encoded_dataset["test"])
+    pred_label = prediction.predictions.argmax(-1)
+    actual_label = prediction.label_ids
+    with open("baseline misclassification of " + actual_task + ".txt", "w+") as f:
+        for i in range(len(pred_label)):
+            if pred_label[i] != actual_label[i]:
+                f.write('%s\n' % pred_label[i])
+                if sentence2_key is None:
+                    f.write('%s\n' % f"Sentence: {dataset['test'][i][sentence1_key]}")
+                else:
+                    f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
+                    f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
+                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
+
+    precision, recall, f1, _ = precision_recall_fscore_support(actual_label, pred_label)
+    acc = accuracy_score(actual_label, pred_label)
+    print(prediction)
+    print("precision, recall, accuracy, f1", precision, recall, acc, f1)
