@@ -13,6 +13,7 @@ from copy import deepcopy
 from transformers.integrations import TrainerCallback
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
+from analysis import plot
 
 
 def get_config(path):
@@ -134,7 +135,7 @@ if __name__ == '__main__':
     trainer.evaluate()
     log_history = trainer.state.log_history
     print("log history", log_history)
-
+    plot(log_history, epoch, actual_task, model="modified")
     prediction = trainer.predict(encoded_dataset["test"])
     pred_label = prediction.predictions.argmax(-1)
     actual_label = prediction.label_ids
