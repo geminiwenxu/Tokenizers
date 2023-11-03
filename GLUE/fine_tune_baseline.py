@@ -144,6 +144,7 @@ if __name__ == '__main__':
                 f.write('%s\n' % pred_label[i])
                 if sentence2_key is None:
                     f.write('%s\n' % f"Sentence: {dataset['test'][i][sentence1_key]}")
+                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
                 else:
                     f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
                     f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
