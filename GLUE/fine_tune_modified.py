@@ -12,10 +12,7 @@ from transformers.trainer_utils import enable_full_determinism
 from copy import deepcopy
 from transformers.integrations import TrainerCallback
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
-import torch
-from torch.utils.data import DataLoader
 import pandas as pd
-from analysis import plot
 
 
 def get_config(path):
@@ -34,7 +31,7 @@ enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "wnli"
+task = "cola"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -137,26 +134,35 @@ if __name__ == '__main__':
     trainer.evaluate()
     log_history = trainer.state.log_history
     print("log history", log_history)
-    plot(log_history, epoch, actual_task, model="modified")
-    # prediction = trainer.predict(encoded_dataset["test"])
-    # pred_label = prediction.predictions.argmax(-1)
-    # actual_label = prediction.label_ids
-    # with open("modified misclassification of " + actual_task + ".txt", "w+") as f:
-    #     for i in range(len(pred_label)):
-    #         if pred_label[i] != actual_label[i]:
-    #             f.write('%s\n' % pred_label[i])
-    #             if sentence2_key is None:
-    #                 f.write('%s\n' % f"Sentence: {dataset['test'][i][sentence1_key]}")
-    #                 f.write('%s\n' % f"Label: {dataset['test'][i]}")
-    #             else:
-    #                 f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
-    #                 f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
-    #                 f.write('%s\n' % f"Label: {dataset['test'][i]}")
-    #
-    # precision, recall, f1, _ = precision_recall_fscore_support(actual_label, pred_label)
-    # acc = accuracy_score(actual_label, pred_label)
-    # print(prediction)
-    # print("precision, recall, accuracy, f1", precision, recall, acc, f1)
+
+    """ only for mrpc task with actual label to log misclassified samples
+    prediction = trainer.predict(encoded_dataset["test"])
+    pred_label = prediction.predictions.argmax(-1)
+    actual_label = prediction.label_ids
+    with open("modified misclassification of " + actual_task + ".txt", "w+") as f:
+        for i in range(len(pred_label)):
+            if pred_label[i] != actual_label[i]:
+                f.write('%s\n' % pred_label[i])
+                if sentence2_key is None:
+                    f.write('%s\n' % f"Sentence: {dataset['test'][i][sentence1_key]}")
+                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
+                else:
+                    f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
+                    f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
+                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
+
+    precision, recall, f1, _ = precision_recall_fscore_support(actual_label, pred_label)
+    acc = accuracy_score(actual_label, pred_label)
+    print(prediction)
+    print("precision, recall, accuracy, f1", precision, recall, acc, f1)
+    """
+
+    """predict for the rest of task must remove -1 labels"""
+    predict_dataset = encoded_dataset["test"].remove_columns("label")
+    pred_label = np.argmax(trainer.predict(predict_dataset).predictions, axis=1)
+
+    """
+    alternative version of line 159-161: 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     test_dataloader = DataLoader(encoded_dataset["test"], batch_size=batch_size)
     model = model.eval()
@@ -175,12 +181,13 @@ if __name__ == '__main__':
 
     predictions = torch.stack(predictions).cpu()
     ls_predictions = predictions.tolist()
-    for index, p in enumerate(ls_predictions):
-        if p == 1:
-            ls_predictions[index] = "entailment"
-        else:
-            ls_predictions[index] = "not_entailment"
+    """
+    # for index, p in enumerate(ls_predictions):
+    #     if p == 1:
+    #         ls_predictions[index] = "entailment"
+    #     else:
+    #         ls_predictions[index] = "not_entailment"
 
-    df = pd.DataFrame({'prediction': ls_predictions})
+    df = pd.DataFrame({'prediction': pred_label})
     df.index.name = 'index'
     df.to_csv("baseline of " + actual_task + ".tsv", sep="\t")
