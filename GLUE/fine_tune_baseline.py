@@ -13,6 +13,7 @@ from copy import deepcopy
 from transformers.integrations import TrainerCallback
 import torch
 from torch.utils.data import DataLoader
+import pandas as pd
 from analysis import plot
 
 
@@ -32,7 +33,7 @@ enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "wnli"
+task = "rte"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -155,16 +156,14 @@ if __name__ == '__main__':
     # acc = accuracy_score(actual_label, pred_label)
     # print(prediction)
     # print("precision, recall, accuracy, f1", precision, recall, acc, f1)
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     test_dataloader = DataLoader(encoded_dataset["test"], batch_size=batch_size)
     model = model.eval()
     predictions = []
     with torch.no_grad():
         for d in test_dataloader:
             input_ids = torch.stack(d["input_ids"], dim=1).to(device)
-
             attention_mask = torch.stack(d["attention_mask"], dim=1).to(device)
-
             outputs = model(
                 input_ids=input_ids,
                 attention_mask=attention_mask
@@ -174,4 +173,13 @@ if __name__ == '__main__':
             predictions.extend(preds)
 
     predictions = torch.stack(predictions).cpu()
-    print(predictions)
+    ls_predictions = predictions.tolist()
+    for index, p in enumerate(ls_predictions):
+        if p == 1:
+            ls_predictions[index] = "entailment"
+        else:
+            ls_predictions[index] = "not_entailment"
+
+    df = pd.DataFrame({'prediction': ls_predictions})
+    df.index.name = 'index'
+    df.to_csv("baseline of " + actual_task + ".tsv", sep="\t")
