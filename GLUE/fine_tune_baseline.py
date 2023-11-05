@@ -11,7 +11,8 @@ from transformers import TrainingArguments, Trainer
 from transformers.trainer_utils import enable_full_determinism
 from copy import deepcopy
 from transformers.integrations import TrainerCallback
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+import torch
+from torch.utils.data import DataLoader
 from analysis import plot
 
 
@@ -31,7 +32,7 @@ enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "mrpc"
+task = "wnli"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -61,8 +62,8 @@ else:
 
 def preprocess_function(examples):
     if sentence2_key is None:
-        return tokenizer(examples[sentence1_key], truncation=True)
-    return tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True)
+        return tokenizer(examples[sentence1_key], truncation=True, padding="max_length")
+    return tokenizer(examples[sentence1_key], examples[sentence2_key], truncation=True, padding="max_length")
 
 
 encoded_dataset = dataset.map(preprocess_function, num_proc=26)
@@ -135,22 +136,42 @@ if __name__ == '__main__':
     log_history = trainer.state.log_history
     print("log history", log_history)
     plot(log_history, epoch, actual_task, model="baseline")
-    prediction = trainer.predict(encoded_dataset["test"])
-    pred_label = prediction.predictions.argmax(-1)
-    actual_label = prediction.label_ids
-    with open("baseline misclassification of " + actual_task + ".txt", "w+") as f:
-        for i in range(len(pred_label)):
-            if pred_label[i] != actual_label[i]:
-                f.write('%s\n' % pred_label[i])
-                if sentence2_key is None:
-                    f.write('%s\n' % f"Sentence: {dataset['test'][i][sentence1_key]}")
-                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
-                else:
-                    f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
-                    f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
-                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
+    # prediction = trainer.predict(encoded_dataset["test"])
+    # pred_label = prediction.predictions.argmax(-1)
+    # actual_label = prediction.label_ids
+    # with open("baseline misclassification of " + actual_task + ".txt", "w+") as f:
+    #     for i in range(len(pred_label)):
+    #         if pred_label[i] != actual_label[i]:
+    #             f.write('%s\n' % pred_label[i])
+    #             if sentence2_key is None:
+    #                 f.write('%s\n' % f"Sentence: {dataset['test'][i][sentence1_key]}")
+    #                 f.write('%s\n' % f"Label: {dataset['test'][i]}")
+    #             else:
+    #                 f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
+    #                 f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
+    #                 f.write('%s\n' % f"Label: {dataset['test'][i]}")
+    #
+    # precision, recall, f1, _ = precision_recall_fscore_support(actual_label, pred_label)
+    # acc = accuracy_score(actual_label, pred_label)
+    # print(prediction)
+    # print("precision, recall, accuracy, f1", precision, recall, acc, f1)
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    test_dataloader = DataLoader(encoded_dataset["test"], batch_size=batch_size)
+    model = model.eval()
+    predictions = []
+    with torch.no_grad():
+        for d in test_dataloader:
+            input_ids = torch.stack(d["input_ids"], dim=1).to(device)
 
-    precision, recall, f1, _ = precision_recall_fscore_support(actual_label, pred_label)
-    acc = accuracy_score(actual_label, pred_label)
-    print(prediction)
-    print("precision, recall, accuracy, f1", precision, recall, acc, f1)
+            attention_mask = torch.stack(d["attention_mask"], dim=1).to(device)
+
+            outputs = model(
+                input_ids=input_ids,
+                attention_mask=attention_mask
+            )
+            logits = outputs.logits
+            preds = torch.argmax(logits, dim=1)
+            predictions.extend(preds)
+
+    predictions = torch.stack(predictions).cpu()
+    print(predictions)
