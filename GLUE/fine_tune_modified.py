@@ -12,7 +12,6 @@ from transformers.trainer_utils import enable_full_determinism
 from copy import deepcopy
 from transformers.integrations import TrainerCallback
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
-import pandas as pd
 
 
 def get_config(path):
@@ -74,7 +73,7 @@ model = BertForSequenceClassification.from_pretrained(model_checkpoint,
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
 model_name = model_checkpoint.split("/")[-1]
 
-args = TrainingArguments(
+training_args = TrainingArguments(
     f"{model_name}-finetuned-{task}",
     evaluation_strategy="epoch",
     learning_rate=learning_rate,
@@ -102,9 +101,15 @@ def compute_metrics(eval_pred):
 
 
 validation_key = "validation_mismatched" if task == "mnli-mm" else "validation_matched" if task == "mnli" else "validation"
+
+
+def model_init():
+    return BertForSequenceClassification.from_pretrained(model_checkpoint, num_labels=num_labels)
+
+
 trainer = Trainer(
-    model,
-    args,
+    model_init=model_init,
+    args=training_args,
     train_dataset=encoded_dataset["train"],
     eval_dataset=encoded_dataset[validation_key],
     tokenizer=tokenizer,
@@ -135,7 +140,9 @@ if __name__ == '__main__':
     log_history = trainer.state.log_history
     print("log history", log_history)
 
-    """ only for mrpc task with actual label to log misclassified samples
+    """only for mrpc task with actual label to log misclassified samples
+    from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+
     prediction = trainer.predict(encoded_dataset["test"])
     pred_label = prediction.predictions.argmax(-1)
     actual_label = prediction.label_ids
@@ -182,11 +189,6 @@ if __name__ == '__main__':
     predictions = torch.stack(predictions).cpu()
     ls_predictions = predictions.tolist()
     """
-    # for index, p in enumerate(ls_predictions):
-    #     if p == 1:
-    #         ls_predictions[index] = "entailment"
-    #     else:
-    #         ls_predictions[index] = "not_entailment"
 
     df = pd.DataFrame({'prediction': pred_label})
     df.index.name = 'index'
