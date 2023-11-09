@@ -29,7 +29,7 @@ enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "cola"
+task = "sst2"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -67,8 +67,6 @@ encoded_dataset = dataset.map(preprocess_function, num_proc=26)
 
 # Fine-tuning the model
 num_labels = 3 if task.startswith("mnli") else 1 if task == "stsb" else 2
-model = BertForSequenceClassification.from_pretrained(model_checkpoint,
-                                                      num_labels=num_labels)
 metric_name = "pearson" if task == "stsb" else "matthews_correlation" if task == "cola" else "accuracy"
 model_name = model_checkpoint.split("/")[-1]
 
@@ -189,6 +187,7 @@ if __name__ == '__main__':
     ls_predictions = predictions.tolist()
     """
     import pandas as pd
+
     df = pd.DataFrame({'prediction': pred_label})
     df.index.name = 'index'
     df.to_csv("baseline of " + actual_task + ".tsv", sep="\t")
