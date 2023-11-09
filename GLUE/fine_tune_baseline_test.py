@@ -21,8 +21,8 @@ def get_config(path):
 
 config = get_config('/../config/config.yaml')
 epoch = 3
-batch_size = 16
-learning_rate = 0.001
+batch_size = 64
+learning_rate = 3.8734043111843074e-05
 
 # Enable random seed
 enable_full_determinism(1337)
