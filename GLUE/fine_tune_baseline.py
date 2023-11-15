@@ -29,7 +29,7 @@ enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "mnli"
+task = "qqp"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -162,10 +162,11 @@ if __name__ == '__main__':
     """
 
     """predict for the rest of task must remove -1 labels"""
-    # predict_dataset = encoded_dataset["test"].remove_columns("label")
-    predict_dataset = encoded_dataset["test_matched"].remove_columns("label")
+    predict_dataset = encoded_dataset["test"].remove_columns("label")
+    # predict_dataset = encoded_dataset["test_matched"].remove_columns("label")
     # predict_dataset = encoded_dataset["test_mismatched"].remove_columns("label")
     pred_label = np.argmax(trainer.predict(predict_dataset).predictions, axis=1)
+    # pred_label = trainer.predict(predict_dataset).predictions[:, 0]
 
     """
     alternative version of line 159-161: 
