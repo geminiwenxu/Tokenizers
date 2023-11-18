@@ -14,7 +14,7 @@ def plot(log_history, actual_task, model):
     ls_eval_pearson = []
     ls_eval_spearmanr = []
     ls_eval_matt = []
-    for e in range(0, 15, 3):
+    for e in range(0, 9, 3):
         train_loss = log_history[e]["train_loss"]
         ls_train_loss.append(train_loss)
         train_accuracy = log_history[e]["train_accuracy"]
@@ -47,13 +47,13 @@ def plot(log_history, actual_task, model):
         # ls_eval_matt.append(eval_matt)
 
     fig, (axs1, axs2) = plt.subplots(2, 1, figsize=(10, 6))
-    axs1.plot(np.arange(1, 6), np.array(ls_train_loss), "r", label='Training Loss')
-    axs1.plot(np.arange(1, 6), np.array(ls_eval_loss), "b", label='Validation Loss')
+    axs1.plot(np.arange(1, 4), np.array(ls_train_loss), "r", label='Training Loss')
+    axs1.plot(np.arange(1, 4), np.array(ls_eval_loss), "b", label='Validation Loss')
     axs1.set_xlabel('Epochs')
     axs1.set_ylabel('Loss')
     axs1.legend()
-    axs2.plot(np.arange(1, 6), np.array(ls_train_accuracy), "r", label='Training Accuracy')
-    axs2.plot(np.arange(1, 6), np.array(ls_eval_accuracy), "b", label='Validation Accuracy')
+    axs2.plot(np.arange(1, 4), np.array(ls_train_accuracy), "r", label='Training Accuracy')
+    axs2.plot(np.arange(1, 4), np.array(ls_eval_accuracy), "b", label='Validation Accuracy')
     axs2.set_xlabel('Epochs')
     axs2.set_ylabel('Accuracy')
     axs2.legend()
@@ -62,33 +62,27 @@ def plot(log_history, actual_task, model):
 
 
 if __name__ == '__main__':
-    log_history = [{'train_loss': 0.31705278158187866, 'train_accuracy': 0.8855926376743689, 'train_runtime': 4417.7522,
-                    'train_samples_per_second': 88.892, 'train_steps_per_second': 1.389, 'epoch': 1.0, 'step': 6136},
-                   {'loss': 0.5303, 'learning_rate': 3.0997533538961934e-05, 'epoch': 1.0, 'step': 6136},
-                   {'eval_loss': 0.4378598928451538, 'eval_accuracy': 0.8266938359653592, 'eval_runtime': 111.5141,
-                    'eval_samples_per_second': 88.016, 'eval_steps_per_second': 1.381, 'epoch': 1.0, 'step': 6136},
-                   {'train_loss': 0.1887846291065216, 'train_accuracy': 0.9395521285860525, 'train_runtime': 4516.4912,
-                    'train_samples_per_second': 86.948, 'train_steps_per_second': 1.359, 'epoch': 2.0, 'step': 12272},
-                   {'loss': 0.3462, 'learning_rate': 2.324815015422145e-05, 'epoch': 2.0, 'step': 12272},
-                   {'eval_loss': 0.4418899118900299, 'eval_accuracy': 0.8336220071319409, 'eval_runtime': 110.6874,
-                    'eval_samples_per_second': 88.673, 'eval_steps_per_second': 1.391, 'epoch': 2.0, 'step': 12272},
-                   {'train_loss': 0.09265873581171036, 'train_accuracy': 0.9747416616161874, 'train_runtime': 4471.191,
-                    'train_samples_per_second': 87.829, 'train_steps_per_second': 1.372, 'epoch': 3.0, 'step': 18408},
-                   {'loss': 0.2221, 'learning_rate': 1.5498766769480967e-05, 'epoch': 3.0, 'step': 18408},
-                   {'eval_loss': 0.4812075197696686, 'eval_accuracy': 0.8370860927152318, 'eval_runtime': 113.348,
-                    'eval_samples_per_second': 86.592, 'eval_steps_per_second': 1.359, 'epoch': 3.0, 'step': 18408},
-                   {'train_loss': 0.04564801976084709, 'train_accuracy': 0.9879959867787789, 'train_runtime': 4484.6115,
-                    'train_samples_per_second': 87.567, 'train_steps_per_second': 1.368, 'epoch': 4.0, 'step': 24544},
-                   {'loss': 0.1337, 'learning_rate': 7.749383384740484e-06, 'epoch': 4.0, 'step': 24544},
-                   {'eval_loss': 0.6015509366989136, 'eval_accuracy': 0.8385124808965868, 'eval_runtime': 110.8681,
-                    'eval_samples_per_second': 88.529, 'eval_steps_per_second': 1.389, 'epoch': 4.0, 'step': 24544},
-                   {'train_loss': 0.030065622180700302, 'train_accuracy': 0.9923631659629948,
-                    'train_runtime': 4456.5595, 'train_samples_per_second': 88.118, 'train_steps_per_second': 1.377,
-                    'epoch': 5.0, 'step': 30680}, {'loss': 0.0836, 'learning_rate': 0.0, 'epoch': 5.0, 'step': 30680},
-                   {'eval_loss': 0.7392398118972778, 'eval_accuracy': 0.8365766683647479, 'eval_runtime': 110.6909,
-                    'eval_samples_per_second': 88.67, 'eval_steps_per_second': 1.391, 'epoch': 5.0, 'step': 30680},
-                   {'train_runtime': 85171.5929, 'train_samples_per_second': 23.054, 'train_steps_per_second': 0.36,
-                    'total_flos': 5.166258268431053e+17, 'train_loss': 0.2631927370869663, 'epoch': 5.0, 'step': 30680},
-                   {'eval_loss': 0.6015509366989136, 'eval_accuracy': 0.8385124808965868, 'eval_runtime': 110.2284,
-                    'eval_samples_per_second': 89.042, 'eval_steps_per_second': 1.397, 'epoch': 5.0, 'step': 30680}]
-    plot(log_history, actual_task="mnli_matched", model="modified")
+    log_history = [
+        {'train_loss': 0.25399497151374817, 'train_accuracy': 0.9083969465648855, 'train_f1': 0.9342980054751663,
+         'train_runtime': 44.6864, 'train_samples_per_second': 82.083, 'train_steps_per_second': 5.147, 'epoch': 1.0,
+         'step': 230}, {'loss': 0.5228, 'learning_rate': 2.66949933137233e-05, 'epoch': 1.0, 'step': 230},
+        {'eval_loss': 0.36715832352638245, 'eval_accuracy': 0.8455882352941176, 'eval_f1': 0.893760539629005,
+         'eval_runtime': 5.0021, 'eval_samples_per_second': 81.566, 'eval_steps_per_second': 5.198, 'epoch': 1.0,
+         'step': 230},
+        {'train_loss': 0.06595389544963837, 'train_accuracy': 0.9839149400218102, 'train_f1': 0.9880880274581062,
+         'train_runtime': 44.7489, 'train_samples_per_second': 81.969, 'train_steps_per_second': 5.14, 'epoch': 2.0,
+         'step': 460}, {'loss': 0.2457, 'learning_rate': 1.334749665686165e-05, 'epoch': 2.0, 'step': 460},
+        {'eval_loss': 0.3579009175300598, 'eval_accuracy': 0.8676470588235294, 'eval_f1': 0.9042553191489361,
+         'eval_runtime': 5.0024, 'eval_samples_per_second': 81.56, 'eval_steps_per_second': 5.197, 'epoch': 2.0,
+         'step': 460},
+        {'train_loss': 0.03270208090543747, 'train_accuracy': 0.9920937840785169, 'train_f1': 0.9941567600241789,
+         'train_runtime': 44.7383, 'train_samples_per_second': 81.988, 'train_steps_per_second': 5.141, 'epoch': 3.0,
+         'step': 690}, {'loss': 0.0761, 'learning_rate': 0.0, 'epoch': 3.0, 'step': 690},
+        {'eval_loss': 0.5425792932510376, 'eval_accuracy': 0.8676470588235294, 'eval_f1': 0.9065743944636677,
+         'eval_runtime': 5.0066, 'eval_samples_per_second': 81.493, 'eval_steps_per_second': 5.193, 'epoch': 3.0,
+         'step': 690}, {'train_runtime': 600.5511, 'train_samples_per_second': 18.323, 'train_steps_per_second': 1.149,
+                        'total_flos': 2895274053181440.0, 'train_loss': 0.2815390766530797, 'epoch': 3.0, 'step': 690},
+        {'eval_loss': 0.3579009175300598, 'eval_accuracy': 0.8676470588235294, 'eval_f1': 0.9042553191489361,
+         'eval_runtime': 4.9394, 'eval_samples_per_second': 82.601, 'eval_steps_per_second': 5.264, 'epoch': 3.0,
+         'step': 690}]
+    plot(log_history, actual_task="mrpc", model="method_0")
