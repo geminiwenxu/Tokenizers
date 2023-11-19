@@ -29,7 +29,7 @@ enable_full_determinism(1337)
 os.environ["CUDA_VISIBLE_DEVICES"] = DEV
 
 GLUE_TASKS = ["cola", "mnli", "mnli-mm", "mrpc", "qnli", "qqp", "rte", "sst2", "stsb", "wnli"]
-task = "qqp"
+task = "cola"
 model_checkpoint = "bert-base-cased"
 actual_task = "mnli" if task == "mnli-mm" else task
 dataset = load_dataset("glue", actual_task)
@@ -128,10 +128,10 @@ class CustomCallback(TrainerCallback):
 
 
 if __name__ == '__main__':
-    print("Baseline fine tune for", actual_task, "with LR and BS: ", learning_rate, batch_size)
+    print("Baseline fine tune for", task, "with LR and BS: ", learning_rate, batch_size)
     trainer.add_callback(CustomCallback(trainer))
     train = trainer.train()
-    trainer.save_model(f"saved_model_{actual_task}")
+    trainer.save_model(f"saved_model_{task}")
     print("train log", train)
     trainer.evaluate()
     log_history = trainer.state.log_history
@@ -193,4 +193,4 @@ if __name__ == '__main__':
 
     df = pd.DataFrame({'prediction': pred_label})
     df.index.name = 'index'
-    df.to_csv("baseline of " + actual_task + ".tsv", sep="\t")
+    df.to_csv("baseline of " + task + ".tsv", sep="\t")
