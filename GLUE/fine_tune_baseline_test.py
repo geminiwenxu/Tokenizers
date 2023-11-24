@@ -128,13 +128,33 @@ class CustomCallback(TrainerCallback):
 
 
 if __name__ == '__main__':
-    print("Baseline fine tune for", actual_task, "with LR and BS: ", learning_rate, batch_size)
+    print("Baseline fine tune for", task, "with LR and BS: ", learning_rate, batch_size)
     trainer.add_callback(CustomCallback(trainer))
     train = trainer.train()
-    trainer.save_model(f"saved_model_{actual_task}")
+    trainer.save_model(f"saved_model_{task}")
     print("train log", train)
     trainer.evaluate()
     log_history = trainer.state.log_history
     print("log history", log_history)
+
+    from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+
     prediction = trainer.predict(encoded_dataset["test"])
+    pred_label = prediction.predictions.argmax(-1)
+    actual_label = prediction.label_ids
+    with open("baseline misclassification of " + task + ".txt", "w+") as f:
+        for i in range(len(pred_label)):
+            if pred_label[i] != actual_label[i]:
+                f.write('%s\n' % pred_label[i])
+                if sentence2_key is None:
+                    f.write('%s\n' % f"Sentence: {dataset['test'][i][sentence1_key]}")
+                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
+                else:
+                    f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
+                    f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
+                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
+
+    precision, recall, f1, _ = precision_recall_fscore_support(actual_label, pred_label)
+    acc = accuracy_score(actual_label, pred_label)
     print(prediction)
+    print("precision, recall, accuracy, f1", precision, recall, acc, f1)

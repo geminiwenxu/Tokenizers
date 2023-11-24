@@ -129,20 +129,21 @@ class CustomCallback(TrainerCallback):
 
 
 if __name__ == '__main__':
-    print("Modified fine tune for", actual_task, "with LR and BS: ", learning_rate, batch_size)
+    print("Method_2 fine tune for", task, "with LR and BS: ", learning_rate, batch_size)
     trainer.add_callback(CustomCallback(trainer))
     train = trainer.train()
-    trainer.save_model(f"saved_model_{actual_task}")
+    trainer.save_model(f"saved_model_{task}")
     print("train log", train)
     trainer.evaluate()
     log_history = trainer.state.log_history
     print("log history", log_history)
+
     from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 
     prediction = trainer.predict(encoded_dataset["test"])
     pred_label = prediction.predictions.argmax(-1)
     actual_label = prediction.label_ids
-    with open("baseline misclassification of " + actual_task + ".txt", "w+") as f:
+    with open("method_2 misclassification of " + task + ".txt", "w+") as f:
         for i in range(len(pred_label)):
             if pred_label[i] != actual_label[i]:
                 f.write('%s\n' % pred_label[i])
