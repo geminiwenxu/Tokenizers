@@ -1,0 +1,1076 @@
+1
+Sentence 1: A tropical storm rapidly developed in the Gulf of Mexico Sunday and was expected to hit somewhere along the Texas or Louisiana coasts by Monday night .
+Sentence 2: A tropical storm rapidly developed in the Gulf of Mexico on Sunday and could have hurricane-force winds when it hits land somewhere along the Louisiana coast Monday night .
+Label: {'sentence1': 'A tropical storm rapidly developed in the Gulf of Mexico Sunday and was expected to hit somewhere along the Texas or Louisiana coasts by Monday night .', 'sentence2': 'A tropical storm rapidly developed in the Gulf of Mexico on Sunday and could have hurricane-force winds when it hits land somewhere along the Louisiana coast Monday night .', 'label': 0, 'idx': 3}
+1
+Sentence 1: Ballmer has been vocal in the past warning that Linux is a threat to Microsoft .
+Sentence 2: In the memo , Ballmer reiterated the open-source threat to Microsoft .
+Label: {'sentence1': 'Ballmer has been vocal in the past warning that Linux is a threat to Microsoft .', 'sentence2': 'In the memo , Ballmer reiterated the open-source threat to Microsoft .', 'label': 0, 'idx': 15}
+0
+Sentence 1: " There 's no reason for you to keep your skills up , " the judge told the convicted crack cocaine kingpin .
+Sentence 2: " There 's no reason for you to keep your skills up , " U.S. District Judge J. Frederick Motz told McGriff after he was sentenced .
+Label: {'sentence1': '" There \'s no reason for you to keep your skills up , " the judge told the convicted crack cocaine kingpin .', 'sentence2': '" There \'s no reason for you to keep your skills up , " U.S. District Judge J. Frederick Motz told McGriff after he was sentenced .', 'label': 1, 'idx': 20}
+0
+Sentence 1: Ricky Clemons ' brief , troubled Missouri basketball career is over .
+Sentence 2: Missouri kicked Ricky Clemons off its team , ending his troubled career there .
+Label: {'sentence1': "Ricky Clemons ' brief , troubled Missouri basketball career is over .", 'sentence2': 'Missouri kicked Ricky Clemons off its team , ending his troubled career there .', 'label': 1, 'idx': 29}
+1
+Sentence 1: The daily Hurriyet said the raid aimed to foil a Turkish plot to kill an unnamed senior Iraqi official in Kirkuk .
+Sentence 2: The daily Hurriyet said the raid aimed to foil a Turkish plot to kill an unnamed senior Iraqi Kurdish official in Kirkuk , but Gul has denied any Turkish plot .
+Label: {'sentence1': 'The daily Hurriyet said the raid aimed to foil a Turkish plot to kill an unnamed senior Iraqi official in Kirkuk .', 'sentence2': 'The daily Hurriyet said the raid aimed to foil a Turkish plot to kill an unnamed senior Iraqi Kurdish official in Kirkuk , but Gul has denied any Turkish plot .', 'label': 0, 'idx': 31}
+1
+Sentence 1: " It was a little bit embarrassing the way we played in the first two games , " Thomas said .
+Sentence 2: " We 're in the Stanley Cup finals , and it was a little bit embarrassing the way we played in the first two games .
+Label: {'sentence1': '" It was a little bit embarrassing the way we played in the first two games , " Thomas said .', 'sentence2': '" We \'re in the Stanley Cup finals , and it was a little bit embarrassing the way we played in the first two games .', 'label': 0, 'idx': 32}
+0
+Sentence 1: Kingston also finished with 67 after producing six birdies on the back nine .
+Sentence 2: South Africa 's James Kingston is also on five under after blitzing six birdies on his back nine .
+Label: {'sentence1': 'Kingston also finished with 67 after producing six birdies on the back nine .', 'sentence2': "South Africa 's James Kingston is also on five under after blitzing six birdies on his back nine .", 'label': 1, 'idx': 66}
+0
+Sentence 1: While there were about 700 Uruguayan UN peacekeepers in Bunia , they were " neither trained nor equipped " to deal with inter-ethnic violence , Mr Eckhard said .
+Sentence 2: The UN has approximately 600 troops in the town , but they were " neither trained nor equipped " to deal with inter-ethnic violence , Mr Eckhard said .
+Label: {'sentence1': 'While there were about 700 Uruguayan UN peacekeepers in Bunia , they were " neither trained nor equipped " to deal with inter-ethnic violence , Mr Eckhard said .', 'sentence2': 'The UN has approximately 600 troops in the town , but they were " neither trained nor equipped " to deal with inter-ethnic violence , Mr Eckhard said .', 'label': 1, 'idx': 71}
+0
+Sentence 1: Amgen shares gained 93 cents , or 1.45 percent , to $ 65.05 in afternoon trading on Nasdaq .
+Sentence 2: Shares of Allergan were up 14 cents at $ 78.40 in late trading on the New York Stock Exchange .
+Label: {'sentence1': 'Amgen shares gained 93 cents , or 1.45 percent , to $ 65.05 in afternoon trading on Nasdaq .', 'sentence2': 'Shares of Allergan were up 14 cents at $ 78.40 in late trading on the New York Stock Exchange .', 'label': 1, 'idx': 75}
+1
+Sentence 1: It was the best advance since Oct. 1 , when the index gained 22.25 .
+Sentence 2: Standard & Poor 's 500 index rose 15.66 to 1,046.79 , its best advance since Oct. 1 , when it gained 22.25 .
+Label: {'sentence1': 'It was the best advance since Oct. 1 , when the index gained 22.25 .', 'sentence2': "Standard & Poor 's 500 index rose 15.66 to 1,046.79 , its best advance since Oct. 1 , when it gained 22.25 .", 'label': 0, 'idx': 78}
+0
+Sentence 1: They were at Raffles Hospital over the weekend for further evaluation .
+Sentence 2: They underwent more tests over the weekend , and are now warded at Raffles Hospital .
+Label: {'sentence1': 'They were at Raffles Hospital over the weekend for further evaluation .', 'sentence2': 'They underwent more tests over the weekend , and are now warded at Raffles Hospital .', 'label': 1, 'idx': 91}
+1
+Sentence 1: Hilsenrath and Klarman each were indicted on three counts of securities fraud .
+Sentence 2: Klarman was charged with 16 counts of wire fraud .
+Label: {'sentence1': 'Hilsenrath and Klarman each were indicted on three counts of securities fraud .', 'sentence2': 'Klarman was charged with 16 counts of wire fraud .', 'label': 0, 'idx': 98}
+0
+Sentence 1: Licensing revenue slid 21 percent , however , to $ 107.6 million .
+Sentence 2: License sales , a key measure of demand , fell 21 percent to $ 107.6 million .
+Label: {'sentence1': 'Licensing revenue slid 21 percent , however , to $ 107.6 million .', 'sentence2': 'License sales , a key measure of demand , fell 21 percent to $ 107.6 million .', 'label': 1, 'idx': 100}
+0
+Sentence 1: In his speech , Cheney praised Barbour 's accomplishments as chairman of the Republican National Committee .
+Sentence 2: Cheney returned Barbour 's favorable introduction by touting Barbour 's work as chair of the Republican National Committee .
+Label: {'sentence1': "In his speech , Cheney praised Barbour 's accomplishments as chairman of the Republican National Committee .", 'sentence2': "Cheney returned Barbour 's favorable introduction by touting Barbour 's work as chair of the Republican National Committee .", 'label': 1, 'idx': 101}
+0
+Sentence 1: The blue-chip Dow Jones industrial average .DJI added 38 points , or 0.42 percent , to 9,165 .
+Sentence 2: The Dow Jones Industrial Average [ $ INDU ] ended at session highs , gaining 64.64 points , or 0.7 percent , to 9,191.09 .
+Label: {'sentence1': 'The blue-chip Dow Jones industrial average .DJI added 38 points , or 0.42 percent , to 9,165 .', 'sentence2': 'The Dow Jones Industrial Average [ $ INDU ] ended at session highs , gaining 64.64 points , or 0.7 percent , to 9,191.09 .', 'label': 1, 'idx': 106}
+1
+Sentence 1: Garner said the self-proclaimed mayor of Baghdad , Mohammed Mohsen al-Zubaidi , was released after two days in coalition custody .
+Sentence 2: Garner said self-proclaimed Baghdad mayor Mohammed Mohsen Zubaidi was released 48 hours after his detention in late April .
+Label: {'sentence1': 'Garner said the self-proclaimed mayor of Baghdad , Mohammed Mohsen al-Zubaidi , was released after two days in coalition custody .', 'sentence2': 'Garner said self-proclaimed Baghdad mayor Mohammed Mohsen Zubaidi was released 48 hours after his detention in late April .', 'label': 0, 'idx': 118}
+1
+Sentence 1: In a not-too-subtle swipe at Dean , he predicted Americans would not elect a Democrat " who sounds an uncertain trumpet in these dangerous times . "
+Sentence 2: They will not elect as president a Democrat who sounds an uncertain trumpet in these dangerous times . "
+Label: {'sentence1': 'In a not-too-subtle swipe at Dean , he predicted Americans would not elect a Democrat " who sounds an uncertain trumpet in these dangerous times . "', 'sentence2': 'They will not elect as president a Democrat who sounds an uncertain trumpet in these dangerous times . "', 'label': 0, 'idx': 121}
+0
+Sentence 1: I have no doubt whatever that the evidence of Iraqi weapons of mass destruction will be there .
+Sentence 2: " I have said throughout ... I have absolutely no doubt about the existence of weapons of mass destruction .
+Label: {'sentence1': 'I have no doubt whatever that the evidence of Iraqi weapons of mass destruction will be there .', 'sentence2': '" I have said throughout ... I have absolutely no doubt about the existence of weapons of mass destruction .', 'label': 1, 'idx': 123}
+1
+Sentence 1: " It appears from our initial report that this was a textbook landing considering the circumstances , " Burke said .
+Sentence 2: Said Mr. Burke : " It was a textbook landing considering the circumstances . "
+Label: {'sentence1': '" It appears from our initial report that this was a textbook landing considering the circumstances , " Burke said .', 'sentence2': 'Said Mr. Burke : " It was a textbook landing considering the circumstances . "', 'label': 0, 'idx': 132}
+0
+Sentence 1: The New York Mets then selected outfielder Lastings Milledge from Lakewood Ranch High School in Florida .
+Sentence 2: The Mets took Lastings Milledge , an outfielder from Florida , with the 12th pick .
+Label: {'sentence1': 'The New York Mets then selected outfielder Lastings Milledge from Lakewood Ranch High School in Florida .', 'sentence2': 'The Mets took Lastings Milledge , an outfielder from Florida , with the 12th pick .', 'label': 1, 'idx': 151}
+1
+Sentence 1: The BlueCore3-Multimedia includes a 16-bit stereo audio CODEC with dual ADC and DAC for stereo audio .
+Sentence 2: BlueCore3-Multimedia contains an open platform DSP co-processor and also includes a 16-bit stereo audio codec with dual ADC and DAC for stereo audio .
+Label: {'sentence1': 'The BlueCore3-Multimedia includes a 16-bit stereo audio CODEC with dual ADC and DAC for stereo audio .', 'sentence2': 'BlueCore3-Multimedia contains an open platform DSP co-processor and also includes a 16-bit stereo audio codec with dual ADC and DAC for stereo audio .', 'label': 0, 'idx': 167}
+1
+Sentence 1: Both studies are published in the Journal of the American Medical Association .
+Sentence 2: The study appears in the latest issue of the Journal of the American Medical Association .
+Label: {'sentence1': 'Both studies are published in the Journal of the American Medical Association .', 'sentence2': 'The study appears in the latest issue of the Journal of the American Medical Association .', 'label': 0, 'idx': 182}
+1
+Sentence 1: A Florida grand jury investigating pharmaceutical wholesalers indicted 19 people on charges of peddling bogus or diluted medications often prescribed for cancer and AIDS patients , authorities said yesterday .
+Sentence 2: A Florida grand jury indicted 19 people for contaminating and diluting prescription drugs desperately needed by AIDS and cancer patients in a multimillion-dollar scheme , prosecutors said Monday .
+Label: {'sentence1': 'A Florida grand jury investigating pharmaceutical wholesalers indicted 19 people on charges of peddling bogus or diluted medications often prescribed for cancer and AIDS patients , authorities said yesterday .', 'sentence2': 'A Florida grand jury indicted 19 people for contaminating and diluting prescription drugs desperately needed by AIDS and cancer patients in a multimillion-dollar scheme , prosecutors said Monday .', 'label': 0, 'idx': 188}
+0
+Sentence 1: The main psychologist , Dwight Close , referred questions to an agency spokeswoman , who said she wouldn 't comment on personnel issues .
+Sentence 2: The main psychologist in the Rodriguez case , Dwight Close , referred questions to an agency spokeswoman , who didn 't immediately return a call .
+Label: {'sentence1': "The main psychologist , Dwight Close , referred questions to an agency spokeswoman , who said she wouldn 't comment on personnel issues .", 'sentence2': "The main psychologist in the Rodriguez case , Dwight Close , referred questions to an agency spokeswoman , who didn 't immediately return a call .", 'label': 1, 'idx': 195}
+1
+Sentence 1: " This is where you 're measured – not in the regular season but right now .
+Sentence 2: And it 's not in the regular season , but right now , " Babcock said .
+Label: {'sentence1': '" This is where you \'re measured – not in the regular season but right now .', 'sentence2': 'And it \'s not in the regular season , but right now , " Babcock said .', 'label': 0, 'idx': 199}
+1
+Sentence 1: " Our goals is not to go out and start suing companies , " McBride said .
+Sentence 2: As we go down the licensing path , our goal is not to start suing companies , " McBride said .
+Label: {'sentence1': '" Our goals is not to go out and start suing companies , " McBride said .', 'sentence2': 'As we go down the licensing path , our goal is not to start suing companies , " McBride said .', 'label': 0, 'idx': 204}
+0
+Sentence 1: They were being held Sunday in the Camden County Jail on $ 100,000 bail each .
+Sentence 2: The Jacksons remained in Camden County jail on $ 100,000 bail .
+Label: {'sentence1': 'They were being held Sunday in the Camden County Jail on $ 100,000 bail each .', 'sentence2': 'The Jacksons remained in Camden County jail on $ 100,000 bail .', 'label': 1, 'idx': 207}
+0
+Sentence 1: There are 625 U.N. troops in Bunia , while there are between 25,000 and 28,000 tribal fighters , from all sides , in the region .
+Sentence 2: There are 625 U.N. troops in Bunia , while there are between 25,000 and 28,000 tribal fighters in the region , with thousands of them deployed in and around Bunia .
+Label: {'sentence1': 'There are 625 U.N. troops in Bunia , while there are between 25,000 and 28,000 tribal fighters , from all sides , in the region .', 'sentence2': 'There are 625 U.N. troops in Bunia , while there are between 25,000 and 28,000 tribal fighters in the region , with thousands of them deployed in and around Bunia .', 'label': 1, 'idx': 211}
+0
+Sentence 1: The driver of the truck escaped and is now being sought by the police , Supoyo said .
+Sentence 2: But police say the driver of the truck has not been found and is wanted for questioning .
+Label: {'sentence1': 'The driver of the truck escaped and is now being sought by the police , Supoyo said .', 'sentence2': 'But police say the driver of the truck has not been found and is wanted for questioning .', 'label': 1, 'idx': 212}
+0
+Sentence 1: Pacific Northwest has more than 800 employees , and Wells Fargo has 2,400 in Washington .
+Sentence 2: It has 800 employees , compared with Wells Fargo 's 2,400 .
+Label: {'sentence1': 'Pacific Northwest has more than 800 employees , and Wells Fargo has 2,400 in Washington .', 'sentence2': "It has 800 employees , compared with Wells Fargo 's 2,400 .", 'label': 1, 'idx': 224}
+0
+Sentence 1: On health care , the NDP says there will be no privatization and no health-care premiums .
+Sentence 2: The New Democrats also renewed their commitment to no health-care privatization and no premiums .
+Label: {'sentence1': 'On health care , the NDP says there will be no privatization and no health-care premiums .', 'sentence2': 'The New Democrats also renewed their commitment to no health-care privatization and no premiums .', 'label': 1, 'idx': 226}
+1
+Sentence 1: As part of a restructuring Peregrine sold its Remedy help desk software unit last year to BMC Software Inc .
+Sentence 2: Peregrine sold its Remedy business unit to BMC Software in November for $ 355 million .
+Label: {'sentence1': 'As part of a restructuring Peregrine sold its Remedy help desk software unit last year to BMC Software Inc .', 'sentence2': 'Peregrine sold its Remedy business unit to BMC Software in November for $ 355 million .', 'label': 0, 'idx': 227}
+0
+Sentence 1: Four versions of Windows operating systems are targeted : Windows NT , Windows 2000 , Windows XP and Windows Server 2003 .
+Sentence 2: The new worm affects these Windows systems : 2000 , XP , NT 4.0 and Server 2003 .
+Label: {'sentence1': 'Four versions of Windows operating systems are targeted : Windows NT , Windows 2000 , Windows XP and Windows Server 2003 .', 'sentence2': 'The new worm affects these Windows systems : 2000 , XP , NT 4.0 and Server 2003 .', 'label': 1, 'idx': 231}
+1
+Sentence 1: Results of the 2001 Aboriginal Peoples Survey released yesterday by Statistics Canada suggest living standards have improved but still lag for those off reserves .
+Sentence 2: The 2001 Aboriginal Peoples Survey released Wednesday by Statistics Canada says living standards have improved but still lag for the Inuit and those who leave their often impoverished reserves .
+Label: {'sentence1': 'Results of the 2001 Aboriginal Peoples Survey released yesterday by Statistics Canada suggest living standards have improved but still lag for those off reserves .', 'sentence2': 'The 2001 Aboriginal Peoples Survey released Wednesday by Statistics Canada says living standards have improved but still lag for the Inuit and those who leave their often impoverished reserves .', 'label': 0, 'idx': 236}
+1
+Sentence 1: Tennessee Titans quarterback Steve McNair apologized Thursday for his arrest hours earlier in Nashville on suspicion of drunken driving and illegal possession of a handgun .
+Sentence 2: Tennessee Titans quarterback Steve McNair was arrested Thursday and charged with drunken driving and possession of a handgun .
+Label: {'sentence1': 'Tennessee Titans quarterback Steve McNair apologized Thursday for his arrest hours earlier in Nashville on suspicion of drunken driving and illegal possession of a handgun .', 'sentence2': 'Tennessee Titans quarterback Steve McNair was arrested Thursday and charged with drunken driving and possession of a handgun .', 'label': 0, 'idx': 239}
+1
+Sentence 1: The other semifinal between Guillermo Coria of Argentina and Martin Verkerk of the Netherlands is also compelling .
+Sentence 2: The other , much less likely semifinal will match seventh-seeded Guillermo Coria of Argentina against the unseeded Dutchman Martin Verkerk .
+Label: {'sentence1': 'The other semifinal between Guillermo Coria of Argentina and Martin Verkerk of the Netherlands is also compelling .', 'sentence2': 'The other , much less likely semifinal will match seventh-seeded Guillermo Coria of Argentina against the unseeded Dutchman Martin Verkerk .', 'label': 0, 'idx': 241}
+0
+Sentence 1: Wal-Mart estimates more than 100 million Americans visit their stores every week .
+Sentence 2: Each week 138 million shoppers visit Wal-Mart 's 4,750 stores .
+Label: {'sentence1': 'Wal-Mart estimates more than 100 million Americans visit their stores every week .', 'sentence2': "Each week 138 million shoppers visit Wal-Mart 's 4,750 stores .", 'label': 1, 'idx': 242}
+0
+Sentence 1: The Prime Minister , Junichiro Koizumi , joined the criticism .
+Sentence 2: Prime Minister Junichiro Koizumi said Mr Ota deserved to be criticised .
+Label: {'sentence1': 'The Prime Minister , Junichiro Koizumi , joined the criticism .', 'sentence2': 'Prime Minister Junichiro Koizumi said Mr Ota deserved to be criticised .', 'label': 1, 'idx': 247}
+1
+Sentence 1: " I notice a mood change in their priorities , " one politician said .
+Sentence 2: " I notice a mood change in their priorities , " said one Iraqi politician after meeting with Mr. Bremer .
+Label: {'sentence1': '" I notice a mood change in their priorities , " one politician said .', 'sentence2': '" I notice a mood change in their priorities , " said one Iraqi politician after meeting with Mr. Bremer .', 'label': 0, 'idx': 251}
+0
+Sentence 1: To win final United States approval , the treaty would have to be signed by President Bush and ratified by Congress .
+Sentence 2: The treaty must be signed by the president and ratified by Congress to take effect .
+Label: {'sentence1': 'To win final United States approval , the treaty would have to be signed by President Bush and ratified by Congress .', 'sentence2': 'The treaty must be signed by the president and ratified by Congress to take effect .', 'label': 1, 'idx': 260}
+0
+Sentence 1: The deal with the Carmel-based insurer is expected to close shortly , said Macklowe spokesman Howard J. Rubenstein .
+Sentence 2: Macklowe has signed a sale contract , which is expected to close shortly , said his spokesman , Howard Rubenstein .
+Label: {'sentence1': 'The deal with the Carmel-based insurer is expected to close shortly , said Macklowe spokesman Howard J. Rubenstein .', 'sentence2': 'Macklowe has signed a sale contract , which is expected to close shortly , said his spokesman , Howard Rubenstein .', 'label': 1, 'idx': 261}
+1
+Sentence 1: Yes , from today Flash memory purchased from AMD or Fujitsu will be branded Spansion .
+Sentence 2: Spansion Flash memory solutions are available worldwide from AMD and Fujitsu .
+Label: {'sentence1': 'Yes , from today Flash memory purchased from AMD or Fujitsu will be branded Spansion .', 'sentence2': 'Spansion Flash memory solutions are available worldwide from AMD and Fujitsu .', 'label': 0, 'idx': 264}
+1
+Sentence 1: Her amendment would have changed the bill by keeping with current Texas law , which gives school districts the option to hold a moment of silence and recite the pledge .
+Sentence 2: The legislation would replace the current Texas law , which gives school districts the option of holding a period of silence and reciting the pledge .
+Label: {'sentence1': 'Her amendment would have changed the bill by keeping with current Texas law , which gives school districts the option to hold a moment of silence and recite the pledge .', 'sentence2': 'The legislation would replace the current Texas law , which gives school districts the option of holding a period of silence and reciting the pledge .', 'label': 0, 'idx': 265}
+1
+Sentence 1: Talabani told him the Governing Council would " need UN assistance and advice in implementing the new decisions which have been taken . "
+Sentence 2: Talabani told him Iraqi leaders would " need U.N. assistance and advice in implementing the new decisions which have been taken " on organising an interim Iraqi government by June .
+Label: {'sentence1': 'Talabani told him the Governing Council would " need UN assistance and advice in implementing the new decisions which have been taken . "', 'sentence2': 'Talabani told him Iraqi leaders would " need U.N. assistance and advice in implementing the new decisions which have been taken " on organising an interim Iraqi government by June .', 'label': 0, 'idx': 266}
+1
+Sentence 1: Both are being held in the Armstrong County Jail .
+Sentence 2: Tatar was being held without bail in Armstrong County Prison today .
+Label: {'sentence1': 'Both are being held in the Armstrong County Jail .', 'sentence2': 'Tatar was being held without bail in Armstrong County Prison today .', 'label': 0, 'idx': 290}
+0
+Sentence 1: The Food and Drug Administration rejected ImClone 's 2001 application to sell Erbitux , citing shoddy research .
+Sentence 2: The U.S. Food and Drug Administration rejected ImClone 's original application in December 2001 , saying the trial had been sloppily conducted .
+Label: {'sentence1': "The Food and Drug Administration rejected ImClone 's 2001 application to sell Erbitux , citing shoddy research .", 'sentence2': "The U.S. Food and Drug Administration rejected ImClone 's original application in December 2001 , saying the trial had been sloppily conducted .", 'label': 1, 'idx': 291}
+0
+Sentence 1: At Tuesday 's arraignment hearing , Marsh pleaded not guilty to 122 counts of burial service fraud and 47 counts of making false statements .
+Sentence 2: At the hearing he pleaded not guilty to the burial service fraud and false statements charges .
+Label: {'sentence1': "At Tuesday 's arraignment hearing , Marsh pleaded not guilty to 122 counts of burial service fraud and 47 counts of making false statements .", 'sentence2': 'At the hearing he pleaded not guilty to the burial service fraud and false statements charges .', 'label': 1, 'idx': 306}
+0
+Sentence 1: The technology is available for download on the Microsoft Developer Network ( MSDN ) site .
+Sentence 2: WSE version 2 is available from Microsoft 's developer Web site .
+Label: {'sentence1': 'The technology is available for download on the Microsoft Developer Network ( MSDN ) site .', 'sentence2': "WSE version 2 is available from Microsoft 's developer Web site .", 'label': 1, 'idx': 324}
+0
+Sentence 1: But he said labor would see whether other senators can increase the value of awards proposed by Hatch and create a mechanism to ensure the fund remains solvent .
+Sentence 2: Democrats now hope to increase the value of awards proposed by Hatch and to create a mechanism to ensure the fund remains solvent .
+Label: {'sentence1': 'But he said labor would see whether other senators can increase the value of awards proposed by Hatch and create a mechanism to ensure the fund remains solvent .', 'sentence2': 'Democrats now hope to increase the value of awards proposed by Hatch and to create a mechanism to ensure the fund remains solvent .', 'label': 1, 'idx': 330}
+1
+Sentence 1: But 13 people have been killed since 1900 and hundreds injured .
+Sentence 2: Runners are often injured by bulls and 13 have been killed since 1900 .
+Label: {'sentence1': 'But 13 people have been killed since 1900 and hundreds injured .', 'sentence2': 'Runners are often injured by bulls and 13 have been killed since 1900 .', 'label': 0, 'idx': 335}
+1
+Sentence 1: The year-ago comparisons were restated to include Compaq results .
+Sentence 2: The year-ago numbers do not include figures from Compaq Computer .
+Label: {'sentence1': 'The year-ago comparisons were restated to include Compaq results .', 'sentence2': 'The year-ago numbers do not include figures from Compaq Computer .', 'label': 0, 'idx': 338}
+1
+Sentence 1: Navistar shares were down 44 cents , or 1.1 percent , at $ 41.19 on the New York Stock Exchange after falling as low as $ 39.93 .
+Sentence 2: Navistar shares rose a penny to $ 41.64 at late afternoon on the New York Stock Exchange after earlier falling as low as $ 39.93 .
+Label: {'sentence1': 'Navistar shares were down 44 cents , or 1.1 percent , at $ 41.19 on the New York Stock Exchange after falling as low as $ 39.93 .', 'sentence2': 'Navistar shares rose a penny to $ 41.64 at late afternoon on the New York Stock Exchange after earlier falling as low as $ 39.93 .', 'label': 0, 'idx': 349}
+1
+Sentence 1: Mr Morse is charged with assault and Mr Darvish is charged with filing a false report .
+Sentence 2: His partner Bijan Darvish is charged with filing a false police report .
+Label: {'sentence1': 'Mr Morse is charged with assault and Mr Darvish is charged with filing a false report .', 'sentence2': 'His partner Bijan Darvish is charged with filing a false police report .', 'label': 0, 'idx': 354}
+0
+Sentence 1: Last year , he made an unsuccessful bid for the Democratic nomination for governor .
+Sentence 2: He ran last year for the Democratic nomination for Texas governor , but lost the primary to multimillionaire Tony Sanchez .
+Label: {'sentence1': 'Last year , he made an unsuccessful bid for the Democratic nomination for governor .', 'sentence2': 'He ran last year for the Democratic nomination for Texas governor , but lost the primary to multimillionaire Tony Sanchez .', 'label': 1, 'idx': 360}
+0
+Sentence 1: Search technology powerhouse Google has released a new beta of its popular Internet Explorer toolbar , adding bells and whistles for surfers .
+Sentence 2: Search technology powerhouse Google has released a new beta of its popular toolbar for Internet Explorer , adding a pop-up blocker , a controversial Blogger feature , and form-filling functionality .
+Label: {'sentence1': 'Search technology powerhouse Google has released a new beta of its popular Internet Explorer toolbar , adding bells and whistles for surfers .', 'sentence2': 'Search technology powerhouse Google has released a new beta of its popular toolbar for Internet Explorer , adding a pop-up blocker , a controversial Blogger feature , and form-filling functionality .', 'label': 1, 'idx': 361}
+0
+Sentence 1: The last time the S & P had a larger one-day point loss was also May 19 , when it gave back 23.53 to close at 920.77 .
+Sentence 2: The last time it had a larger one-day loss was July 1 , 2002 , when it shed 59.41 to close at 1,403.80 .
+Label: {'sentence1': 'The last time the S & P had a larger one-day point loss was also May 19 , when it gave back 23.53 to close at 920.77 .', 'sentence2': 'The last time it had a larger one-day loss was July 1 , 2002 , when it shed 59.41 to close at 1,403.80 .', 'label': 1, 'idx': 362}
+1
+Sentence 1: Part of the accord was the implementation of a special health council that would monitor health spending and progress in reforming the health system .
+Sentence 2: A key portion of the accord was the implementation of a special council to monitor health spending , set goals for the system and measure progress in reforming health care .
+Label: {'sentence1': 'Part of the accord was the implementation of a special health council that would monitor health spending and progress in reforming the health system .', 'sentence2': 'A key portion of the accord was the implementation of a special council to monitor health spending , set goals for the system and measure progress in reforming health care .', 'label': 0, 'idx': 370}
+1
+Sentence 1: Genentech Inc . , the world 's second-biggest biotechnology company , and Xoma Ltd. said their Rapitva drug failed to help patients with rheumatoid arthritis in a study .
+Sentence 2: Genentech Inc . , the world 's second-largest biotechnology company , and Xoma Ltd. said they will terminate Phase II testing of their Raptiva rheumatoid-arthritis drug after finding no benefit for patients .
+Label: {'sentence1': "Genentech Inc . , the world 's second-biggest biotechnology company , and Xoma Ltd. said their Rapitva drug failed to help patients with rheumatoid arthritis in a study .", 'sentence2': "Genentech Inc . , the world 's second-largest biotechnology company , and Xoma Ltd. said they will terminate Phase II testing of their Raptiva rheumatoid-arthritis drug after finding no benefit for patients .", 'label': 0, 'idx': 375}
+0
+Sentence 1: Federal prosecutors , the Securities and Exchange Commission , and the mortgage company 's regulator launched investigations into Freddie Mac 's shake-up .
+Sentence 2: The Securities and Exchange Commission and the U.S. Attorney have opened investigations into Freddie Mac over its accounting practices .
+Label: {'sentence1': "Federal prosecutors , the Securities and Exchange Commission , and the mortgage company 's regulator launched investigations into Freddie Mac 's shake-up .", 'sentence2': 'The Securities and Exchange Commission and the U.S. Attorney have opened investigations into Freddie Mac over its accounting practices .', 'label': 1, 'idx': 382}
+0
+Sentence 1: Ahold Chairman Henny de Ruiter offered shareholders at the meeting his " sincere apologies " for the scandal .
+Sentence 2: Board Chairman Henny de Ruiter offered shareholders at the meeting his " sincere apologies " for events at Foodservice and elsewhere in the embattled group .
+Label: {'sentence1': 'Ahold Chairman Henny de Ruiter offered shareholders at the meeting his " sincere apologies " for the scandal .', 'sentence2': 'Board Chairman Henny de Ruiter offered shareholders at the meeting his " sincere apologies " for events at Foodservice and elsewhere in the embattled group .', 'label': 1, 'idx': 394}
+0
+Sentence 1: The American decision provoked an angry reaction from the European Commission , which described the move as " legally unwarranted , economically unfounded and politically unhelpful " .
+Sentence 2: The European Commission , the EU 's powerful executive body , described the move as " legally unwarranted , economically unfounded and politically unhelpful . "
+Label: {'sentence1': 'The American decision provoked an angry reaction from the European Commission , which described the move as " legally unwarranted , economically unfounded and politically unhelpful " .', 'sentence2': 'The European Commission , the EU \'s powerful executive body , described the move as " legally unwarranted , economically unfounded and politically unhelpful . "', 'label': 1, 'idx': 399}
+0
+Sentence 1: Australia , Chile , Colombia , El Salvador , Honduras , Mexico , New Zealand , Peru and Uruguay will also support the challenge .
+Sentence 2: Nine other countries , including Australia , Chile , Colombia , El Salvador and Mexico , are supporting the case .
+Label: {'sentence1': 'Australia , Chile , Colombia , El Salvador , Honduras , Mexico , New Zealand , Peru and Uruguay will also support the challenge .', 'sentence2': 'Nine other countries , including Australia , Chile , Colombia , El Salvador and Mexico , are supporting the case .', 'label': 1, 'idx': 401}
+0
+Sentence 1: In April , it had forecast operating earnings in the range of 60 to 80 cents a share .
+Sentence 2: Kodak expects earnings of 5 cents to 25 cents a share in the quarter .
+Label: {'sentence1': 'In April , it had forecast operating earnings in the range of 60 to 80 cents a share .', 'sentence2': 'Kodak expects earnings of 5 cents to 25 cents a share in the quarter .', 'label': 1, 'idx': 410}
+0
+Sentence 1: Hampton Township is a few miles northeast of Bay City , about 100 miles away .
+Sentence 2: Hampton Township is located a few kilometers northeast of Bay City , near Michigan 's Thumb .
+Label: {'sentence1': 'Hampton Township is a few miles northeast of Bay City , about 100 miles away .', 'sentence2': "Hampton Township is located a few kilometers northeast of Bay City , near Michigan 's Thumb .", 'label': 1, 'idx': 411}
+1
+Sentence 1: The monkeys could track their progress by watching a schematic representation of the arm and its motions on a video screen .
+Sentence 2: The arm was kept in a separate room , but the monkeys could track their progress by watching a representation of the arm and its motions on a video screen .
+Label: {'sentence1': 'The monkeys could track their progress by watching a schematic representation of the arm and its motions on a video screen .', 'sentence2': 'The arm was kept in a separate room , but the monkeys could track their progress by watching a representation of the arm and its motions on a video screen .', 'label': 0, 'idx': 425}
+0
+Sentence 1: Although it 's unclear whether Sobig was to blame , The New York Times also asked employees at its headquarters yesterday to shut down their computers because of " system difficulties . "
+Sentence 2: The New York Times asked employees at its headquarters to shut down their computers yesterday because of " computing system difficulties . "
+Label: {'sentence1': 'Although it \'s unclear whether Sobig was to blame , The New York Times also asked employees at its headquarters yesterday to shut down their computers because of " system difficulties . "', 'sentence2': 'The New York Times asked employees at its headquarters to shut down their computers yesterday because of " computing system difficulties . "', 'label': 1, 'idx': 430}
+0
+Sentence 1: They came despite what BA called a " difficult quarter " , which it said included unofficial industrial action at Heathrow .
+Sentence 2: BA said the second quarter , which included unofficial industrial action at Heathrow , had been difficult .
+Label: {'sentence1': 'They came despite what BA called a " difficult quarter " , which it said included unofficial industrial action at Heathrow .', 'sentence2': 'BA said the second quarter , which included unofficial industrial action at Heathrow , had been difficult .', 'label': 1, 'idx': 437}
+0
+Sentence 1: The leading actress nod went to energetic newcomer Marissa Jaret Winokur as Edna 's daughter Tracy .
+Sentence 2: Marissa Jaret Winokur , as Tracy , won for best actress in a musical .
+Label: {'sentence1': "The leading actress nod went to energetic newcomer Marissa Jaret Winokur as Edna 's daughter Tracy .", 'sentence2': 'Marissa Jaret Winokur , as Tracy , won for best actress in a musical .', 'label': 1, 'idx': 453}
+0
+Sentence 1: Federal and local officials , including Bush , saw no apparent sign of terrorism .
+Sentence 2: Federal officials earlier said there is no evidence of terrorism .
+Label: {'sentence1': 'Federal and local officials , including Bush , saw no apparent sign of terrorism .', 'sentence2': 'Federal officials earlier said there is no evidence of terrorism .', 'label': 1, 'idx': 455}
+0
+Sentence 1: Several current and former ferry officers have said the rules were routinely ignored and seldom enforced .
+Sentence 2: Some current and former ferry employees have said those rules were often ignored .
+Label: {'sentence1': 'Several current and former ferry officers have said the rules were routinely ignored and seldom enforced .', 'sentence2': 'Some current and former ferry employees have said those rules were often ignored .', 'label': 1, 'idx': 462}
+1
+Sentence 1: " Further testing is still under way , but at this stage , given the early detection , the outlook in such instances would be positive , " the specialist said yesterday .
+Sentence 2: " But at this stage , given the early detection , the outlook in such instances would be positive , " he said .
+Label: {'sentence1': '" Further testing is still under way , but at this stage , given the early detection , the outlook in such instances would be positive , " the specialist said yesterday .', 'sentence2': '" But at this stage , given the early detection , the outlook in such instances would be positive , " he said .', 'label': 0, 'idx': 463}
+1
+Sentence 1: The third appointment was to a new job , executive vice president and chief staff officer .
+Sentence 2: Bruce N. Hawthorne , 53 , was named executive vice president and chief staff officer .
+Label: {'sentence1': 'The third appointment was to a new job , executive vice president and chief staff officer .', 'sentence2': 'Bruce N. Hawthorne , 53 , was named executive vice president and chief staff officer .', 'label': 0, 'idx': 480}
+0
+Sentence 1: SARS went on to claim the lives of 44 people in the Toronto area , including two nurses and a doctor .
+Sentence 2: The virus killed 44 people in the Toronto area , including one doctor and two nurses .
+Label: {'sentence1': 'SARS went on to claim the lives of 44 people in the Toronto area , including two nurses and a doctor .', 'sentence2': 'The virus killed 44 people in the Toronto area , including one doctor and two nurses .', 'label': 1, 'idx': 482}
+0
+Sentence 1: The router will be available in the first quarter of 2004 and will cost around $ 200 , the company said .
+Sentence 2: Netgear prices the WGT634U Super Wireless Media Router , which will be available in the first quarter of 2004 , at under $ 200 .
+Label: {'sentence1': 'The router will be available in the first quarter of 2004 and will cost around $ 200 , the company said .', 'sentence2': 'Netgear prices the WGT634U Super Wireless Media Router , which will be available in the first quarter of 2004 , at under $ 200 .', 'label': 1, 'idx': 493}
+0
+Sentence 1: Elan would receive an additional $ 25 million in January if Skelaxin retains patent exclusivity , and get a cut of sales on a sliding scale through 2021 .
+Sentence 2: Elan would receive an additional $ 25 million in January if Skelaxin retains patent exclusivity and would also get a five percent share of sales from 2005 .
+Label: {'sentence1': 'Elan would receive an additional $ 25 million in January if Skelaxin retains patent exclusivity , and get a cut of sales on a sliding scale through 2021 .', 'sentence2': 'Elan would receive an additional $ 25 million in January if Skelaxin retains patent exclusivity and would also get a five percent share of sales from 2005 .', 'label': 1, 'idx': 513}
+1
+Sentence 1: McGill also detailed the hole that had been cut in the Caprice 's trunk .
+Sentence 2: McGill also said a dark glove was stuffed into a hole that had been cut in the Caprice 's trunk .
+Label: {'sentence1': "McGill also detailed the hole that had been cut in the Caprice 's trunk .", 'sentence2': "McGill also said a dark glove was stuffed into a hole that had been cut in the Caprice 's trunk .", 'label': 0, 'idx': 517}
+1
+Sentence 1: " City-grown pollution , and ozone in particular , is tougher on country trees , " says Cornell University ecologist Jillian Gregg .
+Sentence 2: " I know this sounds counterintuitive , but it 's true : City-grown pollution -- and ozone in particular -- is tougher on country trees , " U.S. ecologist Jillian Gregg said .
+Label: {'sentence1': '" City-grown pollution , and ozone in particular , is tougher on country trees , " says Cornell University ecologist Jillian Gregg .', 'sentence2': '" I know this sounds counterintuitive , but it \'s true : City-grown pollution -- and ozone in particular -- is tougher on country trees , " U.S. ecologist Jillian Gregg said .', 'label': 0, 'idx': 537}
+1
+Sentence 1: The company said it would cut the wholesale price of most top-line CDs to $ 9.09 from $ 12.02 .
+Sentence 2: The company also said it would cut wholesale prices on cassettes and change the suggested retail price to $ 8.98 .
+Label: {'sentence1': 'The company said it would cut the wholesale price of most top-line CDs to $ 9.09 from $ 12.02 .', 'sentence2': 'The company also said it would cut wholesale prices on cassettes and change the suggested retail price to $ 8.98 .', 'label': 0, 'idx': 549}
+0
+Sentence 1: He failed a field sobriety test and a blood-alcohol test produced a reading of 0.18 -- well above Tennessee 's level of presumed intoxication of 0.10 , police said .
+Sentence 2: The player 's eyes were bloodshot and a blood-alcohol test produced a reading of 0.18 - well above Tennessee 's level of presumed intoxication of 0.10 , the report said .
+Label: {'sentence1': "He failed a field sobriety test and a blood-alcohol test produced a reading of 0.18 -- well above Tennessee 's level of presumed intoxication of 0.10 , police said .", 'sentence2': "The player 's eyes were bloodshot and a blood-alcohol test produced a reading of 0.18 - well above Tennessee 's level of presumed intoxication of 0.10 , the report said .", 'label': 1, 'idx': 552}
+0
+Sentence 1: Early Wednesday , the benchmark 10-year US10YT = RR had lost 16 / 32 in price , driving its yield up to 3.33 percent from 3.26 percent late Tuesday .
+Sentence 2: Further out the curve , the benchmark 10-year note US10YT = RR shed 26 / 32 in price , taking its yield to 3.27 percent from 3.17 percent .
+Label: {'sentence1': 'Early Wednesday , the benchmark 10-year US10YT = RR had lost 16 / 32 in price , driving its yield up to 3.33 percent from 3.26 percent late Tuesday .', 'sentence2': 'Further out the curve , the benchmark 10-year note US10YT = RR shed 26 / 32 in price , taking its yield to 3.27 percent from 3.17 percent .', 'label': 1, 'idx': 563}
+1
+Sentence 1: The army said the raid , which comes just days after Israeli troops shot and killed Abdullah Kawasme , the Hamas leader in the city , targeted militants in Hamas .
+Sentence 2: The arrests came just days after Israeli troops shot and killed Abdullah Kawasme , the militant group 's leader in Hebron .
+Label: {'sentence1': 'The army said the raid , which comes just days after Israeli troops shot and killed Abdullah Kawasme , the Hamas leader in the city , targeted militants in Hamas .', 'sentence2': "The arrests came just days after Israeli troops shot and killed Abdullah Kawasme , the militant group 's leader in Hebron .", 'label': 0, 'idx': 564}
+0
+Sentence 1: Energy and Commerce Committee Chairman Billy Tauzin , R-La . , said Friday that he will hold a hearing on the blackout as soon as lawmakers return in September .
+Sentence 2: House Energy and Commerce Committee Chairman Billy Tauzin , R-La . , said his committee will hold a hearing on the power outage in September .
+Label: {'sentence1': 'Energy and Commerce Committee Chairman Billy Tauzin , R-La . , said Friday that he will hold a hearing on the blackout as soon as lawmakers return in September .', 'sentence2': 'House Energy and Commerce Committee Chairman Billy Tauzin , R-La . , said his committee will hold a hearing on the power outage in September .', 'label': 1, 'idx': 565}
+0
+Sentence 1: The Passion will feature actor James Caviezel as Christ and actress Monica Bellucci as Mary Magdalene .
+Sentence 2: Directed by Gibson , the reported $ 25 million production stars Jim Caviezel as Jesus and Monica Bellucci as Mary Magdalene .
+Label: {'sentence1': 'The Passion will feature actor James Caviezel as Christ and actress Monica Bellucci as Mary Magdalene .', 'sentence2': 'Directed by Gibson , the reported $ 25 million production stars Jim Caviezel as Jesus and Monica Bellucci as Mary Magdalene .', 'label': 1, 'idx': 573}
+1
+Sentence 1: The Dodgers won their sixth consecutive game their longest win streak since 2001 as they edged Colorado , 3-2 , Wednesday in front of a crowd of 25,332 at Dodger Stadium .
+Sentence 2: The Dodgers won their sixth consecutive game and seventh in their last nine as they beat Colorado 3-2 on Wednesday in front of a crowd of 25,332 at Dodger Stadium .
+Label: {'sentence1': 'The Dodgers won their sixth consecutive game their longest win streak since 2001 as they edged Colorado , 3-2 , Wednesday in front of a crowd of 25,332 at Dodger Stadium .', 'sentence2': 'The Dodgers won their sixth consecutive game and seventh in their last nine as they beat Colorado 3-2 on Wednesday in front of a crowd of 25,332 at Dodger Stadium .', 'label': 0, 'idx': 579}
+1
+Sentence 1: Mr Pollard said : " This is a terrible personal tragedy and a shocking blow for James 's family .
+Sentence 2: Nick Pollard , the head of Sky News said : " This is a shocking blow for James 's family .
+Label: {'sentence1': 'Mr Pollard said : " This is a terrible personal tragedy and a shocking blow for James \'s family .', 'sentence2': 'Nick Pollard , the head of Sky News said : " This is a shocking blow for James \'s family .', 'label': 0, 'idx': 581}
+0
+Sentence 1: The Senate version has no coverage for annual costs between $ 4,450 and $ 5,800 .
+Sentence 2: They would receive no help with costs between $ 4,500 and $ 5,800 .
+Label: {'sentence1': 'The Senate version has no coverage for annual costs between $ 4,450 and $ 5,800 .', 'sentence2': 'They would receive no help with costs between $ 4,500 and $ 5,800 .', 'label': 1, 'idx': 590}
+1
+Sentence 1: Stocks dipped lower Tuesday as investors opted to cash in profits from Monday 's big rally despite a trio of reports suggesting modest improvement in the economy .
+Sentence 2: Wall Street moved tentatively higher Tuesday as investors weighed a trio of reports showing modest economic improvement against an urge to cash in profits from Monday 's big rally .
+Label: {'sentence1': "Stocks dipped lower Tuesday as investors opted to cash in profits from Monday 's big rally despite a trio of reports suggesting modest improvement in the economy .", 'sentence2': "Wall Street moved tentatively higher Tuesday as investors weighed a trio of reports showing modest economic improvement against an urge to cash in profits from Monday 's big rally .", 'label': 0, 'idx': 592}
+0
+Sentence 1: Shares of McDonald 's Corp. and Wendy 's International Inc. continued a modest run-up on the New York Stock Exchange Monday .
+Sentence 2: Shares of McDonald 's and Wendy 's continued their recent recovery Monday , rising more than 1 percent on the New York Stock Exchange in afternoon trade .
+Label: {'sentence1': "Shares of McDonald 's Corp. and Wendy 's International Inc. continued a modest run-up on the New York Stock Exchange Monday .", 'sentence2': "Shares of McDonald 's and Wendy 's continued their recent recovery Monday , rising more than 1 percent on the New York Stock Exchange in afternoon trade .", 'label': 1, 'idx': 599}
+0
+Sentence 1: In winter , it is transformed into a treacherous embankment , a mountain of ice and snow that blankets everything .
+Sentence 2: In winter , Terrapin Point is transformed into a treacherous embankment of ice and snow that blankets everything -- the park , the railings , even the lampposts .
+Label: {'sentence1': 'In winter , it is transformed into a treacherous embankment , a mountain of ice and snow that blankets everything .', 'sentence2': 'In winter , Terrapin Point is transformed into a treacherous embankment of ice and snow that blankets everything -- the park , the railings , even the lampposts .', 'label': 1, 'idx': 600}
+0
+Sentence 1: The formula for its baby food is prepared by the German-owned Humana Milchunion .
+Sentence 2: The formula is produced for Remedia by German company Humana Milchunion .
+Label: {'sentence1': 'The formula for its baby food is prepared by the German-owned Humana Milchunion .', 'sentence2': 'The formula is produced for Remedia by German company Humana Milchunion .', 'label': 1, 'idx': 604}
+0
+Sentence 1: The findings are published in the November 6 edition of the journal Nature .
+Sentence 2: Both studies are published on Thursday in Nature , the British weekly science journal .
+Label: {'sentence1': 'The findings are published in the November 6 edition of the journal Nature .', 'sentence2': 'Both studies are published on Thursday in Nature , the British weekly science journal .', 'label': 1, 'idx': 606}
+1
+Sentence 1: The man wasn 't on the ice , but trapped in the rapids , swaying in an eddy about 250 feet from the shore .
+Sentence 2: The man was trapped about 250 feet from the shore , right at the edge of the falls .
+Label: {'sentence1': "The man wasn 't on the ice , but trapped in the rapids , swaying in an eddy about 250 feet from the shore .", 'sentence2': 'The man was trapped about 250 feet from the shore , right at the edge of the falls .', 'label': 0, 'idx': 607}
+0
+Sentence 1: Chief Justice William Rehnquist and Justices Antonin Scalia and Sandra Day O 'Connor agreed with Thomas .
+Sentence 2: He was joined by Chief Justice William H. Rehnquist and Justices Sandra Day O 'Connor and Antonin Scalia .
+Label: {'sentence1': "Chief Justice William Rehnquist and Justices Antonin Scalia and Sandra Day O 'Connor agreed with Thomas .", 'sentence2': "He was joined by Chief Justice William H. Rehnquist and Justices Sandra Day O 'Connor and Antonin Scalia .", 'label': 1, 'idx': 622}
+0
+Sentence 1: It estimated on Thursday it has a 51 percent market share in Europe .
+Sentence 2: Boston Scientific said it has gained 51 percent of the coated-stent market in Europe .
+Label: {'sentence1': 'It estimated on Thursday it has a 51 percent market share in Europe .', 'sentence2': 'Boston Scientific said it has gained 51 percent of the coated-stent market in Europe .', 'label': 1, 'idx': 631}
+1
+Sentence 1: The mother also alleged in the lawsuit that she was sexually assaulted by one of the guards .
+Sentence 2: The mother also contended that she was sexually assaulted by one of the guards during the 1998 confrontation .
+Label: {'sentence1': 'The mother also alleged in the lawsuit that she was sexually assaulted by one of the guards .', 'sentence2': 'The mother also contended that she was sexually assaulted by one of the guards during the 1998 confrontation .', 'label': 0, 'idx': 638}
+1
+Sentence 1: The bank 's shares fell 45 cents in trading yesterday to $ 91.51 per share .
+Sentence 2: Shares of M & T , which is based in Buffalo , fell 41 cents , to $ 91.51 .
+Label: {'sentence1': "The bank 's shares fell 45 cents in trading yesterday to $ 91.51 per share .", 'sentence2': 'Shares of M & T , which is based in Buffalo , fell 41 cents , to $ 91.51 .', 'label': 0, 'idx': 642}
+0
+Sentence 1: Excluding litigation charges , RIM 's loss narrowed even further to 1 cent a share .
+Sentence 2: Excluding patent litigation , RIM 's loss for the quarter was $ 700,000 , or 1 cent per share .
+Label: {'sentence1': "Excluding litigation charges , RIM 's loss narrowed even further to 1 cent a share .", 'sentence2': "Excluding patent litigation , RIM 's loss for the quarter was $ 700,000 , or 1 cent per share .", 'label': 1, 'idx': 645}
+1
+Sentence 1: I think we made the right case and did the right thing . "
+Sentence 2: Mr Blair went on : " I think we did the right thing in relation to Iraq .
+Label: {'sentence1': 'I think we made the right case and did the right thing . "', 'sentence2': 'Mr Blair went on : " I think we did the right thing in relation to Iraq .', 'label': 0, 'idx': 649}
+0
+Sentence 1: It was better under Saddam , " said 28-year-old Mushtaq Talib , a job-seeking army deserter , when asked what message he would like to convey to Powell .
+Sentence 2: " It was better under Saddam ... The war did nothing for us , " said 28-year-old Mushtaq Talib , a job-seeking army deserter , when asked what message he would give to Powell .
+Label: {'sentence1': 'It was better under Saddam , " said 28-year-old Mushtaq Talib , a job-seeking army deserter , when asked what message he would like to convey to Powell .', 'sentence2': '" It was better under Saddam ... The war did nothing for us , " said 28-year-old Mushtaq Talib , a job-seeking army deserter , when asked what message he would give to Powell .', 'label': 1, 'idx': 651}
+0
+Sentence 1: Among the Group of Seven nations , the leading indicator rose to 119.1 from 118.2 in April .
+Sentence 2: The Group of Seven nations , meanwhile , also saw some improvement , with the leading indicator rising to 119.1 , from April 's 118.2 .
+Label: {'sentence1': 'Among the Group of Seven nations , the leading indicator rose to 119.1 from 118.2 in April .', 'sentence2': "The Group of Seven nations , meanwhile , also saw some improvement , with the leading indicator rising to 119.1 , from April 's 118.2 .", 'label': 1, 'idx': 654}
+0
+Sentence 1: After that , college President Paul Pribbenow told him to wrap up his speech .
+Sentence 2: After Hedges ' microphone was unplugged for a second time , Pribbenow told him to wrap up his speech .
+Label: {'sentence1': 'After that , college President Paul Pribbenow told him to wrap up his speech .', 'sentence2': "After Hedges ' microphone was unplugged for a second time , Pribbenow told him to wrap up his speech .", 'label': 1, 'idx': 669}
+1
+Sentence 1: Joe Kernan , who had been lieutenant governor for the past seven years , was sworn in as governor after O 'Bannon died Saturday .
+Sentence 2: Kernan , who was O 'Bannon 's lieutenant governor , friend and political partner , was sworn in six hours after O 'Bannon died Saturday .
+Label: {'sentence1': "Joe Kernan , who had been lieutenant governor for the past seven years , was sworn in as governor after O 'Bannon died Saturday .", 'sentence2': "Kernan , who was O 'Bannon 's lieutenant governor , friend and political partner , was sworn in six hours after O 'Bannon died Saturday .", 'label': 0, 'idx': 693}
+1
+Sentence 1: The fines are part of failed Republican efforts to force or entice the Democrats to return .
+Sentence 2: Perry said he backs the Senate 's efforts , including the fines , to force the Democrats to return .
+Label: {'sentence1': 'The fines are part of failed Republican efforts to force or entice the Democrats to return .', 'sentence2': "Perry said he backs the Senate 's efforts , including the fines , to force the Democrats to return .", 'label': 0, 'idx': 694}
+0
+Sentence 1: An injured woman co-worker also was hospitalized and was listed in good condition .
+Sentence 2: A woman was listed in good condition at Memorial 's HealthPark campus , he said .
+Label: {'sentence1': 'An injured woman co-worker also was hospitalized and was listed in good condition .', 'sentence2': "A woman was listed in good condition at Memorial 's HealthPark campus , he said .", 'label': 1, 'idx': 700}
+1
+Sentence 1: Young has 28 days to file a response and ask the NASD for a hearing .
+Sentence 2: Under NASD regulations , Mr. Young can file a response and request a hearing before an NASD panel .
+Label: {'sentence1': 'Young has 28 days to file a response and ask the NASD for a hearing .', 'sentence2': 'Under NASD regulations , Mr. Young can file a response and request a hearing before an NASD panel .', 'label': 0, 'idx': 715}
+0
+Sentence 1: Gemstar 's shares gathered up 2.6 percent , adding 14 cents to $ 5.49 at the close .
+Sentence 2: Gemstar shares moved higher on the news , closing up 2.6 percent at $ 5.49 on Nasdaq .
+Label: {'sentence1': "Gemstar 's shares gathered up 2.6 percent , adding 14 cents to $ 5.49 at the close .", 'sentence2': 'Gemstar shares moved higher on the news , closing up 2.6 percent at $ 5.49 on Nasdaq .', 'label': 1, 'idx': 739}
+0
+Sentence 1: " If we could do that throughout the world , we could end terrorism , " he said .
+Sentence 2: This is a hospital that treats everybody as people , and if we could do that throughout the world , we could end terrorism . "
+Label: {'sentence1': '" If we could do that throughout the world , we could end terrorism , " he said .', 'sentence2': 'This is a hospital that treats everybody as people , and if we could do that throughout the world , we could end terrorism . "', 'label': 1, 'idx': 747}
+0
+Sentence 1: She recently got the endorsement of the National Organization for Women and the National Women 's Political Caucus .
+Sentence 2: Moseley Braun has scored endorsements from the National Organization for Women and the National Women 's Political Caucus .
+Label: {'sentence1': "She recently got the endorsement of the National Organization for Women and the National Women 's Political Caucus .", 'sentence2': "Moseley Braun has scored endorsements from the National Organization for Women and the National Women 's Political Caucus .", 'label': 1, 'idx': 752}
+0
+Sentence 1: State police said as many as 30 workers were trapped immediately after the garage collapsed .
+Sentence 2: As many as 30 people were believed to be trapped inside initially , the state police said .
+Label: {'sentence1': 'State police said as many as 30 workers were trapped immediately after the garage collapsed .', 'sentence2': 'As many as 30 people were believed to be trapped inside initially , the state police said .', 'label': 1, 'idx': 757}
+0
+Sentence 1: The case comes out of Illinois and involves a for-profit company called Telemarketing Associates Inc .
+Sentence 2: The case decided Monday centered around an Illinois fund-raiser , Telemarketing Associates .
+Label: {'sentence1': 'The case comes out of Illinois and involves a for-profit company called Telemarketing Associates Inc .', 'sentence2': 'The case decided Monday centered around an Illinois fund-raiser , Telemarketing Associates .', 'label': 1, 'idx': 769}
+1
+Sentence 1: Intel Corp. narrowed its second-quarter revenue forecast Thursday , saying sales of microprocessors were at the high end of normal while demand for communications chips remained soft .
+Sentence 2: Intel Corp. , the world 's biggest semiconductor maker , narrowed its second-quarter sales forecast as demand for microprocessors is reaching the high end of the company 's expectations .
+Label: {'sentence1': 'Intel Corp. narrowed its second-quarter revenue forecast Thursday , saying sales of microprocessors were at the high end of normal while demand for communications chips remained soft .', 'sentence2': "Intel Corp. , the world 's biggest semiconductor maker , narrowed its second-quarter sales forecast as demand for microprocessors is reaching the high end of the company 's expectations .", 'label': 0, 'idx': 780}
+0
+Sentence 1: He met members of the nation 's biggest business lobby and was quoted as saying he wanted China to adopt flexible trade and foreign exchange policies .
+Sentence 2: Japan 's business lobby quoted Snow as saying he wanted China to be flexible on its trade and foreign exchange policies .
+Label: {'sentence1': "He met members of the nation 's biggest business lobby and was quoted as saying he wanted China to adopt flexible trade and foreign exchange policies .", 'sentence2': "Japan 's business lobby quoted Snow as saying he wanted China to be flexible on its trade and foreign exchange policies .", 'label': 1, 'idx': 781}
+0
+Sentence 1: The industry 's largest association is urging its members not call the more than 50 million home and cellular numbers on the list .
+Sentence 2: Meantime , the Direct Marketing Association said its members should not call the nearly 51 million numbers on the list .
+Label: {'sentence1': "The industry 's largest association is urging its members not call the more than 50 million home and cellular numbers on the list .", 'sentence2': 'Meantime , the Direct Marketing Association said its members should not call the nearly 51 million numbers on the list .', 'label': 1, 'idx': 794}
+1
+Sentence 1: He presented the map at last week 's Sixth International Conference on Mars in Pasadena , Calif .
+Sentence 2: Feldman presented the most recent findings and the new map Friday at the sixth International Conference on Mars in Pasadena , Calif .
+Label: {'sentence1': "He presented the map at last week 's Sixth International Conference on Mars in Pasadena , Calif .", 'sentence2': 'Feldman presented the most recent findings and the new map Friday at the sixth International Conference on Mars in Pasadena , Calif .', 'label': 0, 'idx': 798}
+1
+Sentence 1: " This is an easy case in my view and wholly without merit , both factually and legally . "
+Sentence 2: " This case is wholly without merit , both factually and legally , " Judge Denny Chin scoffed .
+Label: {'sentence1': '" This is an easy case in my view and wholly without merit , both factually and legally . "', 'sentence2': '" This case is wholly without merit , both factually and legally , " Judge Denny Chin scoffed .', 'label': 0, 'idx': 799}
+0
+Sentence 1: The weather service reported maximum sustained winds of nearly 105 miles an hour with stronger gusts .
+Sentence 2: Maximum sustained winds were around 40 mph , with stronger gusts .
+Label: {'sentence1': 'The weather service reported maximum sustained winds of nearly 105 miles an hour with stronger gusts .', 'sentence2': 'Maximum sustained winds were around 40 mph , with stronger gusts .', 'label': 1, 'idx': 803}
+0
+Sentence 1: The updated products include Pylon Pro , Pylon Conduit , Pylon Anywhere , and Pylon Application Server .
+Sentence 2: The new products on the desktop side include the latest versions of Pylon Conduit and Pylon Pro .
+Label: {'sentence1': 'The updated products include Pylon Pro , Pylon Conduit , Pylon Anywhere , and Pylon Application Server .', 'sentence2': 'The new products on the desktop side include the latest versions of Pylon Conduit and Pylon Pro .', 'label': 1, 'idx': 805}
+0
+Sentence 1: Misfeldt agreed to pay $ US346,807 in allegedly ill-gotten gains and $ US111,595 in interest .
+Sentence 2: Mr. Misfeldt agreed to surrender $ 346,807 in trading profits and $ 111,595 in interest .
+Label: {'sentence1': 'Misfeldt agreed to pay $ US346,807 in allegedly ill-gotten gains and $ US111,595 in interest .', 'sentence2': 'Mr. Misfeldt agreed to surrender $ 346,807 in trading profits and $ 111,595 in interest .', 'label': 1, 'idx': 808}
+1
+Sentence 1: Penn Traffic a week ago disclosed that it was considering filing for bankruptcy , among other options .
+Sentence 2: That began on May 21 , after Penn Traffic announced it was considering bankruptcy .
+Label: {'sentence1': 'Penn Traffic a week ago disclosed that it was considering filing for bankruptcy , among other options .', 'sentence2': 'That began on May 21 , after Penn Traffic announced it was considering bankruptcy .', 'label': 0, 'idx': 809}
+0
+Sentence 1: The only other person who had not been accounted for Sunday was a man from Fort Worth , Texas .
+Sentence 2: Another person , a man from Fort Worth , Texas , also was missing .
+Label: {'sentence1': 'The only other person who had not been accounted for Sunday was a man from Fort Worth , Texas .', 'sentence2': 'Another person , a man from Fort Worth , Texas , also was missing .', 'label': 1, 'idx': 826}
+0
+Sentence 1: At this writing , the fate of Alabama Supreme Court Chief Justice Roy Moore hangs precariously in the hands of the states court of the judiciary .
+Sentence 2: Moore , the suspended chief justice of the Alabama Supreme Court , stands trial before the Alabama Court of the Judiciary .
+Label: {'sentence1': 'At this writing , the fate of Alabama Supreme Court Chief Justice Roy Moore hangs precariously in the hands of the states court of the judiciary .', 'sentence2': 'Moore , the suspended chief justice of the Alabama Supreme Court , stands trial before the Alabama Court of the Judiciary .', 'label': 1, 'idx': 849}
+1
+Sentence 1: Penn Traffic 's stock closed at 36 cents per share on Wednesday on Nasdaq , up two cents .
+Sentence 2: Penn Traffic stock closed Wednesday at 36 cents , up 2 cents , or 6.2 percent , from Tuesday 's close .
+Label: {'sentence1': "Penn Traffic 's stock closed at 36 cents per share on Wednesday on Nasdaq , up two cents .", 'sentence2': "Penn Traffic stock closed Wednesday at 36 cents , up 2 cents , or 6.2 percent , from Tuesday 's close .", 'label': 0, 'idx': 850}
+1
+Sentence 1: Rusch has also allowed five or more earned runs in each of his last three starts .
+Sentence 2: Redman has allowed two earned runs or less in six of his nine starts .
+Label: {'sentence1': 'Rusch has also allowed five or more earned runs in each of his last three starts .', 'sentence2': 'Redman has allowed two earned runs or less in six of his nine starts .', 'label': 0, 'idx': 853}
+1
+Sentence 1: The Bush administration said Monday it will propose a rule change allowing governors to seek exemptions from a policy blocking road-building in remote areas of national forests .
+Sentence 2: The Bush administration wants to let governors seek exemptions from a ban on mining , drilling and logging in one-third of the national forests .
+Label: {'sentence1': 'The Bush administration said Monday it will propose a rule change allowing governors to seek exemptions from a policy blocking road-building in remote areas of national forests .', 'sentence2': 'The Bush administration wants to let governors seek exemptions from a ban on mining , drilling and logging in one-third of the national forests .', 'label': 0, 'idx': 862}
+0
+Sentence 1: After 10 years of debate , the government is requiring food labels to reveal exact levels of the artery clogger .
+Sentence 2: That 's about to change , now that the government is requiring food labels to reveal exact levels of the artery clogger .
+Label: {'sentence1': 'After 10 years of debate , the government is requiring food labels to reveal exact levels of the artery clogger .', 'sentence2': "That 's about to change , now that the government is requiring food labels to reveal exact levels of the artery clogger .", 'label': 1, 'idx': 864}
+0
+Sentence 1: The Dow Jones industrial average < .DJI > was off 58.69 points , or 0.64 percent , at 9,137.86 .
+Sentence 2: The Dow Jones industrial average .DJI fell 79.43 points , or 0.86 percent , to 9,117.12 on Friday .
+Label: {'sentence1': 'The Dow Jones industrial average < .DJI > was off 58.69 points , or 0.64 percent , at 9,137.86 .', 'sentence2': 'The Dow Jones industrial average .DJI fell 79.43 points , or 0.86 percent , to 9,117.12 on Friday .', 'label': 1, 'idx': 868}
+0
+Sentence 1: In the latest top-level shuffle at CNN , Teya Ryan is leaving her post as general manager of U.S. programming , the network announced .
+Sentence 2: In CNN 's latest move to rejuvenate ratings , the network has ousted Teya Ryan , general manager of U.S. programming .
+Label: {'sentence1': 'In the latest top-level shuffle at CNN , Teya Ryan is leaving her post as general manager of U.S. programming , the network announced .', 'sentence2': "In CNN 's latest move to rejuvenate ratings , the network has ousted Teya Ryan , general manager of U.S. programming .", 'label': 1, 'idx': 881}
+1
+Sentence 1: With diplomacy heating up in the nearly 10-month-old nuclear crisis , Chinese Foreign Minister Li Zhaoxing is slated to visit South Korea from August 13 to 15 .
+Sentence 2: With diplomacy heating up in the nearly 10-month-old crisis , Chinese Foreign Minister Li Zhaoxing flies to Japan on Sunday en route to South Korea on August 13 .
+Label: {'sentence1': 'With diplomacy heating up in the nearly 10-month-old nuclear crisis , Chinese Foreign Minister Li Zhaoxing is slated to visit South Korea from August 13 to 15 .', 'sentence2': 'With diplomacy heating up in the nearly 10-month-old crisis , Chinese Foreign Minister Li Zhaoxing flies to Japan on Sunday en route to South Korea on August 13 .', 'label': 0, 'idx': 884}
+1
+Sentence 1: So far , they have searched Pennsylvania , Ohio , Michigan , Illinois and Indiana , authorities in those state said .
+Sentence 2: So far , authorities also have searched areas in Pennsylvania , Ohio , Indiana , and Michigan .
+Label: {'sentence1': 'So far , they have searched Pennsylvania , Ohio , Michigan , Illinois and Indiana , authorities in those state said .', 'sentence2': 'So far , authorities also have searched areas in Pennsylvania , Ohio , Indiana , and Michigan .', 'label': 0, 'idx': 885}
+1
+Sentence 1: Besides battling its sales slump , Siebel also has been sparring with some investors upset about huge stock option windfalls company managers have pocketed .
+Sentence 2: Besides a sales slump , Siebel is sparring with some shareholders over management stock option windfalls .
+Label: {'sentence1': 'Besides battling its sales slump , Siebel also has been sparring with some investors upset about huge stock option windfalls company managers have pocketed .', 'sentence2': 'Besides a sales slump , Siebel is sparring with some shareholders over management stock option windfalls .', 'label': 0, 'idx': 886}
+0
+Sentence 1: Five-year notes US5YT = RR rose 6 / 32 in price for a yield of 3.08 percent , down from 3.12 percent late on Tuesday .
+Sentence 2: Five-year notes US5YT = RR added 2 / 32 to give a yield of 3.10 percent from 3.12 percent .
+Label: {'sentence1': 'Five-year notes US5YT = RR rose 6 / 32 in price for a yield of 3.08 percent , down from 3.12 percent late on Tuesday .', 'sentence2': 'Five-year notes US5YT = RR added 2 / 32 to give a yield of 3.10 percent from 3.12 percent .', 'label': 1, 'idx': 895}
+0
+Sentence 1: Also in the majority were Chief Justice William H. Rehnquist and Justices John Paul Stevens , Sandra Day O 'Connor , Ruth Bader Ginsburg and Stephen G. Breyer .
+Sentence 2: Chief Justice William H. Rehnquist and Justices John Paul Stevens , Sandra Day OConnor , Ruth Bader Ginsburg and Stephen Breyer agreed with Souter .
+Label: {'sentence1': "Also in the majority were Chief Justice William H. Rehnquist and Justices John Paul Stevens , Sandra Day O 'Connor , Ruth Bader Ginsburg and Stephen G. Breyer .", 'sentence2': 'Chief Justice William H. Rehnquist and Justices John Paul Stevens , Sandra Day OConnor , Ruth Bader Ginsburg and Stephen Breyer agreed with Souter .', 'label': 1, 'idx': 910}
+1
+Sentence 1: " What can I say to you ? " he told a crowd at a cemetery with a thousand headstones , many of them marking the graves of entire families .
+Sentence 2: Mr. Powell told a crowd at a cemetery with a thousand headstones , many of them marking the graves of entire families .
+Label: {'sentence1': '" What can I say to you ? " he told a crowd at a cemetery with a thousand headstones , many of them marking the graves of entire families .', 'sentence2': 'Mr. Powell told a crowd at a cemetery with a thousand headstones , many of them marking the graves of entire families .', 'label': 0, 'idx': 914}
+1
+Sentence 1: Aventis , based in Strasbourg , France , is one of a handful of companies that still make the flu vaccine .
+Sentence 2: Aventis , based in Strasbourg , France , is one of the leading producers of the vaccine and one of a handful of companies that still make it .
+Label: {'sentence1': 'Aventis , based in Strasbourg , France , is one of a handful of companies that still make the flu vaccine .', 'sentence2': 'Aventis , based in Strasbourg , France , is one of the leading producers of the vaccine and one of a handful of companies that still make it .', 'label': 0, 'idx': 921}
+1
+Sentence 1: The committee was appointed by Defense Secretary Donald Rumsfeld under orders from Congress .
+Sentence 2: The public hearing is the second for the panel created by Defense Secretary Donald Rumsfeld under pressure from Congress .
+Label: {'sentence1': 'The committee was appointed by Defense Secretary Donald Rumsfeld under orders from Congress .', 'sentence2': 'The public hearing is the second for the panel created by Defense Secretary Donald Rumsfeld under pressure from Congress .', 'label': 0, 'idx': 927}
+0
+Sentence 1: In two weeks , he 'll probably send out Peace Rules in the Preakness .
+Sentence 2: Frankel said Peace Rules will run in the Preakness Stakes on May 17 .
+Label: {'sentence1': "In two weeks , he 'll probably send out Peace Rules in the Preakness .", 'sentence2': 'Frankel said Peace Rules will run in the Preakness Stakes on May 17 .', 'label': 1, 'idx': 928}
+1
+Sentence 1: The impact of these shortages , U.S. Energy Secretary Spencer Abraham warned yesterday , " will touch virtually every American . "
+Sentence 2: The U.S. administration cranked up concerns of impending natural gas shortages yesterday , a supply crunch that officials said " will touch virtually every American . "
+Label: {'sentence1': 'The impact of these shortages , U.S. Energy Secretary Spencer Abraham warned yesterday , " will touch virtually every American . "', 'sentence2': 'The U.S. administration cranked up concerns of impending natural gas shortages yesterday , a supply crunch that officials said " will touch virtually every American . "', 'label': 0, 'idx': 938}
+1
+Sentence 1: If successful , the " Muses-C " will be the first probe to make a two-way trip to an asteroid .
+Sentence 2: If successful , it will be the first to bring back a rock sample from an asteroid , Kawaguchi said .
+Label: {'sentence1': 'If successful , the " Muses-C " will be the first probe to make a two-way trip to an asteroid .', 'sentence2': 'If successful , it will be the first to bring back a rock sample from an asteroid , Kawaguchi said .', 'label': 0, 'idx': 943}
+0
+Sentence 1: The support will come as a free software upgrade called WebVPN for current customers that have support contracts .
+Sentence 2: The upgrade will be available as a free download for current customers with SmarNet support in January 2004 .
+Label: {'sentence1': 'The support will come as a free software upgrade called WebVPN for current customers that have support contracts .', 'sentence2': 'The upgrade will be available as a free download for current customers with SmarNet support in January 2004 .', 'label': 1, 'idx': 945}
+1
+Sentence 1: I never punished a victim , ' ' said Brigadier General Taco Gilbert , the school 's former number two officer .
+Sentence 2: I never blamed a victim , I never punished a victim , ' ' said Brig. Gen. Taco Gilbert , the school 's former No. 2 officer .
+Label: {'sentence1': "I never punished a victim , ' ' said Brigadier General Taco Gilbert , the school 's former number two officer .", 'sentence2': "I never blamed a victim , I never punished a victim , ' ' said Brig. Gen. Taco Gilbert , the school 's former No. 2 officer .", 'label': 0, 'idx': 948}
+0
+Sentence 1: That fire devastated timber on the reservation , charred 469,000 acres and destroyed 491 homes in surrounding communities .
+Sentence 2: That fire devastated the reservation , a nearby national forest and several communities , burning 469,000 acres and destroying 491 homes .
+Label: {'sentence1': 'That fire devastated timber on the reservation , charred 469,000 acres and destroyed 491 homes in surrounding communities .', 'sentence2': 'That fire devastated the reservation , a nearby national forest and several communities , burning 469,000 acres and destroying 491 homes .', 'label': 1, 'idx': 955}
+1
+Sentence 1: The valid signatures of 897,158 registered California voters must be collected and turned in to county election officials by Sept . 2 .
+Sentence 2: To force a recall election of Davis , the valid signatures of 897,158 registered California voters must be turned in to election officials .
+Label: {'sentence1': 'The valid signatures of 897,158 registered California voters must be collected and turned in to county election officials by Sept . 2 .', 'sentence2': 'To force a recall election of Davis , the valid signatures of 897,158 registered California voters must be turned in to election officials .', 'label': 0, 'idx': 963}
+0
+Sentence 1: AFTRA members approved the merger by a vote of 75.88 % to 24.12 % .
+Sentence 2: AFTRA , on the other hand , approved the merger by a whopping 75 percent .
+Label: {'sentence1': 'AFTRA members approved the merger by a vote of 75.88 % to 24.12 % .', 'sentence2': 'AFTRA , on the other hand , approved the merger by a whopping 75 percent .', 'label': 1, 'idx': 975}
+0
+Sentence 1: Under the new pricing scheme , Universal would lower its wholesale price on a CD to $ 9.09 from $ 12.02 .
+Sentence 2: The company said it would cut the wholesale price of most top-line CDs to $ 9.09 from $ 12.02 .
+Label: {'sentence1': 'Under the new pricing scheme , Universal would lower its wholesale price on a CD to $ 9.09 from $ 12.02 .', 'sentence2': 'The company said it would cut the wholesale price of most top-line CDs to $ 9.09 from $ 12.02 .', 'label': 1, 'idx': 978}
+1
+Sentence 1: The boy also sprayed the room full of retardant from fire extinguishers , which made it hard to see , the chief said .
+Sentence 2: The boy fired once into a wall and sprayed the room with fire extinguishers , making it hard to see , the chief said .
+Label: {'sentence1': 'The boy also sprayed the room full of retardant from fire extinguishers , which made it hard to see , the chief said .', 'sentence2': 'The boy fired once into a wall and sprayed the room with fire extinguishers , making it hard to see , the chief said .', 'label': 0, 'idx': 987}
+1
+Sentence 1: The U.S. Capitol was evacuated yesterday after authorities detected a possibly hazardous material in the basement of the Senate wing , Capitol Police said .
+Sentence 2: U.S. Capitol Police evacuated the Capitol yesterday after a sensor detected a possible biohazard in the Senate wing , but authorities later said it was a false alarm .
+Label: {'sentence1': 'The U.S. Capitol was evacuated yesterday after authorities detected a possibly hazardous material in the basement of the Senate wing , Capitol Police said .', 'sentence2': 'U.S. Capitol Police evacuated the Capitol yesterday after a sensor detected a possible biohazard in the Senate wing , but authorities later said it was a false alarm .', 'label': 0, 'idx': 990}
+1
+Sentence 1: The commission dropped charges that Patton improperly appointed Conner to the Kentucky Lottery Board and that he improperly appointed Conner 's then-husband , Seth , to the Agriculture Development Board .
+Sentence 2: Patton also appointed Conner to the Kentucky Lottery Board and appointed Seth Conner to the Agriculture Development Board , the commission says .
+Label: {'sentence1': "The commission dropped charges that Patton improperly appointed Conner to the Kentucky Lottery Board and that he improperly appointed Conner 's then-husband , Seth , to the Agriculture Development Board .", 'sentence2': 'Patton also appointed Conner to the Kentucky Lottery Board and appointed Seth Conner to the Agriculture Development Board , the commission says .', 'label': 0, 'idx': 995}
+1
+Sentence 1: That compared with a year-earlier profit of $ 102 million , or 13 cents a share .
+Sentence 2: That was more than double the $ 102 million , or 13 cents a share , for the year-earlier quarter .
+Label: {'sentence1': 'That compared with a year-earlier profit of $ 102 million , or 13 cents a share .', 'sentence2': 'That was more than double the $ 102 million , or 13 cents a share , for the year-earlier quarter .', 'label': 0, 'idx': 1009}
+1
+Sentence 1: China 's Health Ministry said five more people had died of Sars and a further 159 were infected .
+Sentence 2: On Monday , China said nine more people had died from SARS and that 160 more were infected with the virus .
+Label: {'sentence1': "China 's Health Ministry said five more people had died of Sars and a further 159 were infected .", 'sentence2': 'On Monday , China said nine more people had died from SARS and that 160 more were infected with the virus .', 'label': 0, 'idx': 1015}
+1
+Sentence 1: Shares of Allergan fell 14 cents to close at $ 78.12 on the New York Stock Exchange ( news - web sites ) .
+Sentence 2: Shares of Allergan were up 14 cents at $ 78.40 in late trading on the New York Stock Exchange .
+Label: {'sentence1': 'Shares of Allergan fell 14 cents to close at $ 78.12 on the New York Stock Exchange ( news - web sites ) .', 'sentence2': 'Shares of Allergan were up 14 cents at $ 78.40 in late trading on the New York Stock Exchange .', 'label': 0, 'idx': 1030}
+0
+Sentence 1: Stanford ( 51-17 ) and Rice ( 57-12 ) will play for the national championship tonight .
+Sentence 2: Rice ( 57-12 ) and Stanford ( 51-17 ) will meet in a winner-take-all matchup at 6 : 05 p.m. Monday .
+Label: {'sentence1': 'Stanford ( 51-17 ) and Rice ( 57-12 ) will play for the national championship tonight .', 'sentence2': 'Rice ( 57-12 ) and Stanford ( 51-17 ) will meet in a winner-take-all matchup at 6 : 05 p.m. Monday .', 'label': 1, 'idx': 1036}
+0
+Sentence 1: " In fact , I was physically sick several times at this stage , because he looked so desperate , " she said .
+Sentence 2: Speaking about the day before he was found dead , she said : " I was physically sick several times at this stage because he looked so desperate .
+Label: {'sentence1': '" In fact , I was physically sick several times at this stage , because he looked so desperate , " she said .', 'sentence2': 'Speaking about the day before he was found dead , she said : " I was physically sick several times at this stage because he looked so desperate .', 'label': 1, 'idx': 1039}
+1
+Sentence 1: Police believe Wilson shot Reynolds , then her mother once in the head before fatally turning the gun on herself .
+Sentence 2: Police believe Wilson then shot Jennie Mae Robinson once in the head before turning the gun on herself .
+Label: {'sentence1': 'Police believe Wilson shot Reynolds , then her mother once in the head before fatally turning the gun on herself .', 'sentence2': 'Police believe Wilson then shot Jennie Mae Robinson once in the head before turning the gun on herself .', 'label': 0, 'idx': 1047}
+0
+Sentence 1: That fire devastated timber on the reservation , while charring 469,000 acres and destroying 491 homes in surrounding communities .
+Sentence 2: That fire devastated the reservation , a nearby national forest and several communities , burning 469,000 acres and destroying 491 homes .
+Label: {'sentence1': 'That fire devastated timber on the reservation , while charring 469,000 acres and destroying 491 homes in surrounding communities .', 'sentence2': 'That fire devastated the reservation , a nearby national forest and several communities , burning 469,000 acres and destroying 491 homes .', 'label': 1, 'idx': 1055}
+1
+Sentence 1: According to security sources , London Metropolitan Police Commissioner John Stevens placed his force on its highest state of alert last week following the warning .
+Sentence 2: The Telegraph can reveal that Sir John Stevens , the Metropolitan Police Commissioner , placed his force on its highest alert last week .
+Label: {'sentence1': 'According to security sources , London Metropolitan Police Commissioner John Stevens placed his force on its highest state of alert last week following the warning .', 'sentence2': 'The Telegraph can reveal that Sir John Stevens , the Metropolitan Police Commissioner , placed his force on its highest alert last week .', 'label': 0, 'idx': 1066}
+1
+Sentence 1: Median household income declined 1.1 percent between 2001 and 2002 to $ 42,409 , after accounting for inflation .
+Sentence 2: The same survey found the median household income rose by $ 51 , when accounting for inflation , to $ 43,057 .
+Label: {'sentence1': 'Median household income declined 1.1 percent between 2001 and 2002 to $ 42,409 , after accounting for inflation .', 'sentence2': 'The same survey found the median household income rose by $ 51 , when accounting for inflation , to $ 43,057 .', 'label': 0, 'idx': 1068}
+0
+Sentence 1: Democrats now hope to increase the value of awards proposed by Hatch and to create a mechanism to ensure the fund remains solvent .
+Sentence 2: But he said labor wanted other senators to increase the value of awards proposed by Hatch and create a mechanism to ensure the fund remains solvent .
+Label: {'sentence1': 'Democrats now hope to increase the value of awards proposed by Hatch and to create a mechanism to ensure the fund remains solvent .', 'sentence2': 'But he said labor wanted other senators to increase the value of awards proposed by Hatch and create a mechanism to ensure the fund remains solvent .', 'label': 1, 'idx': 1074}
+1
+Sentence 1: Prosecutors maintained that Durst murdered Black to try to assume Black 's identity .
+Sentence 2: Prosecutors called Durst a cold-blooded killer who shot Black to steal his identity .
+Label: {'sentence1': "Prosecutors maintained that Durst murdered Black to try to assume Black 's identity .", 'sentence2': 'Prosecutors called Durst a cold-blooded killer who shot Black to steal his identity .', 'label': 0, 'idx': 1084}
+1
+Sentence 1: The 51-year-old nurse worked at North York General Hospital , the epicentre of the latest outbreak .
+Sentence 2: Emile Laroza , 51 , contracted SARS while working as a nurse at North York General Hospital , the epicentre of the second SARS outbreak .
+Label: {'sentence1': 'The 51-year-old nurse worked at North York General Hospital , the epicentre of the latest outbreak .', 'sentence2': 'Emile Laroza , 51 , contracted SARS while working as a nurse at North York General Hospital , the epicentre of the second SARS outbreak .', 'label': 0, 'idx': 1087}
+1
+Sentence 1: Omar 's brother , Zahid , and wife , Tahari , were arrested on May 2 in Derbyshire .
+Sentence 2: Zahid and Paveen Sharif were arrested in Derbyshire and Tabassum , Mr Sharif 's wife , in Nottinghamshire , last Friday .
+Label: {'sentence1': "Omar 's brother , Zahid , and wife , Tahari , were arrested on May 2 in Derbyshire .", 'sentence2': "Zahid and Paveen Sharif were arrested in Derbyshire and Tabassum , Mr Sharif 's wife , in Nottinghamshire , last Friday .", 'label': 0, 'idx': 1102}
+1
+Sentence 1: " But HRT should not be used to prevent heart disease or any other chronic condition . "
+Sentence 2: " The clear message is it should not be used to prevent cardiovascular disease , " Manson said .
+Label: {'sentence1': '" But HRT should not be used to prevent heart disease or any other chronic condition . "', 'sentence2': '" The clear message is it should not be used to prevent cardiovascular disease , " Manson said .', 'label': 0, 'idx': 1110}
+1
+Sentence 1: But they don ’ t realize that until it ’ s too late ( of course ) because they ’ re potential victims in a horror movie .
+Sentence 2: But they don 't realize that until it 's too late ( of course ) because they 're potential victims .
+Label: {'sentence1': 'But they don ’ t realize that until it ’ s too late ( of course ) because they ’ re potential victims in a horror movie .', 'sentence2': "But they don 't realize that until it 's too late ( of course ) because they 're potential victims .", 'label': 0, 'idx': 1122}
+0
+Sentence 1: ABC broadcast a special " World News Tonight " report out of Washington anchored by Ted Koppel .
+Sentence 2: Partly as a result , ABC chose to broadcast its special report out of Washington with Ted Koppel as anchor .
+Label: {'sentence1': 'ABC broadcast a special " World News Tonight " report out of Washington anchored by Ted Koppel .', 'sentence2': 'Partly as a result , ABC chose to broadcast its special report out of Washington with Ted Koppel as anchor .', 'label': 1, 'idx': 1130}
+1
+Sentence 1: The indictment said he attended important meetings to plan the attacks , recruited fellow bombers and coordinated the operation .
+Sentence 2: Samudra not present in Bangkok , the indictment said , but attended a series of meetings before the attacks , recruiting fellow bombers and coordinating the operation .
+Label: {'sentence1': 'The indictment said he attended important meetings to plan the attacks , recruited fellow bombers and coordinated the operation .', 'sentence2': 'Samudra not present in Bangkok , the indictment said , but attended a series of meetings before the attacks , recruiting fellow bombers and coordinating the operation .', 'label': 0, 'idx': 1132}
+1
+Sentence 1: LURD 's Ja 'neh also called for an interim government and the deployment of a U.S.-led Western peacekeeping force .
+Sentence 2: The rebels are also calling for the deployment of a U.S.-led peacekeeping force .
+Label: {'sentence1': "LURD 's Ja 'neh also called for an interim government and the deployment of a U.S.-led Western peacekeeping force .", 'sentence2': 'The rebels are also calling for the deployment of a U.S.-led peacekeeping force .', 'label': 0, 'idx': 1136}
+0
+Sentence 1: The UMass president has acknowledged talking to him once since he went on the lam in 1995 , just before federal indictments were handed down .
+Sentence 2: The UMass president , who testified before a congressional committee last week , has acknowledged talking to him once since he went on the lam in 1995 .
+Label: {'sentence1': 'The UMass president has acknowledged talking to him once since he went on the lam in 1995 , just before federal indictments were handed down .', 'sentence2': 'The UMass president , who testified before a congressional committee last week , has acknowledged talking to him once since he went on the lam in 1995 .', 'label': 1, 'idx': 1138}
+0
+Sentence 1: The report was sponsored by the Computer & Communications Industry Association ( CCIA ) .
+Sentence 2: The paper was released by the Computer and Communications Industry Association in Washington .
+Label: {'sentence1': 'The report was sponsored by the Computer & Communications Industry Association ( CCIA ) .', 'sentence2': 'The paper was released by the Computer and Communications Industry Association in Washington .', 'label': 1, 'idx': 1143}
+1
+Sentence 1: Families stuck on the highway remained in their cars , and used their cell phones to call home .
+Sentence 2: Families stuck on the highway were being urged to remain in their cars , and to use their cell phones only in case of emergency .
+Label: {'sentence1': 'Families stuck on the highway remained in their cars , and used their cell phones to call home .', 'sentence2': 'Families stuck on the highway were being urged to remain in their cars , and to use their cell phones only in case of emergency .', 'label': 0, 'idx': 1144}
+0
+Sentence 1: Sharpton nearly jumped out of his chair , saying , " That sounds more like Stonewall Jackson than Jesse Jackson .
+Sentence 2: " That sounds more like Stonewall Jackson than Reverend ( Jesse ) Jackson , " he retorted .
+Label: {'sentence1': 'Sharpton nearly jumped out of his chair , saying , " That sounds more like Stonewall Jackson than Jesse Jackson .', 'sentence2': '" That sounds more like Stonewall Jackson than Reverend ( Jesse ) Jackson , " he retorted .', 'label': 1, 'idx': 1147}
+0
+Sentence 1: The Justice Department and the Federal Communications Commission have the final say .
+Sentence 2: But the deal must get approval from the Federal Communications Commission and the Justice Department 's antitrust division .
+Label: {'sentence1': 'The Justice Department and the Federal Communications Commission have the final say .', 'sentence2': "But the deal must get approval from the Federal Communications Commission and the Justice Department 's antitrust division .", 'label': 1, 'idx': 1150}
+1
+Sentence 1: Hovan did not speak , but his lawyer , John Speranza , said his client " did not wake up that day " intending to hurt anyone .
+Sentence 2: Hovan " did not wake up that day " intending to hurt anyone , defense attorney John Speranza said .
+Label: {'sentence1': 'Hovan did not speak , but his lawyer , John Speranza , said his client " did not wake up that day " intending to hurt anyone .', 'sentence2': 'Hovan " did not wake up that day " intending to hurt anyone , defense attorney John Speranza said .', 'label': 0, 'idx': 1154}
+0
+Sentence 1: Kollar-Kotelly has scheduled another antitrust settlement compliance hearing for January .
+Sentence 2: The judge scheduled another oversight hearing for late January .
+Label: {'sentence1': 'Kollar-Kotelly has scheduled another antitrust settlement compliance hearing for January .', 'sentence2': 'The judge scheduled another oversight hearing for late January .', 'label': 1, 'idx': 1156}
+0
+Sentence 1: National Breast Cancer Centre chief executive Professor Christine Ewan said it was too early to quantify the risk to women .
+Sentence 2: National Breast Cancer Centre head Professor Christine Ewan said there was no need for panic .
+Label: {'sentence1': 'National Breast Cancer Centre chief executive Professor Christine Ewan said it was too early to quantify the risk to women .', 'sentence2': 'National Breast Cancer Centre head Professor Christine Ewan said there was no need for panic .', 'label': 1, 'idx': 1160}
+1
+Sentence 1: For the fourth quarter , Intel expects revenue between $ 8.1 billion and $ 8.7 billion .
+Sentence 2: At the end of the second quarter , Intel initially predicted sales of between $ 6.9 billion and $ 7.5 billion .
+Label: {'sentence1': 'For the fourth quarter , Intel expects revenue between $ 8.1 billion and $ 8.7 billion .', 'sentence2': 'At the end of the second quarter , Intel initially predicted sales of between $ 6.9 billion and $ 7.5 billion .', 'label': 0, 'idx': 1161}
+1
+Sentence 1: On May 1 , he crawled through a narrow , winding canyon , rappelled down a 60-foot cliff and walked some six miles down the canyon .
+Sentence 2: He crawled through a narrow , winding canyon , rappelled down a 60-foot cliff , and walked some six miles down the canyon near Canyonlands National Park in southeastern Utah .
+Label: {'sentence1': 'On May 1 , he crawled through a narrow , winding canyon , rappelled down a 60-foot cliff and walked some six miles down the canyon .', 'sentence2': 'He crawled through a narrow , winding canyon , rappelled down a 60-foot cliff , and walked some six miles down the canyon near Canyonlands National Park in southeastern Utah .', 'label': 0, 'idx': 1178}
+0
+Sentence 1: Stout previously worked for General Electric subsidiary GE Capital Service Inc . , where he was vice president and chief technology and information officer .
+Sentence 2: Stout comes to Sprint from GE Capital , where he served as chief technology and information officer .
+Label: {'sentence1': 'Stout previously worked for General Electric subsidiary GE Capital Service Inc . , where he was vice president and chief technology and information officer .', 'sentence2': 'Stout comes to Sprint from GE Capital , where he served as chief technology and information officer .', 'label': 1, 'idx': 1180}
+0
+Sentence 1: Knight agreed to a two-year , $ 2.38 million contract that included a $ 300,000 signing bonus .
+Sentence 2: ESPN reported that Knight 's two-year deal is worth $ 2.38 million , including a $ 300,000 signing bonus .
+Label: {'sentence1': 'Knight agreed to a two-year , $ 2.38 million contract that included a $ 300,000 signing bonus .', 'sentence2': "ESPN reported that Knight 's two-year deal is worth $ 2.38 million , including a $ 300,000 signing bonus .", 'label': 1, 'idx': 1182}
+0
+Sentence 1: " We 're going to do everything in our power to get money back to ratepayers as quickly as possible , " Kennedy said .
+Sentence 2: " There 's very strong interest in getting money back to the ratepayers as quickly as possible , " Commissioner Susan Kennedy said .
+Label: {'sentence1': '" We \'re going to do everything in our power to get money back to ratepayers as quickly as possible , " Kennedy said .', 'sentence2': '" There \'s very strong interest in getting money back to the ratepayers as quickly as possible , " Commissioner Susan Kennedy said .', 'label': 1, 'idx': 1184}
+1
+Sentence 1: Several protesters were injured by a speeding police van that drove through the crowd .
+Sentence 2: Anger grew after a police van injured several protesters by speeding through the crowd .
+Label: {'sentence1': 'Several protesters were injured by a speeding police van that drove through the crowd .', 'sentence2': 'Anger grew after a police van injured several protesters by speeding through the crowd .', 'label': 0, 'idx': 1190}
+1
+Sentence 1: In a mixture of ancient pagan and modern Christian rites , the villagers have staged a series of ceremonies hoping to erase the misfortunes they believe have kept them poor .
+Sentence 2: In a mixture of ancient Melanesian pagan and modern Christian ceremonies the people tried again to erase the misfortunes they believe have kept them poor since that long-ago meal .
+Label: {'sentence1': 'In a mixture of ancient pagan and modern Christian rites , the villagers have staged a series of ceremonies hoping to erase the misfortunes they believe have kept them poor .', 'sentence2': 'In a mixture of ancient Melanesian pagan and modern Christian ceremonies the people tried again to erase the misfortunes they believe have kept them poor since that long-ago meal .', 'label': 0, 'idx': 1195}
+0
+Sentence 1: Allegiant shares rose $ 4 , or $ 17.2 percent , to $ 27.43 in Thursday morning trading on the Nasdaq Stock Market .
+Sentence 2: Allegiant 's stock closed Wednesday at $ 23.40 , up 64 cents , in trading on the Nasdaq market .
+Label: {'sentence1': 'Allegiant shares rose $ 4 , or $ 17.2 percent , to $ 27.43 in Thursday morning trading on the Nasdaq Stock Market .', 'sentence2': "Allegiant 's stock closed Wednesday at $ 23.40 , up 64 cents , in trading on the Nasdaq market .", 'label': 1, 'idx': 1200}
+0
+Sentence 1: To examine the uranium enrichment program -- ElBaradei 's priority -- the IAEA says it must inspect facilities that are not officially declared as nuclear sites .
+Sentence 2: However , to verify Iran 's claims about its controversial uranium-enrichment program , the IAEA says it must inspect facilities that are not officially declared as nuclear sites .
+Label: {'sentence1': "To examine the uranium enrichment program -- ElBaradei 's priority -- the IAEA says it must inspect facilities that are not officially declared as nuclear sites .", 'sentence2': "However , to verify Iran 's claims about its controversial uranium-enrichment program , the IAEA says it must inspect facilities that are not officially declared as nuclear sites .", 'label': 1, 'idx': 1213}
+0
+Sentence 1: The shooting victim was taken to Kings County Hospital Center , where he later died , the police said .
+Sentence 2: The victim , who was not identified , was taken to Kings County Hospital where he was pronounced dead .
+Label: {'sentence1': 'The shooting victim was taken to Kings County Hospital Center , where he later died , the police said .', 'sentence2': 'The victim , who was not identified , was taken to Kings County Hospital where he was pronounced dead .', 'label': 1, 'idx': 1219}
+1
+Sentence 1: If it 's a Bill Gates Comdex keynote , it must be time for new Tablet PCs .
+Sentence 2: If it 's the Sunday night before Comdex , it must be time for yet another Bill Gates keynote .
+Label: {'sentence1': "If it 's a Bill Gates Comdex keynote , it must be time for new Tablet PCs .", 'sentence2': "If it 's the Sunday night before Comdex , it must be time for yet another Bill Gates keynote .", 'label': 0, 'idx': 1221}
+0
+Sentence 1: The supercomputer is actually an eServer and storage system with a peak speed of 7.3 trillion calculations per second .
+Sentence 2: It 's a cluster of 44 IBM servers with a peak speed of 7.3 trillion calculations per second .
+Label: {'sentence1': 'The supercomputer is actually an eServer and storage system with a peak speed of 7.3 trillion calculations per second .', 'sentence2': "It 's a cluster of 44 IBM servers with a peak speed of 7.3 trillion calculations per second .", 'label': 1, 'idx': 1222}
+1
+Sentence 1: His lawyer , Pamela MacKey , said Bryant expects to be completely exonerated .
+Sentence 2: " Mr. Bryant is innocent and expects to be completely exonerated , " Mackey said in a statement .
+Label: {'sentence1': 'His lawyer , Pamela MacKey , said Bryant expects to be completely exonerated .', 'sentence2': '" Mr. Bryant is innocent and expects to be completely exonerated , " Mackey said in a statement .', 'label': 0, 'idx': 1247}
+1
+Sentence 1: " We are keeping an open mind , " said Sergeant Magee .
+Sentence 2: Detective Sergeant Bernie Magee said police were keeping an open mind on the disappearance .
+Label: {'sentence1': '" We are keeping an open mind , " said Sergeant Magee .', 'sentence2': 'Detective Sergeant Bernie Magee said police were keeping an open mind on the disappearance .', 'label': 0, 'idx': 1248}
+1
+Sentence 1: During the hearing , Morales expressed " sincere regrets and remorse " for his actions .
+Sentence 2: Morales , who pleaded guilty in July , expressed " sincere regret and remorse " for his crimes .
+Label: {'sentence1': 'During the hearing , Morales expressed " sincere regrets and remorse " for his actions .', 'sentence2': 'Morales , who pleaded guilty in July , expressed " sincere regret and remorse " for his crimes .', 'label': 0, 'idx': 1251}
+1
+Sentence 1: Stanford ( 46-15 ) plays South Carolina ( 44-20 ) today in a first-round game at Rosenblatt Stadium in Omaha , Neb .
+Sentence 2: Stanford ( 46-15 ) plays South Carolina ( 44-20 ) on Friday in the opening game of the double-elimination tournament .
+Label: {'sentence1': 'Stanford ( 46-15 ) plays South Carolina ( 44-20 ) today in a first-round game at Rosenblatt Stadium in Omaha , Neb .', 'sentence2': 'Stanford ( 46-15 ) plays South Carolina ( 44-20 ) on Friday in the opening game of the double-elimination tournament .', 'label': 0, 'idx': 1255}
+1
+Sentence 1: Mr Colpin did not specify whether it was this system that was at the centre of the investigation .
+Sentence 2: Neither OLAF nor the Belgian prosecutors have specified if it was this system that was at the centre of the investigation .
+Label: {'sentence1': 'Mr Colpin did not specify whether it was this system that was at the centre of the investigation .', 'sentence2': 'Neither OLAF nor the Belgian prosecutors have specified if it was this system that was at the centre of the investigation .', 'label': 0, 'idx': 1257}
+0
+Sentence 1: Doctors had planned to deliver him two weeks early , on or around November 14 .
+Sentence 2: A Caesarean had originally been planned in mid- November , two weeks early .
+Label: {'sentence1': 'Doctors had planned to deliver him two weeks early , on or around November 14 .', 'sentence2': 'A Caesarean had originally been planned in mid- November , two weeks early .', 'label': 1, 'idx': 1259}
+0
+Sentence 1: The traditional Mediterranean diet puts the emphasis on vegetables , legumes , fruits , nuts , cereals and olive oil .
+Sentence 2: The traditional Mediterranean diet contains many components , including a high intake of fruits and vegetables , nuts and cereals , and olive oil .
+Label: {'sentence1': 'The traditional Mediterranean diet puts the emphasis on vegetables , legumes , fruits , nuts , cereals and olive oil .', 'sentence2': 'The traditional Mediterranean diet contains many components , including a high intake of fruits and vegetables , nuts and cereals , and olive oil .', 'label': 1, 'idx': 1266}
+0
+Sentence 1: Ultimately , she will earn more than the $ 900,000 that Kenny Perry got for winning the PGA Tour event .
+Sentence 2: But she 'll earn more than the $ 900000 ( about R7.5-million ) Kenny Perry got for winning .
+Label: {'sentence1': 'Ultimately , she will earn more than the $ 900,000 that Kenny Perry got for winning the PGA Tour event .', 'sentence2': "But she 'll earn more than the $ 900000 ( about R7.5-million ) Kenny Perry got for winning .", 'label': 1, 'idx': 1268}
+1
+Sentence 1: Prof Sally Baldwin , 63 , from York , fell into a cavity which opened up when the structure collapsed at Tiburtina station , Italian railway officials said .
+Sentence 2: Sally Baldwin , from York , was killed instantly when a walkway collapsed and she fell into the machinery at Tiburtina station .
+Label: {'sentence1': 'Prof Sally Baldwin , 63 , from York , fell into a cavity which opened up when the structure collapsed at Tiburtina station , Italian railway officials said .', 'sentence2': 'Sally Baldwin , from York , was killed instantly when a walkway collapsed and she fell into the machinery at Tiburtina station .', 'label': 0, 'idx': 1278}
+0
+Sentence 1: " Australians are very upset and angry by what took place . . . upset because innocent people lost their lives , " he said .
+Sentence 2: Asked how his nation felt , he replied : " Australians are very upset and angry by what took place . . . upset because innocent people lost their lives . "
+Label: {'sentence1': '" Australians are very upset and angry by what took place . . . upset because innocent people lost their lives , " he said .', 'sentence2': 'Asked how his nation felt , he replied : " Australians are very upset and angry by what took place . . . upset because innocent people lost their lives . "', 'label': 1, 'idx': 1280}
+0
+Sentence 1: The Vatican devised a mini-lift to allow the pope to get on and off helicopters .
+Sentence 2: The Vatican has devised a mini-lift to allow John Paul to board and descend from the helicopter without tackling stairs .
+Label: {'sentence1': 'The Vatican devised a mini-lift to allow the pope to get on and off helicopters .', 'sentence2': 'The Vatican has devised a mini-lift to allow John Paul to board and descend from the helicopter without tackling stairs .', 'label': 1, 'idx': 1293}
+1
+Sentence 1: Chante Jawan Mallard , 27 , went on trial Monday , charged with first-degree murder .
+Sentence 2: Chante Jawaon Mallard , 27 , is charged with murder and tampering with evidence .
+Label: {'sentence1': 'Chante Jawan Mallard , 27 , went on trial Monday , charged with first-degree murder .', 'sentence2': 'Chante Jawaon Mallard , 27 , is charged with murder and tampering with evidence .', 'label': 0, 'idx': 1294}
+0
+Sentence 1: British Airways ' New York-to-London runs will end in October .
+Sentence 2: British Airways plans to retire its seven Concordes at the end of October .
+Label: {'sentence1': "British Airways ' New York-to-London runs will end in October .", 'sentence2': 'British Airways plans to retire its seven Concordes at the end of October .', 'label': 1, 'idx': 1300}
+0
+Sentence 1: After the Houston event , Bush returned to his Crawford , Texas , ranch , where he will host Italian Prime Minister Silvio Berlusconi on Sunday and Monday .
+Sentence 2: Bush is spending the weekend at his Crawford ranch , where he will play host to Italian Prime Minister Silvio Berlusconi .
+Label: {'sentence1': 'After the Houston event , Bush returned to his Crawford , Texas , ranch , where he will host Italian Prime Minister Silvio Berlusconi on Sunday and Monday .', 'sentence2': 'Bush is spending the weekend at his Crawford ranch , where he will play host to Italian Prime Minister Silvio Berlusconi .', 'label': 1, 'idx': 1321}
+0
+Sentence 1: She had only a single condition , that the book not be published until her death .
+Sentence 2: She insisted , though , that it not be published until after her death .
+Label: {'sentence1': 'She had only a single condition , that the book not be published until her death .', 'sentence2': 'She insisted , though , that it not be published until after her death .', 'label': 1, 'idx': 1332}
+1
+Sentence 1: The commission estimates California lost $ 1.34 billion -- the most of any state -- to tax shelters in 2001 .
+Sentence 2: The commission estimated California lost $ 937 million to corporate tax shelters in 2001 .
+Label: {'sentence1': 'The commission estimates California lost $ 1.34 billion -- the most of any state -- to tax shelters in 2001 .', 'sentence2': 'The commission estimated California lost $ 937 million to corporate tax shelters in 2001 .', 'label': 0, 'idx': 1336}
+1
+Sentence 1: The new companies will begin trading on Nasdaq today under the ticker symbols PLMO and PSRC .
+Sentence 2: Also as part of the deal , PalmSource stock will begin trading on the NASDAQ stock market Wednesday under the ticker symbol : PSRC .
+Label: {'sentence1': 'The new companies will begin trading on Nasdaq today under the ticker symbols PLMO and PSRC .', 'sentence2': 'Also as part of the deal , PalmSource stock will begin trading on the NASDAQ stock market Wednesday under the ticker symbol : PSRC .', 'label': 0, 'idx': 1344}
+1
+Sentence 1: There 's a Jeep in my parents ' yard right now that 's not theirs , ' ' said Perry , whose parents are vacationing in North Carolina .
+Sentence 2: " There 's a Jeep in my parents ' yard right now that 's not theirs , " she said .
+Label: {'sentence1': "There 's a Jeep in my parents ' yard right now that 's not theirs , ' ' said Perry , whose parents are vacationing in North Carolina .", 'sentence2': '" There \'s a Jeep in my parents \' yard right now that \'s not theirs , " she said .', 'label': 0, 'idx': 1345}
+1
+Sentence 1: Of 24 million phoned-in votes , 50.28 percent were for Studdard , putting him 130,000 votes ahead of Aiken .
+Sentence 2: Of the 24 million phone votes cast , Studdard was only 130,000 votes ahead of Aiken .
+Label: {'sentence1': 'Of 24 million phoned-in votes , 50.28 percent were for Studdard , putting him 130,000 votes ahead of Aiken .', 'sentence2': 'Of the 24 million phone votes cast , Studdard was only 130,000 votes ahead of Aiken .', 'label': 0, 'idx': 1357}
+1
+Sentence 1: Hispanics , the fastest growing ethnic group in the US , have overtaken blacks to become the largest minority in the US , according to newly released government figures .
+Sentence 2: Hispanics have officially overtaken African Americans as the largest minority group in the US , according to a report released by the US Census Bureau .
+Label: {'sentence1': 'Hispanics , the fastest growing ethnic group in the US , have overtaken blacks to become the largest minority in the US , according to newly released government figures .', 'sentence2': 'Hispanics have officially overtaken African Americans as the largest minority group in the US , according to a report released by the US Census Bureau .', 'label': 0, 'idx': 1359}
+0
+Sentence 1: As a result of the decision , Brown said CareFirst subscribers won 't have access to Blue Cross Blue Shield nationwide and to international service providers .
+Sentence 2: But if the trademark is withdrawn , subscribers won 't have access to Blue Cross Blue Shield nationwide and international service providers .
+Label: {'sentence1': "As a result of the decision , Brown said CareFirst subscribers won 't have access to Blue Cross Blue Shield nationwide and to international service providers .", 'sentence2': "But if the trademark is withdrawn , subscribers won 't have access to Blue Cross Blue Shield nationwide and international service providers .", 'label': 1, 'idx': 1365}
+1
+Sentence 1: They found that 18 percent of the men who took finasteride , or 803 men , developed prostate cancer .
+Sentence 2: About 24 percent of men who took the placebo , or 1,147 men , developed prostate cancer .
+Label: {'sentence1': 'They found that 18 percent of the men who took finasteride , or 803 men , developed prostate cancer .', 'sentence2': 'About 24 percent of men who took the placebo , or 1,147 men , developed prostate cancer .', 'label': 0, 'idx': 1376}
+0
+Sentence 1: The Conference Board reported its U.S. Consumer Confidence Index slipped to 83.5 in June from 83.6 in May .
+Sentence 2: The consumer-confidence index came in at 83.5 in June , down slightly from a revised 83.6 in May , the Conference Board said .
+Label: {'sentence1': 'The Conference Board reported its U.S. Consumer Confidence Index slipped to 83.5 in June from 83.6 in May .', 'sentence2': 'The consumer-confidence index came in at 83.5 in June , down slightly from a revised 83.6 in May , the Conference Board said .', 'label': 1, 'idx': 1379}
+0
+Sentence 1: Once converted , BayStar will own an aggregate of approximately 2.95 million shares of SCO common stock or 17.5 percent of the company 's outstanding shares .
+Sentence 2: The investment gives Larkspur , Calif.-based BayStar more than 2.9 million shares of SCO common stock , or 17.5 percent of the company 's outstanding shares .
+Label: {'sentence1': "Once converted , BayStar will own an aggregate of approximately 2.95 million shares of SCO common stock or 17.5 percent of the company 's outstanding shares .", 'sentence2': "The investment gives Larkspur , Calif.-based BayStar more than 2.9 million shares of SCO common stock , or 17.5 percent of the company 's outstanding shares .", 'label': 1, 'idx': 1390}
+0
+Sentence 1: Dennehy , who transferred to Baylor last year after getting kicked off the University of New Mexico Lobos for temper tantrums , had begun to read the Bible daily .
+Sentence 2: Dennehy , who transferred to Baylor last year after getting kicked off the University of New Mexico Lobos for temper tantrums , became a born-again Christian in June 2002 .
+Label: {'sentence1': 'Dennehy , who transferred to Baylor last year after getting kicked off the University of New Mexico Lobos for temper tantrums , had begun to read the Bible daily .', 'sentence2': 'Dennehy , who transferred to Baylor last year after getting kicked off the University of New Mexico Lobos for temper tantrums , became a born-again Christian in June 2002 .', 'label': 1, 'idx': 1399}
+1
+Sentence 1: Looking to buy the latest Harry Potter ?
+Sentence 2: Harry Potter 's latest wizard trick ?
+Label: {'sentence1': 'Looking to buy the latest Harry Potter ?', 'sentence2': "Harry Potter 's latest wizard trick ?", 'label': 0, 'idx': 1405}
+0
+Sentence 1: Compounding the pain for bonds , housing starts jumped a strong 6.1 percent in May while industrial output edged up 0.1 percent , just beating forecasts of a flat outcome .
+Sentence 2: Rubbing salt in the wounds , housing starts jumped a strong 6.1 percent in May while industrial output edged up 0.1 percent , just beating forecasts of a flat outcome .
+Label: {'sentence1': 'Compounding the pain for bonds , housing starts jumped a strong 6.1 percent in May while industrial output edged up 0.1 percent , just beating forecasts of a flat outcome .', 'sentence2': 'Rubbing salt in the wounds , housing starts jumped a strong 6.1 percent in May while industrial output edged up 0.1 percent , just beating forecasts of a flat outcome .', 'label': 1, 'idx': 1408}
+0
+Sentence 1: The euro was at 126.38 / 43 yen little changed from its late U.S. level of 126.35 yen but down sharply from around 127.60 yen the same time on Tuesday .
+Sentence 2: The euro was around 126.50 yen compared to its late Tuesday U.S. level of 126.35 yen but down sharply from around 127.30 yen in early Asian trade on Tuesday .
+Label: {'sentence1': 'The euro was at 126.38 / 43 yen little changed from its late U.S. level of 126.35 yen but down sharply from around 127.60 yen the same time on Tuesday .', 'sentence2': 'The euro was around 126.50 yen compared to its late Tuesday U.S. level of 126.35 yen but down sharply from around 127.30 yen in early Asian trade on Tuesday .', 'label': 1, 'idx': 1411}
+1
+Sentence 1: The body 's hair , sources said , appeared to be blond with dark roots , the same as Aronov 's .
+Sentence 2: The body had blond hair with dark roots , and was roughly the same height and build as the 5-foot-4 Ms. Aronov , the officials said .
+Label: {'sentence1': "The body 's hair , sources said , appeared to be blond with dark roots , the same as Aronov 's .", 'sentence2': 'The body had blond hair with dark roots , and was roughly the same height and build as the 5-foot-4 Ms. Aronov , the officials said .', 'label': 0, 'idx': 1417}
+1
+Sentence 1: Selenski descended down the wall and used the mattress to climb over razor wire .
+Sentence 2: Selenski used the mattress to scale a 10-foot razor wire , Fischi said .
+Label: {'sentence1': 'Selenski descended down the wall and used the mattress to climb over razor wire .', 'sentence2': 'Selenski used the mattress to scale a 10-foot razor wire , Fischi said .', 'label': 0, 'idx': 1419}
+1
+Sentence 1: Canadian officials have agreed to run a complementary threat response exercise .
+Sentence 2: Canadian officials will participate through a command post exercise .
+Label: {'sentence1': 'Canadian officials have agreed to run a complementary threat response exercise .', 'sentence2': 'Canadian officials will participate through a command post exercise .', 'label': 0, 'idx': 1421}
+0
+Sentence 1: Certain to give Democrats hope was Bush 's hypothetical matchup with a generic Democrat ; the president prevailed 43 percent to 38 percent .
+Sentence 2: In a Bush hypothetical matchup with a generic Democrat ; the president prevailed 43 to 38 percent .
+Label: {'sentence1': "Certain to give Democrats hope was Bush 's hypothetical matchup with a generic Democrat ; the president prevailed 43 percent to 38 percent .", 'sentence2': 'In a Bush hypothetical matchup with a generic Democrat ; the president prevailed 43 to 38 percent .', 'label': 1, 'idx': 1423}
+1
+Sentence 1: In addition , primary care trusts ( PCTs ) were given star ratings for the first time this year .
+Sentence 2: Primary Care Trusts and Mental Health Trusts have also been formally rated for the first time this year .
+Label: {'sentence1': 'In addition , primary care trusts ( PCTs ) were given star ratings for the first time this year .', 'sentence2': 'Primary Care Trusts and Mental Health Trusts have also been formally rated for the first time this year .', 'label': 0, 'idx': 1427}
+0
+Sentence 1: Kodak expects earnings of 5 cents to 25 cents a share in the quarter .
+Sentence 2: Analysts surveyed by Thomson First Call had expected Kodak to earn 68 cents a share for the quarter .
+Label: {'sentence1': 'Kodak expects earnings of 5 cents to 25 cents a share in the quarter .', 'sentence2': 'Analysts surveyed by Thomson First Call had expected Kodak to earn 68 cents a share for the quarter .', 'label': 1, 'idx': 1428}
+0
+Sentence 1: For legal purposes , J.P. Morgan and Citigroup neither admit nor deny the SEC charges under the settlements .
+Sentence 2: The banks did not admit or deny the SEC charges under the settlements .
+Label: {'sentence1': 'For legal purposes , J.P. Morgan and Citigroup neither admit nor deny the SEC charges under the settlements .', 'sentence2': 'The banks did not admit or deny the SEC charges under the settlements .', 'label': 1, 'idx': 1429}
+1
+Sentence 1: Opponents of the ban also are planning a protest rally at City Hall tomorrow at 1 p.m. to coincide with the scheduled start of the state ban .
+Sentence 2: In New York City , opponents of the ban are planning a protest rally at City Hall Thursday at 1 p.m.
+Label: {'sentence1': 'Opponents of the ban also are planning a protest rally at City Hall tomorrow at 1 p.m. to coincide with the scheduled start of the state ban .', 'sentence2': 'In New York City , opponents of the ban are planning a protest rally at City Hall Thursday at 1 p.m.', 'label': 0, 'idx': 1433}
+1
+Sentence 1: Police using pepper spray arrested 12 people Monday night at a march and rally by about 400 activists protesting an annual training seminar of the Law Enforcement Intelligence Unit .
+Sentence 2: Police used pepper spray and rubber bullets to disperse a downtown march and rally last night by activists protesting an annual police intelligence-training seminar .
+Label: {'sentence1': 'Police using pepper spray arrested 12 people Monday night at a march and rally by about 400 activists protesting an annual training seminar of the Law Enforcement Intelligence Unit .', 'sentence2': 'Police used pepper spray and rubber bullets to disperse a downtown march and rally last night by activists protesting an annual police intelligence-training seminar .', 'label': 0, 'idx': 1440}
+1
+Sentence 1: Swartz , indicted in February , had argued that New Hampshire was the wrong place to charge him .
+Sentence 2: Swartz had sought to have the charges dismissed , saying New Hampshire was the wrong place to charge him .
+Label: {'sentence1': 'Swartz , indicted in February , had argued that New Hampshire was the wrong place to charge him .', 'sentence2': 'Swartz had sought to have the charges dismissed , saying New Hampshire was the wrong place to charge him .', 'label': 0, 'idx': 1442}
+1
+Sentence 1: A Chinese court yesterday jailed two people for life and imprisoned 12 others for organising a sex party involving hundreds of Japanese tourists .
+Sentence 2: A court in southern China yesterday jailed two people for life for organising a three-day sexual romp with hundreds of prostitutes by visiting employees of a Japanese company .
+Label: {'sentence1': 'A Chinese court yesterday jailed two people for life and imprisoned 12 others for organising a sex party involving hundreds of Japanese tourists .', 'sentence2': 'A court in southern China yesterday jailed two people for life for organising a three-day sexual romp with hundreds of prostitutes by visiting employees of a Japanese company .', 'label': 0, 'idx': 1449}
+0
+Sentence 1: Mr. Mask said Mr. Cullen would be taken from the Somerset County Jail by Thursday and moved to the Ann Klein Forensic Hospital just outside Trenton for psychiatric care .
+Sentence 2: Charles Cullen , 43 , was transferred from the Somerset County Jail in Somerville to the Anne Klein Forensic Center , a 150-bed psychiatric treatment facility in Trenton .
+Label: {'sentence1': 'Mr. Mask said Mr. Cullen would be taken from the Somerset County Jail by Thursday and moved to the Ann Klein Forensic Hospital just outside Trenton for psychiatric care .', 'sentence2': 'Charles Cullen , 43 , was transferred from the Somerset County Jail in Somerville to the Anne Klein Forensic Center , a 150-bed psychiatric treatment facility in Trenton .', 'label': 1, 'idx': 1452}
+1
+Sentence 1: " I had no direct interest and Craxi begged me to intervene because he believed the operation damaged the state , " he told a packed courtroom during a 45-minute address .
+Sentence 2: " I had no direct interest , and Craxi begged me to intervene because he believed that the operation damaged the state , " Mr. Berlusconi said .
+Label: {'sentence1': '" I had no direct interest and Craxi begged me to intervene because he believed the operation damaged the state , " he told a packed courtroom during a 45-minute address .', 'sentence2': '" I had no direct interest , and Craxi begged me to intervene because he believed that the operation damaged the state , " Mr. Berlusconi said .', 'label': 0, 'idx': 1464}
+0
+Sentence 1: The Winston-Salem , North Carolina company opened six stores during the quarter , bringing the total to 282 .
+Sentence 2: Six new Krispy Kreme stores were opened in the first quarter , bringing the total number of stores to 282 .
+Label: {'sentence1': 'The Winston-Salem , North Carolina company opened six stores during the quarter , bringing the total to 282 .', 'sentence2': 'Six new Krispy Kreme stores were opened in the first quarter , bringing the total number of stores to 282 .', 'label': 1, 'idx': 1465}
+1
+Sentence 1: Besides Hampton and Newport News , the grant funds water testing in Yorktown , King George County , Norfolk and Virginia Beach .
+Sentence 2: The grant also funds beach testing in King George County , Norfolk and Virginia Beach .
+Label: {'sentence1': 'Besides Hampton and Newport News , the grant funds water testing in Yorktown , King George County , Norfolk and Virginia Beach .', 'sentence2': 'The grant also funds beach testing in King George County , Norfolk and Virginia Beach .', 'label': 0, 'idx': 1467}
+0
+Sentence 1: The department ordered an 18.2 percent reduction for Allstate Texas Lloyds and a 12 percent reduction for State Farm Lloyds .
+Sentence 2: The department ordered a 12 percent reduction for State Farm Lloyds , the state 's largest insurer , and an 18.2 percent reduction for Allstate Texas Lloyds , the third-largest .
+Label: {'sentence1': 'The department ordered an 18.2 percent reduction for Allstate Texas Lloyds and a 12 percent reduction for State Farm Lloyds .', 'sentence2': "The department ordered a 12 percent reduction for State Farm Lloyds , the state 's largest insurer , and an 18.2 percent reduction for Allstate Texas Lloyds , the third-largest .", 'label': 1, 'idx': 1470}
+0
+Sentence 1: " The European Union is basically absent , " said Tito Barbini , regional minister for agriculture in Tuscany , Italy .
+Sentence 2: Tito Barbini , a regional minister for agriculture in Tuscany , Italy , criticized the absence Tuesday in Sacramento .
+Label: {'sentence1': '" The European Union is basically absent , " said Tito Barbini , regional minister for agriculture in Tuscany , Italy .', 'sentence2': 'Tito Barbini , a regional minister for agriculture in Tuscany , Italy , criticized the absence Tuesday in Sacramento .', 'label': 1, 'idx': 1475}
+1
+Sentence 1: The drop in core wholesale prices in April reflected falling prices for cars , trucks , men 's and boy 's clothes and cigarettes .
+Sentence 2: That was the biggest drop since August 1993 and stemmed from falling prices for cars , trucks , men 's and boys ' clothes and cigarettes .
+Label: {'sentence1': "The drop in core wholesale prices in April reflected falling prices for cars , trucks , men 's and boy 's clothes and cigarettes .", 'sentence2': "That was the biggest drop since August 1993 and stemmed from falling prices for cars , trucks , men 's and boys ' clothes and cigarettes .", 'label': 0, 'idx': 1476}
+0
+Sentence 1: Veteran entertainer Bob Hope celebrates his 100th birthday - and many years in showbusiness - on Thursday .
+Sentence 2: Hollywood and the world are gearing up to celebrate legendary entertainer Bob Hope 's 100th birthday on Thursday .
+Label: {'sentence1': 'Veteran entertainer Bob Hope celebrates his 100th birthday - and many years in showbusiness - on Thursday .', 'sentence2': "Hollywood and the world are gearing up to celebrate legendary entertainer Bob Hope 's 100th birthday on Thursday .", 'label': 1, 'idx': 1478}
+0
+Sentence 1: Althardt said there was no indication that any of the sick children needed to be hospitalized .
+Sentence 2: The sick children have been staying home and Althardt said there was no indication any had needed to be hospitalized .
+Label: {'sentence1': 'Althardt said there was no indication that any of the sick children needed to be hospitalized .', 'sentence2': 'The sick children have been staying home and Althardt said there was no indication any had needed to be hospitalized .', 'label': 1, 'idx': 1483}
+1
+Sentence 1: A Global Crossing spokeswoman and a Pentagon spokesman declined to comment .
+Sentence 2: A Global Crossing representative had no immediate comment .
+Label: {'sentence1': 'A Global Crossing spokeswoman and a Pentagon spokesman declined to comment .', 'sentence2': 'A Global Crossing representative had no immediate comment .', 'label': 0, 'idx': 1487}
+1
+Sentence 1: Added Mr. Prodi : " Maybe , but the old age helps us to understand our strengths and our weakness . "
+Sentence 2: " Maybe , but the old age helps us to understand our strength and our weakness and the reality of the world .
+Label: {'sentence1': 'Added Mr. Prodi : " Maybe , but the old age helps us to understand our strengths and our weakness . "', 'sentence2': '" Maybe , but the old age helps us to understand our strength and our weakness and the reality of the world .', 'label': 0, 'idx': 1493}
+0
+Sentence 1: A jury convicted rapper C-Murder , also known as Corey Miller , of second-degree murder Tuesday night in the shooting death of a 16-year-old in a Jefferson Parish nightclub .
+Sentence 2: Rapper C-Murder has been convicted of second-degree murder , a crime that carries an automatic life sentence , in the shooting death of a 16-year-old inside a Jefferson Parish nightclub .
+Label: {'sentence1': 'A jury convicted rapper C-Murder , also known as Corey Miller , of second-degree murder Tuesday night in the shooting death of a 16-year-old in a Jefferson Parish nightclub .', 'sentence2': 'Rapper C-Murder has been convicted of second-degree murder , a crime that carries an automatic life sentence , in the shooting death of a 16-year-old inside a Jefferson Parish nightclub .', 'label': 1, 'idx': 1494}
+1
+Sentence 1: FRIENDS of Robert De Niro yesterday rallied around him after he was diagnosed with prostate cancer .
+Sentence 2: Hollywood actor Robert De Niro has been diagnosed with prostate cancer , his spokesman said today .
+Label: {'sentence1': 'FRIENDS of Robert De Niro yesterday rallied around him after he was diagnosed with prostate cancer .', 'sentence2': 'Hollywood actor Robert De Niro has been diagnosed with prostate cancer , his spokesman said today .', 'label': 0, 'idx': 1498}
+1
+Sentence 1: The military said it had killed 12 rebels and captured nine in the campaign so far , for the loss of six soldiers wounded .
+Sentence 2: The military said it had killed 16 rebels and captured nine in the campaign so far , with one soldier killed and six wounded .
+Label: {'sentence1': 'The military said it had killed 12 rebels and captured nine in the campaign so far , for the loss of six soldiers wounded .', 'sentence2': 'The military said it had killed 16 rebels and captured nine in the campaign so far , with one soldier killed and six wounded .', 'label': 0, 'idx': 1507}
+0
+Sentence 1: The Dow Jones industrial average .DJI added 47.9 points , or 0.52 percent , to 9,174.35 .
+Sentence 2: The Dow Jones industrial average .DJI ended up 64.64 points , or 0.71 percent , at 9,191.09 , according to the latest available data .
+Label: {'sentence1': 'The Dow Jones industrial average .DJI added 47.9 points , or 0.52 percent , to 9,174.35 .', 'sentence2': 'The Dow Jones industrial average .DJI ended up 64.64 points , or 0.71 percent , at 9,191.09 , according to the latest available data .', 'label': 1, 'idx': 1512}
+0
+Sentence 1: The company posted a profit of $ 54.3 million , or 22 cents per share , in the year-ago period .
+Sentence 2: That was up from the year-ago quarter , when the company earned $ 54.3 million , or 22 cents a share .
+Label: {'sentence1': 'The company posted a profit of $ 54.3 million , or 22 cents per share , in the year-ago period .', 'sentence2': 'That was up from the year-ago quarter , when the company earned $ 54.3 million , or 22 cents a share .', 'label': 1, 'idx': 1516}
+1
+Sentence 1: Air Canada , the largest airline in Canada and No. 11 in the world , has been under court protection from creditors since April 1 .
+Sentence 2: The No. 11 airline in the world , Air Canada has been under court protection from creditors since April 1 .
+Label: {'sentence1': 'Air Canada , the largest airline in Canada and No. 11 in the world , has been under court protection from creditors since April 1 .', 'sentence2': 'The No. 11 airline in the world , Air Canada has been under court protection from creditors since April 1 .', 'label': 0, 'idx': 1531}
+0
+Sentence 1: The commission estimated California lost $ 937 million to corporate tax shelters in 2001 .
+Sentence 2: California 's lost tax revenue was mostly due to international corporate tax shelters .
+Label: {'sentence1': 'The commission estimated California lost $ 937 million to corporate tax shelters in 2001 .', 'sentence2': "California 's lost tax revenue was mostly due to international corporate tax shelters .", 'label': 1, 'idx': 1537}
+0
+Sentence 1: Seven of the nine major Democratic presidential candidates will address the forum .
+Sentence 2: Seven of nine Democratic candidates for president also said they would participate in the conference Monday .
+Label: {'sentence1': 'Seven of the nine major Democratic presidential candidates will address the forum .', 'sentence2': 'Seven of nine Democratic candidates for president also said they would participate in the conference Monday .', 'label': 1, 'idx': 1546}
+1
+Sentence 1: German prosecutors have ruled out any charges in Germany , meaning extradition " could happen very soon , " Ullrich said .
+Sentence 2: Studabaker told the court he would not contest extradition and German prosecutors have ruled out any charges here , meaning extradition " could happen very soon , " Ullrich said .
+Label: {'sentence1': 'German prosecutors have ruled out any charges in Germany , meaning extradition " could happen very soon , " Ullrich said .', 'sentence2': 'Studabaker told the court he would not contest extradition and German prosecutors have ruled out any charges here , meaning extradition " could happen very soon , " Ullrich said .', 'label': 0, 'idx': 1552}
+1
+Sentence 1: The trial is entering a crucial stage as Italy prepares to assume the rotating presidency of the European Union on July 1 .
+Sentence 2: The prime minister is poised to take over the rotating presidency of the European Union on July 1 .
+Label: {'sentence1': 'The trial is entering a crucial stage as Italy prepares to assume the rotating presidency of the European Union on July 1 .', 'sentence2': 'The prime minister is poised to take over the rotating presidency of the European Union on July 1 .', 'label': 0, 'idx': 1553}
+1
+Sentence 1: The first health-care worker in the country to die of SARS was a Filipina-Canadian who contracted the disease at North York General Hospital , the site of the second outbreak .
+Sentence 2: Emile Laroza , 51 , contracted SARS while working as a nurse at North York General Hospital , the epicentre of the second SARS outbreak .
+Label: {'sentence1': 'The first health-care worker in the country to die of SARS was a Filipina-Canadian who contracted the disease at North York General Hospital , the site of the second outbreak .', 'sentence2': 'Emile Laroza , 51 , contracted SARS while working as a nurse at North York General Hospital , the epicentre of the second SARS outbreak .', 'label': 0, 'idx': 1556}
+1
+Sentence 1: NBC will probably end the season as the second most popular network behind CBS , although it 's first among the key 18-to-49-year-old demographic .
+Sentence 2: NBC will probably end the season as the second most-popular network behind CBS , which is first among the key 18-to-49-year-old demographic .
+Label: {'sentence1': "NBC will probably end the season as the second most popular network behind CBS , although it 's first among the key 18-to-49-year-old demographic .", 'sentence2': 'NBC will probably end the season as the second most-popular network behind CBS , which is first among the key 18-to-49-year-old demographic .', 'label': 0, 'idx': 1572}
+0
+Sentence 1: Vivendi shares closed 3.8 percent up in Paris at 15.78 euros .
+Sentence 2: Vivendi shares were 0.3 percent up at 15.62 euros in Paris at 0841 GMT .
+Label: {'sentence1': 'Vivendi shares closed 3.8 percent up in Paris at 15.78 euros .', 'sentence2': 'Vivendi shares were 0.3 percent up at 15.62 euros in Paris at 0841 GMT .', 'label': 1, 'idx': 1586}
+1
+Sentence 1: Shiites make up 20 percent of the country 's population .
+Sentence 2: Sunnis make up 77 percent of Pakistan 's population , Shiites 20 percent .
+Label: {'sentence1': "Shiites make up 20 percent of the country 's population .", 'sentence2': "Sunnis make up 77 percent of Pakistan 's population , Shiites 20 percent .", 'label': 0, 'idx': 1590}
+1
+Sentence 1: Dotson told FBI agents that he shot Dennehy after the player tried to shoot him , according to the arrest warrant affidavit .
+Sentence 2: Dotson was arrested July 21 after telling FBI agents he shot Dennehy when Dennehy tried to shoot him , according to the arrest warrant affidavit .
+Label: {'sentence1': 'Dotson told FBI agents that he shot Dennehy after the player tried to shoot him , according to the arrest warrant affidavit .', 'sentence2': 'Dotson was arrested July 21 after telling FBI agents he shot Dennehy when Dennehy tried to shoot him , according to the arrest warrant affidavit .', 'label': 0, 'idx': 1591}
+1
+Sentence 1: The Dow Jones industrial average .DJI edged up 13.33 points , or 0.15 percent , to 9,196.55 .
+Sentence 2: The Dow Jones industrial average < .DJI > was off 7.75 points , or 0.08 percent , at 9,175.47 .
+Label: {'sentence1': 'The Dow Jones industrial average .DJI edged up 13.33 points , or 0.15 percent , to 9,196.55 .', 'sentence2': 'The Dow Jones industrial average < .DJI > was off 7.75 points , or 0.08 percent , at 9,175.47 .', 'label': 0, 'idx': 1597}
+1
+Sentence 1: On Monday , as first reported by CNET News.com , the RIAA withdrew a DMCA notice to Penn State University 's astronomy and astrophysics department .
+Sentence 2: Last Thursday , the RIAA sent a stiff copyright warning to Penn State 's department of astronomy and astrophysics .
+Label: {'sentence1': "On Monday , as first reported by CNET News.com , the RIAA withdrew a DMCA notice to Penn State University 's astronomy and astrophysics department .", 'sentence2': "Last Thursday , the RIAA sent a stiff copyright warning to Penn State 's department of astronomy and astrophysics .", 'label': 0, 'idx': 1622}
+1
+Sentence 1: " IT is the only vehicle on which established economies will be able to compete , " Barrett said .
+Sentence 2: " IT is the only vehicle on which established economies will be able to compete " with fast-growing economies such as China and India , Barrett said .
+Label: {'sentence1': '" IT is the only vehicle on which established economies will be able to compete , " Barrett said .', 'sentence2': '" IT is the only vehicle on which established economies will be able to compete " with fast-growing economies such as China and India , Barrett said .', 'label': 0, 'idx': 1624}
+0
+Sentence 1: The consumer group generated $ 4.47 billion of profit and $ 20 billion of revenue from January to June , 53 % of Citigroup 's profit and revenue .
+Sentence 2: It generated $ 4.47 billion of profit and $ 20 billion of revenue in the year 's first half , 53 percent of Citigroup 's totals .
+Label: {'sentence1': "The consumer group generated $ 4.47 billion of profit and $ 20 billion of revenue from January to June , 53 % of Citigroup 's profit and revenue .", 'sentence2': "It generated $ 4.47 billion of profit and $ 20 billion of revenue in the year 's first half , 53 percent of Citigroup 's totals .", 'label': 1, 'idx': 1627}
+1
+Sentence 1: Several thousand 3rd Infantry troops , including the 3rd Brigade Combat Team based at Fort Benning in Columbus , began returning last week .
+Sentence 2: A few thousand troops , most from the division 's 3rd Brigade Combat Team based at Fort Benning in Columbus , began returning last week , with flights continuing through Friday .
+Label: {'sentence1': 'Several thousand 3rd Infantry troops , including the 3rd Brigade Combat Team based at Fort Benning in Columbus , began returning last week .', 'sentence2': "A few thousand troops , most from the division 's 3rd Brigade Combat Team based at Fort Benning in Columbus , began returning last week , with flights continuing through Friday .", 'label': 0, 'idx': 1642}
+1
+Sentence 1: A 32-count indictment " strikes at one of the very top targets in the drug trafficking world , " U.S. Attorney Marcos Jimenez said .
+Sentence 2: The newly unsealed 32-count indictment alleges money laundering and conspiracy and " strikes at one of the very top targets in the drug-trafficking world , " Jiménez said .
+Label: {'sentence1': 'A 32-count indictment " strikes at one of the very top targets in the drug trafficking world , " U.S. Attorney Marcos Jimenez said .', 'sentence2': 'The newly unsealed 32-count indictment alleges money laundering and conspiracy and " strikes at one of the very top targets in the drug-trafficking world , " Jiménez said .', 'label': 0, 'idx': 1648}
+0
+Sentence 1: The council includes 13 Shiites , five Kurds , five Sunnis , one Christian and one Turkoman .
+Sentence 2: There are five ethnic Kurds , five Sunni Muslims , a Christian and a Turkoman .
+Label: {'sentence1': 'The council includes 13 Shiites , five Kurds , five Sunnis , one Christian and one Turkoman .', 'sentence2': 'There are five ethnic Kurds , five Sunni Muslims , a Christian and a Turkoman .', 'label': 1, 'idx': 1650}
+1
+Sentence 1: Kroger Co . , which owns Ralphs , and Albertsons Inc. bargain jointly with Safeway and locked out their union workers the next day .
+Sentence 2: In a show of corporate solidarity , Kroger Co . , which owns Ralphs , and Albertson Inc. locked out their workers the next morning .
+Label: {'sentence1': 'Kroger Co . , which owns Ralphs , and Albertsons Inc. bargain jointly with Safeway and locked out their union workers the next day .', 'sentence2': 'In a show of corporate solidarity , Kroger Co . , which owns Ralphs , and Albertson Inc. locked out their workers the next morning .', 'label': 0, 'idx': 1654}
+0
+Sentence 1: Brendsel and chief financial officer Vaughn Clarke resigned June 9 .
+Sentence 2: The company 's chief executive retired and chief financial officer resigned .
+Label: {'sentence1': 'Brendsel and chief financial officer Vaughn Clarke resigned June 9 .', 'sentence2': "The company 's chief executive retired and chief financial officer resigned .", 'label': 1, 'idx': 1661}
+0
+Sentence 1: The village last said sorry in 1993 , when it presented the Methodist Church of Fiji with Baker 's boots - which cannibals had tried unsuccessfully to cook and eat .
+Sentence 2: In 1993 , villagers presented the Methodist Church of Fiji with Baker 's boots — which cannibals tried unsuccessfully to cook and eat .
+Label: {'sentence1': "The village last said sorry in 1993 , when it presented the Methodist Church of Fiji with Baker 's boots - which cannibals had tried unsuccessfully to cook and eat .", 'sentence2': "In 1993 , villagers presented the Methodist Church of Fiji with Baker 's boots — which cannibals tried unsuccessfully to cook and eat .", 'label': 1, 'idx': 1666}
+1
+Sentence 1: The proportion of people covered by employers dropped from 62.3 percent in 2001 to 61.3 percent last year .
+Sentence 2: The proportion of Americans with insurance from employers declined to 61.3 percent , from 62.6 percent in 2001 and 63.6 percent in 2000 .
+Label: {'sentence1': 'The proportion of people covered by employers dropped from 62.3 percent in 2001 to 61.3 percent last year .', 'sentence2': 'The proportion of Americans with insurance from employers declined to 61.3 percent , from 62.6 percent in 2001 and 63.6 percent in 2000 .', 'label': 0, 'idx': 1671}
+1
+Sentence 1: The delay comes on the heels of Boeing Chairman Phil Condit 's resignation Monday .
+Sentence 2: On Monday , it also announced the resignation of Chairman and Chief Executive Officer Phil Condit .
+Label: {'sentence1': "The delay comes on the heels of Boeing Chairman Phil Condit 's resignation Monday .", 'sentence2': 'On Monday , it also announced the resignation of Chairman and Chief Executive Officer Phil Condit .', 'label': 0, 'idx': 1675}
+0
+Sentence 1: Faced with these circumstances , Halliburton " is left with no option for providing these services from Kuwait other than to continue obtaining them from Altanmia , " Sumner wrote .
+Sentence 2: " KBR is left with no option for providing these services from Kuwait other than to continue obtaining them from Altanmia , " the document said .
+Label: {'sentence1': 'Faced with these circumstances , Halliburton " is left with no option for providing these services from Kuwait other than to continue obtaining them from Altanmia , " Sumner wrote .', 'sentence2': '" KBR is left with no option for providing these services from Kuwait other than to continue obtaining them from Altanmia , " the document said .', 'label': 1, 'idx': 1681}
+0
+Sentence 1: Stanford bested a 144-player field that included former winners Sorenstam and Juli Inkster , as well as 13-year-old phenom Michelle Wie .
+Sentence 2: She did — and then some , besting a 144-player field that included former winners Sorenstam and Juli Inkster , as well as Wie .
+Label: {'sentence1': 'Stanford bested a 144-player field that included former winners Sorenstam and Juli Inkster , as well as 13-year-old phenom Michelle Wie .', 'sentence2': 'She did — and then some , besting a 144-player field that included former winners Sorenstam and Juli Inkster , as well as Wie .', 'label': 1, 'idx': 1689}
+1
+Sentence 1: Bush turned out a statement yesterday thanking the commission for its work , and said , " Our journey into space will go on . "
+Sentence 2: Mr. Bush did not discuss this when he issued a brief statement yesterday thanking the commission for its work , and saying , " Our journey into space will go on . "
+Label: {'sentence1': 'Bush turned out a statement yesterday thanking the commission for its work , and said , " Our journey into space will go on . "', 'sentence2': 'Mr. Bush did not discuss this when he issued a brief statement yesterday thanking the commission for its work , and saying , " Our journey into space will go on . "', 'label': 0, 'idx': 1694}
+1
+Sentence 1: After Freitas ' opening statement , King County Superior Court Judge Charles Mertel recessed trial until after the Thanksgiving weekend .
+Sentence 2: King County Superior Court Judge Charles Mertel will then recess the trial until Monday .
+Label: {'sentence1': "After Freitas ' opening statement , King County Superior Court Judge Charles Mertel recessed trial until after the Thanksgiving weekend .", 'sentence2': 'King County Superior Court Judge Charles Mertel will then recess the trial until Monday .', 'label': 0, 'idx': 1702}
+0
+Sentence 1: The governor is going to Jackson , where 13 of the state 's 16 fatalities were reported .
+Sentence 2: The governor is going to Jackson , where 13 people were killed .
+Label: {'sentence1': "The governor is going to Jackson , where 13 of the state 's 16 fatalities were reported .", 'sentence2': 'The governor is going to Jackson , where 13 people were killed .', 'label': 1, 'idx': 1704}
+1
+Sentence 1: He planned to stay all day until the river crested , which was forecast for late last night .
+Sentence 2: He and the other lawyers planned to stay until the river starts receding .
+Label: {'sentence1': 'He planned to stay all day until the river crested , which was forecast for late last night .', 'sentence2': 'He and the other lawyers planned to stay until the river starts receding .', 'label': 0, 'idx': 1713}
+1
+Sentence 1: Bethany Hamilton remained in stable condition Saturday after the attack Friday morning .
+Sentence 2: Bethany , who remained in stable condition after the attack Friday morning , talked of the attack Saturday .
+Label: {'sentence1': 'Bethany Hamilton remained in stable condition Saturday after the attack Friday morning .', 'sentence2': 'Bethany , who remained in stable condition after the attack Friday morning , talked of the attack Saturday .', 'label': 0, 'idx': 1722}
