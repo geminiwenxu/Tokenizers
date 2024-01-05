@@ -122,7 +122,7 @@ class MorphemesTokenizer():
                                     first = rest_word
                                     second = meaning
                         morphemes = [first, second]
-                        print("1", morphemes)
+                        # print("1", morphemes)
                         return morphemes
                     elif inflectional_form == form:
                         rest_word = poor_word[:-(len(inflectional_form))]
@@ -134,7 +134,7 @@ class MorphemesTokenizer():
                             second = meaning
 
                         morphemes = [first, second]
-                        print("2", morphemes)
+                        # print("2", morphemes)
                         return morphemes
                     else:
                         match strategy:
@@ -144,8 +144,8 @@ class MorphemesTokenizer():
                                     first = form
                                     second = rest_word
                                 else:
-                                    first = rest_word
-                                    second = meaning
+                                    first = meaning
+                                    second = rest_word
                             case "root" | "suffix":
                                 rest_word = poor_word[:-(len(form))]
                                 if self.resegment_only is True:
@@ -155,11 +155,11 @@ class MorphemesTokenizer():
                                     first = rest_word
                                     second = meaning
                         morphemes = [first, second]
-                        print("3", morphemes)
+                        # print("3", morphemes)
             else:
                 morphemes = [None]
-                print("4", morphemes)
-        print("5", morphemes)
+                # print("4", morphemes)
+        # print("5", morphemes)
         return morphemes
 
     @functools.lru_cache(maxsize=None)
@@ -263,15 +263,15 @@ class MorphemesTokenizer():
         poor_word = self.check_word(word)
         if poor_word is not None:
             resegment = self.test_segment(poor_word)
-            print("attention", resegment)
+            # print("attention", resegment)
             if resegment != [None]:
                 if resegment == (self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1])):
-                    retokenized_token = resegment
-                    # retokenized_token = [resegment[0], "##" + resegment[1]]
+                    # retokenized_token = resegment
+                    retokenized_token = [resegment[0], "##" + resegment[1]]
                     print(self.wp_tokenizer.tokenize(word))
-                    print(retokenized_token)
+                    # print(retokenized_token)
                     # """line 338-339: only for calculating the percentage"""
-                    # with open('qnli_test.txt', 'a') as f:
+                    # with open('mprc_correct_classified_test.txt', 'a') as f:
                     #     print('compare', self.wp_tokenizer.tokenize(word), resegment, file=f)
                 else:
                     retokenized_token = self.wp_tokenizer.tokenize(word)

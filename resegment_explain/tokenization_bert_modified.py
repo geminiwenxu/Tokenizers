@@ -576,18 +576,20 @@ class WordpieceTokenizer(object):
 
 
 if __name__ == '__main__':
-    import time
-
     # vocab_file_path = "/Users/geminiwenxu/PycharmProjects/Tokenizers/data/pretrained_tokenizer_128/vocab.txt"
     model_checkpoint = "bert-base-cased"
     test_data = resource_filename(__name__, config['ccnews_enwiki']['path'])
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
-    # sentence = "unbreakable overmatching undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
-    sentence = "unbreakables"
+    # sentence = "stonewalling unbreakable overmatching undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
+    sentence = "insecure undesirable"
+    # # sentence = "Willoughby"
+    # sentence = "overmatching"
+    # sentence = "trodden coenriched"
     print("tokens", modified_tokenizer.tokenize(sentence))
     # print(modified_tokenizer(sentence, return_tensors="pt"))
     print("-" * 50)
     from transformers import BertTokenizer
+
     baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     print("tokens", baseline_tokenizer.tokenize(sentence))
     # print(baseline_tokenizer(sentence, return_tensors="pt"))
@@ -605,15 +607,15 @@ if __name__ == '__main__':
     # from transformers import BertTokenizer
     #
     # test_tokenizer = BertTokenizer(vocab_file_path)
-    # f = open("../data/raw/extracted.txt", "r")
+    f = open("../data/raw/extracted.txt", "r")
     # modified = open("modified.txt", "w")
     # baseline = open("baseline.txt", "w")
     # log = open("non-match.txt", "w")
     # num_unk = 0
     # for sentence in f:
-    #     test_tokenizer(sentence, return_tensors="pt")
+    # test_tokenizer(sentence, return_tensors="pt")
     # modified_tokenizer(sentence, return_tensors="pt")
-    #     print(sentence)
+    # print(sentence)
     #     modified.write(sentence)
     #     modified.write(' '.join(modified_tokenizer.tokenize(sentence)))
     #     modified_token = modified_tokenizer(sentence, return_tensors="pt")["input_ids"].tolist()[0]

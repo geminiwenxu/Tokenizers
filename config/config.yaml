@@ -18,9 +18,9 @@ vocab_size:
 max_length:
   512
 epoch:
-  5
+  1
 batch_size:
-  32
+  64
 learning_rate:
   2.385802238163877e-05
 

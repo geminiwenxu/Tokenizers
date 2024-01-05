@@ -143,7 +143,7 @@ if __name__ == '__main__':
     prediction = trainer.predict(encoded_dataset["test"])
     pred_label = prediction.predictions.argmax(-1)
     actual_label = prediction.label_ids
-    with open("modified misclassification of " + task + ".txt", "w+") as f:
+    with open("modified_misclassification_of " + task + ".txt", "w+") as f:
         for i in range(len(pred_label)):
             if pred_label[i] != actual_label[i]:
                 f.write('%s\n' % pred_label[i])
@@ -154,7 +154,17 @@ if __name__ == '__main__':
                     f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
                     f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
                     f.write('%s\n' % f"Label: {dataset['test'][i]}")
-
+    with open("modified_correct_classification_of " + task + ".txt", "w+") as f:
+        for i in range(len(pred_label)):
+            if pred_label[i] == actual_label[i]:
+                f.write('%s\n' % pred_label[i])
+                if sentence2_key is None:
+                    f.write('%s\n' % f"Sentence: {dataset['test'][i][sentence1_key]}")
+                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
+                else:
+                    f.write('%s\n' % f"Sentence 1: {dataset['test'][i][sentence1_key]}")
+                    f.write('%s\n' % f"Sentence 2: {dataset['test'][i][sentence2_key]}")
+                    f.write('%s\n' % f"Label: {dataset['test'][i]}")
     precision, recall, f1, _ = precision_recall_fscore_support(actual_label, pred_label)
     acc = accuracy_score(actual_label, pred_label)
     print(prediction)
