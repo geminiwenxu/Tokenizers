@@ -45,6 +45,7 @@ if __name__ == '__main__':
     cos_similarity = torch.cosine_similarity(avg1.reshape(1, -1), avg2.reshape(1, -1))
     print(cos_similarity)
 
+    # method_1/2/3: always save avg1 (the modified embedding) _3 indicate the sentenec
     torch.save(avg1, 'method_2_3.pt')
     method_1 = torch.load('method_1_3.pt')
     method_2 = torch.load('method_2_3.pt')
