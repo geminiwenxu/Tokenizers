@@ -5,7 +5,7 @@ from transformers import BertTokenizer
 from resegment_explain.tokenization_bert_modified import ModifiedBertTokenizer
 
 model_checkpoint = "bert-base-cased"
-model = BertForSequenceClassification.from_pretrained(model_checkpoint, output_hidden_states=True)
+model = BertForSequenceClassification.from_pretrained(model_checkpoint, output_hidden_states=True).eval()
 modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
 baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
 
@@ -45,11 +45,13 @@ if __name__ == '__main__':
     cos_similarity = torch.cosine_similarity(avg1.reshape(1, -1), avg2.reshape(1, -1))
     print(cos_similarity)
 
-    # method_1/2/3: always save avg1 (the modified embedding) _3 indicate the sentenec
-    torch.save(avg1, 'method_2_3.pt')
-    method_1 = torch.load('method_1_3.pt')
-    method_2 = torch.load('method_2_3.pt')
-    method_3 = torch.load('method_3_3.pt')
+    # method_1/2/3: always save avg1 (the modified embedding) _3 indicate the sentence
+    torch.save(avg1, 'sen_3_method_2.pt')
+
+    # calculate the cos similarity
+    method_1 = torch.load('sen_3_method_1.pt')
+    method_2 = torch.load('sen_3_method_2.pt')
+    method_3 = torch.load('sen_3_method_3.pt')
     cos_similarity = torch.cosine_similarity(method_1.reshape(1, -1), method_2.reshape(1, -1))
     print(cos_similarity)
     cos_similarity = torch.cosine_similarity(method_2.reshape(1, -1), method_3.reshape(1, -1))
