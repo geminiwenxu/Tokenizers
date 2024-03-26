@@ -10,15 +10,15 @@ startTime = datetime.now()
 
 pp = pprint.PrettyPrinter()
 
-word = "Willoughby"
+word = "apple"
 
 results = morphemes.discover_segments(word)
-pp.pprint(results)
+# pp.pprint(results)
 if __name__ == '__main__':
 	if morphemes.format_results(results, "") == word:
 		final_results = morphemes.generate_final_results(results)
 		# print(final_results)
-		# pp.pprint(final_results)
+		pp.pprint(final_results)
 	else:
 		print(morphemes.format_results(results, "+"), "failed")
 

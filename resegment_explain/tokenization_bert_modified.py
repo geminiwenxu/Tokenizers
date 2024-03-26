@@ -581,18 +581,19 @@ if __name__ == '__main__':
     test_data = resource_filename(__name__, config['ccnews_enwiki']['path'])
     modified_tokenizer = ModifiedBertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     # sentence = "stonewalling unbreakable overmatching undesirable 搜 😙😙😙😆 unquenchable XXXXX aircrafts cats cook cooker insecure in yalamberpaviskandharbalambahritihumatijitedastigalinjapushkasuyarmapapabunkaswanandasthunkojinghrinanelukathorthokovermagujapushkarkeshusujasansagunamkhimbupatukagasti"
-    sentence = "insecure undesirable"
-    # # sentence = "Willoughby"
+    # sentence = "undesirable"
+    sentence = "Willoughby"
     # sentence = "overmatching"
-    # sentence = "trodden coenriched"
+    # sentence = "unravel coenriched"
+    # sentence = "trodden"
     print("tokens", modified_tokenizer.tokenize(sentence))
-    # print(modified_tokenizer(sentence, return_tensors="pt"))
+    print(modified_tokenizer(sentence, return_tensors="pt"))
     print("-" * 50)
     from transformers import BertTokenizer
 
     baseline_tokenizer = BertTokenizer.from_pretrained(model_checkpoint, use_fast=True)
     print("tokens", baseline_tokenizer.tokenize(sentence))
-    # print(baseline_tokenizer(sentence, return_tensors="pt"))
+    print(baseline_tokenizer(sentence, return_tensors="pt"))
 
     # test = BertTokenizer(vocab_file_path)
     # print(test.tokenize(sentence))

@@ -265,14 +265,15 @@ class MorphemesTokenizer():
             resegment = self.test_segment(poor_word)
             # print("attention", resegment)
             if resegment != [None]:
+                # print("!!!",(self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1])))
                 if resegment == (self.wp_tokenizer.tokenize(resegment[0]) + self.wp_tokenizer.tokenize(resegment[1])):
-                    # retokenized_token = resegment
-                    retokenized_token = [resegment[0], "##" + resegment[1]]
-                    print(self.wp_tokenizer.tokenize(word))
+                    retokenized_token = resegment
+                    # retokenized_token = [resegment[0], "##" + resegment[1]]
+                    # print(self.wp_tokenizer.tokenize(word))
                     # print(retokenized_token)
-                    # """line 338-339: only for calculating the percentage"""
-                    # with open('mprc_correct_classified_test.txt', 'a') as f:
-                    #     print('compare', self.wp_tokenizer.tokenize(word), resegment, file=f)
+                    """line 338-339: only for calculating the percentage"""
+                    with open('mprc_correct_classified_method_3_check.txt', 'a') as f:
+                        print('compare', self.wp_tokenizer.tokenize(word), resegment, file=f)
                 else:
                     retokenized_token = self.wp_tokenizer.tokenize(word)
             else:
